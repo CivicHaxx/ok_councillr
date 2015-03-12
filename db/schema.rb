@@ -53,4 +53,18 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   add_index "user_votes", ["item_id"], name: "index_user_votes_on_item_id", using: :btree
   add_index "user_votes", ["user_id"], name: "index_user_votes_on_user_id", using: :btree
 
+  create_table "users", force: :cascade do |t|
+    t.string   "email",            null: false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.string   "first_name",       null: false
+    t.string   "last_name",        null: false
+    t.string   "postal_code"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+
 end
