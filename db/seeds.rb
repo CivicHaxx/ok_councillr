@@ -48,10 +48,12 @@ end
 			agenda_id: agenda.id
 		)
 
-		UserVote.create(
-			vote: user_votes.sample,
-			user_id: users.sample.id,
-			item_id: item.id
-		)
+		rand(20).times do
+			UserVote.create(
+				vote: user_votes.sample,
+				user_id: users.sample.id,
+				item_id: item.id
+			)
+		end
 	end
 end
