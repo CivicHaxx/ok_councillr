@@ -3,6 +3,7 @@ require          "nokogiri"
 require          "open-uri"
 require          "awesome_print"
 require_relative "raw_agenda"
+require_relative "parsed_item"
 require_relative "../lib/html_stripper"
 
 BASE_URI             = "http://app.toronto.ca/tmmis/"
@@ -32,8 +33,10 @@ end.reject(&:nil?).uniq.flatten
 
 puts "I found #{meeting_ids.length} meeting IDs."
 
+#Dir.mkdir("db/agendas") unless Dir.exist? "db/agendas"
+
 meeting_ids.map do |id|
-  unless File.exists?("db/agendas/#{id}.html")
+	unless File.exist? "db/agendas/#{id}.html"
 		RawAgenda.new(id).save
 	  puts "Saved #{id} ✔ "
 	end
@@ -49,8 +52,8 @@ meeting_ids.each do |id|
 		item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
 		
 		unless item_number.empty?
-			binding.pry
-			agenda_item = Item.construct(item_number, item).save
+			parsed_agenda_item = ParsedItem.new(item_number, item).to_h
+			Item.create(parsed_agenda_item)
 		end
 	end
 end
