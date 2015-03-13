@@ -5,8 +5,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
   end
 
-  resources :users, only: [:index, :show, :update, :edit, :destroy]
+  resources :users, only: [:index, :update, :edit, :destroy]
   get "signup" => "users#new", :as => :signup
+  get "myvotes/:id" => "users#show", :as => :myvotes
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,2 +1,9 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>My Votes</h1>
+
+<% @user.user_votes.each do |vote| %>
+	<%= vote.item.agenda.date %>
+	<%= vote.item.number %>
+	<%= vote.item.title %>
+	<%= vote.vote %>
+<br><br>
+<% end %>
