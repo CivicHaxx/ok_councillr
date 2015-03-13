@@ -1,4 +1,7 @@
 namespace :okc do
+  desc "Gimme a fresh start. Drops the db and parses the data again."
+  task get_fresh: ['db:drop', 'db:create', 'db:migrate', :agenda_scrape] do; end
+
   desc "Scrape, parse & persist City Council agendas"
   task agenda_scrape: :environment do
   	begin
@@ -39,8 +42,6 @@ namespace :okc do
 
 	  	puts "I found #{meeting_ids.length} meeting IDs."
 
-	  	#Dir.mkdir("#{AGENDA_DIR}") unless Dir.exist? "#{AGENDA_DIR}"
-
 	  	meeting_ids.map do |id|
 	  		unless File.exist? "#{AGENDA_DIR}/#{id}.html"
 	  			RawAgenda.new(id).save
@@ -64,10 +65,12 @@ namespace :okc do
 	  	end
 
 	  	puts "★ ★ ★  DONE ★ ★ ★"
-	  rescue
+	  rescue => error
 	  	puts "-----------------------------------------------------------"
 	  	puts
-	  	puts "Looks like your database isn't set up yet!"
+	  	puts error
+	  	puts
+	  	puts "Your database might not be set up yet."
 	  	puts
 	  	puts "Usage:" 
 	  	puts "      rake db:drop db:create db:migrate okc:agenda_scrape"
