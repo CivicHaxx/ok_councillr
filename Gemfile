@@ -27,6 +27,8 @@ gem 'sorcery'
 # the html_stripper uses Ox to parse docs
 gem 'ox'
 
+gem 'active_model_serializers'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
