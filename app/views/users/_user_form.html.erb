@@ -1,0 +1,40 @@
+<%= form_for @user do |f| %>
+	<% if @user.errors.any? %>
+		<%= render 'shared/error_message', errors: @user.errors %>
+	<% end %>
+
+	<div>
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name %>
+	</div>
+
+	<div>
+		<%= f.label :last_name %>
+		<%= f.text_field :last_name %>
+	</div>
+
+	<div>
+		<%= f.label :postal_code %>
+		<%= f.text_field :postal_code %>
+	</div>
+
+	<div>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
+
+	<div>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</div>
+
+	<div>
+		<%= f.label :password_confirmation %>
+		<%= f.password_field :password_confirmation %>
+	</div>
+
+	<div>
+		<%= f.submit %>
+	</div>
+
+<% end %>
