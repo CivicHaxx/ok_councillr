@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore all downloaded agendas
+/db/agendas/*.html
