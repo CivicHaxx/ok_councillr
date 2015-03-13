@@ -72,8 +72,7 @@ namespace :okc do
 	  	puts
 	  	puts "Your database might not be set up yet."
 	  	puts
-	  	puts "Usage:" 
-	  	puts "      rake db:drop db:create db:migrate okc:agenda_scrape"
+	  	puts "To start fresh, run rake okc:get_fresh"
 	  	puts
 	  	puts "-----------------------------------------------------------"
 	  end
