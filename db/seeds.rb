@@ -58,4 +58,4 @@ meeting_ids.each do |id|
 	end
 end
 
-puts "★ ★ ★ ★ ★ ★ ★ ★ ★ ★ " 
+puts "★ ★ ★  DONE ★ ★ ★" 
