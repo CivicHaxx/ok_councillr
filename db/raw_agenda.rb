@@ -25,13 +25,19 @@ class RawAgenda
 	end
 
 	def content
-		Net::HTTP.post_form(url, agenda_params(id))
+		var = Net::HTTP.post_form(url, agenda_params(id)).body
+		var.to_s
+			 .scrub
+			 .encode(
+			 	'UTF-8', 
+			 	{ :invalid => :replace, 
+			 		:undef   => :replace, 
+			 		:replace => '?'})
 		# parser = Ox::Sax::Stripper.new
 		# parser.parse!(content).to_s
 	end
 
 	def save
-		puts "Calling the internet..."
 		File.open(filename, 'w') {|f| f.write(content) }	  
 	end
 end

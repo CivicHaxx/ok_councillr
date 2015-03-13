@@ -32,8 +32,6 @@ end.reject(&:nil?).uniq.flatten
 
 puts "I found #{meeting_ids.length} meeting IDs."
 
-p Dir.pwd
-
 meeting_ids.map do |id|
   unless File.exists?("db/agendas/#{id}.html")
 		RawAgenda.new(id).save
