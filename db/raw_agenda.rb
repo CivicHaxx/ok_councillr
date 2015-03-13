@@ -25,14 +25,15 @@ class RawAgenda
 	end
 
 	def content
-		var = Net::HTTP.post_form(url, agenda_params(id)).body
-		var.to_s
-			 .scrub
-			 .encode(
-			 	'UTF-8', 
-			 	{ :invalid => :replace, 
-			 		:undef   => :replace, 
-			 		:replace => '?'})
+		content = Net::HTTP.post_form(url, agenda_params(id)).body
+		content.to_s
+					 .scrub
+					 .encode(
+					 	'UTF-8', 
+					 	{ :invalid => :replace, 
+					 		:undef   => :replace, 
+					 		:replace => '?'
+					 	})
 		# parser = Ox::Sax::Stripper.new
 		# parser.parse!(content).to_s
 	end

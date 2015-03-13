@@ -49,6 +49,7 @@ meeting_ids.each do |id|
 		item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
 		
 		unless item_number.empty?
+			binding.pry
 			agenda_item = Item.construct(item_number, item).save
 		end
 	end
