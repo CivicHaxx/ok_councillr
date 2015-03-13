@@ -29,14 +29,15 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.string   "number"
     t.string   "title"
     t.string   "ward"
-    t.string   "number"
-    t.text     "raw_html"
+    t.text     "sections"
+    t.text     "recommendations"
     t.integer  "item_type_id"
     t.integer  "agenda_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "items", ["agenda_id"], name: "index_items_on_agenda_id", using: :btree

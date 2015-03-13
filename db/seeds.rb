@@ -1,57 +1,59 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require          "net/http"
+require          "nokogiri"
+require          "open-uri"
+require          "awesome_print"
+require_relative "raw_agenda"
+require_relative "../lib/html_stripper"
 
-ItemType.destroy_all 
-User.destroy_all
-Agenda.destroy_all 
-Item.destroy_all
-UserVote.destroy_all
+BASE_URI             = "http://app.toronto.ca/tmmis/"
 
-item_types = ItemType.create([{ name: 'Action' }, { name: 'Information' }, { name: 'Presentation' }])
-
-wards = %w(1 2 3 4 5 6 7 8 9 10 All)
-prefix = %w(EX CD GM PG)
-user_votes = %w(Yes No Skip)
-user_pc = ["M1P 0B6", "M6H 2P2", "M5H 1K4", "M5H 2N2", "M2K 1E1", "M9V 1R8"]
-
-users = []
-
-10.times do
-	users << User.create(
-		email: Faker::Internet.safe_email,
-		first_name: Faker::Name.first_name,
-		last_name: Faker::Name.last_name,
-		address: Faker::Address.street_address,
-		postal_code: user_pc.sample,
-		password: "password",
-		password_confirmation: "password"
-	)
+def calendar_params(month, year)
+  {
+    function:      "meetingCalendarView",
+    isToday:       "false",
+    expand:        "N",
+    view:          "List",
+    selectedMonth: month,
+    selectedYear:  year,
+    includeAll:    "on"
+  }
 end
+# TO DO: Make meetingId class that takes params like year, committee name etc.
+#        and generates a list of meeting ids to be passed into RawAgenda
+calendar_uri  = URI("#{BASE_URI}meetingCalendarView.do")
+calendar_page = Net::HTTP.post_form(calendar_uri, calendar_params(12, 2014)).body
+page          = Nokogiri::HTML(calendar_page)
+anchors       = page.css("#calendarList .list-item a")
+anchors       = anchors.to_ary
 
-2.times do 
-	agenda = Agenda.create(
-		date: Faker::Date.between(60.days.ago, Date.today)
-	)
+meeting_ids = anchors.map do |a|
+  a.attr("href").split("=").last if a.text.include? "City Council"
+end.reject(&:nil?).uniq.flatten
 
-	100.times do
-		item = Item.create(
-			title: Faker::Hacker.say_something_smart, 
-			ward: wards.sample,
-			number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
-			raw_html: "#{Faker::Company.bs} #{Faker::Company.catch_phrase} #{Faker::Lorem.paragraphs(5)}",
-			item_type_id: item_types.sample.id, 
-			agenda_id: agenda.id
-		)
+puts "I found #{meeting_ids.length} meeting IDs."
 
-		UserVote.create(
-			vote: user_votes.sample,
-			user_id: users.sample.id,
-			item_id: item.id
-		)
+p Dir.pwd
+
+meeting_ids.map do |id|
+  unless File.exists?("db/agendas/#{id}.html")
+		RawAgenda.new(id).save
+	  puts "Saved #{id} ✔ "
 	end
 end
+
+#parser starts
+meeting_ids.each do |id|
+  puts "Parsing #{id} ⚡  "
+  content  = open("db/agendas/#{id}.html").read
+	sections = content.scrub.split("<br clear=\"all\">")
+	items    = sections.map { |item| Nokogiri::HTML(item) }
+	items.each do |item|
+		item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
+		
+		unless item_number.empty?
+			agenda_item = Item.construct(item_number, item).save
+		end
+	end
+end
+
+puts "★ ★ ★ ★ ★ ★ ★ ★ ★ ★ " 

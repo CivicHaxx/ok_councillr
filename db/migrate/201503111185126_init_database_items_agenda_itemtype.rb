@@ -13,10 +13,11 @@ class InitDatabaseItemsAgendaItemtype < ActiveRecord::Migration
     end
 
     create_table :items do |t|
+      t.string :number
       t.string :title
       t.string :ward
-      t.string :number
-      t.text :raw_html
+      t.text :sections
+      t.text :recommendations
       t.belongs_to :item_type, index: true
       t.belongs_to :agenda, index: true
 
