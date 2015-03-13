@@ -1,5 +1,3 @@
-require 'http'
-
 class RawAgenda
 	attr_reader :id
 	def initialize(id)
@@ -43,7 +41,6 @@ class RawAgenda
 					 						 })
 		parser  = HTMLCleaner.new
 		content = parser.parse_html!(content).to_s
-		binding.pry
 	end
 
 	def save
