@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :agendas, only: [:index, :show]
+    resources :items, only: [:index, :show]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
