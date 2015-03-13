@@ -2,6 +2,11 @@ namespace :okc do
   desc "Gimme a fresh start. Drops the db and parses the data again."
   task get_fresh: ['db:drop', 'db:create', 'db:migrate', :agenda_scrape] do; end
 
+  desc"Clears out items table"
+  task delete_items: :environment do
+  	Item.delete_all
+  end
+
   desc "Scrape, parse & persist City Council agendas"
   task agenda_scrape: :environment do
   	begin
