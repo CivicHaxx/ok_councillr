@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sorcery'
 
+# the html_stripper uses Ox to parse docs
+gem 'ox'
+
 gem 'active_model_serializers'
 
 # Use ActiveModel has_secure_password
