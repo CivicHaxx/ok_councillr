@@ -43,7 +43,8 @@ end
 			title: Faker::Hacker.say_something_smart, 
 			ward: wards.sample,
 			number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
-			raw_html: "#{Faker::Company.bs} #{Faker::Company.catch_phrase} #{Faker::Lorem.paragraphs(5)}",
+			sections: "#{Faker::Lorem.paragraphs(5)}",
+      recommendations: "#{Faker::Company.bs} #{Faker::Company.catch_phrase}",
 			item_type_id: item_types.sample.id, 
 			agenda_id: agenda.id
 		)
