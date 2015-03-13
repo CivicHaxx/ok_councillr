@@ -9,7 +9,7 @@ class RawAgenda
 	end
 
 	def filename
-		"db/agendas/#{name}"
+		"#{AGENDA_DIR}/#{name}"
 	end
 
 	def url
