@@ -10,13 +10,13 @@ namespace :okc do
   desc "Scrape, parse & persist City Council agendas"
   task agenda_scrape: :environment do
   	begin
-	  	require          "net/http"
-	  	require          "nokogiri"
-	  	require          "open-uri"
-	  	require          "awesome_print"
-	  	require_relative "raw_agenda"
-	  	require_relative "parsed_item"
-	  	require_relative "../html_stripper"
+	  	require "net/http"
+	  	require "nokogiri"
+	  	require "open-uri"
+	  	require "awesome_print"
+	  	require "tasks/raw_agenda"
+	  	require "tasks/parsed_item"
+	  	require "html_stripper"
 
 	  	BASE_URI = "http://app.toronto.ca/tmmis/"
 	  	AGENDA_DIR = "lib/agendas"
@@ -55,7 +55,8 @@ namespace :okc do
 	  	end
 
 	  	meeting_ids.each do |id|
-	  	  puts "Parsing #{id} ⚡  "
+	  		start = Time.now.to_f
+	  	  print "Parsing #{id} "
 	  	  content  = open("#{AGENDA_DIR}/#{id}.html").read
 	  		sections = content.scrub.split("<br clear=\"all\">")
 	  		items    = sections.map { |item| Nokogiri::HTML(item) }
@@ -67,6 +68,7 @@ namespace :okc do
 	  				Item.create(parsed_agenda_item)
 	  			end
 	  		end
+	  	  puts "⚡" * ((Time.now.to_f - start)*10)
 	  	end
 
 	  	puts "★ ★ ★  DONE ★ ★ ★"

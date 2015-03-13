@@ -82,6 +82,11 @@ GEM
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hike (1.2.3)
+    http (0.7.2)
+      http-form_data (~> 1.0.0)
+      http_parser.rb (~> 0.6.0)
+    http-form_data (1.0.0)
+    http_parser.rb (0.6.0)
     i18n (0.7.0)
     interception (0.5)
     jbuilder (2.2.11)
@@ -205,6 +210,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   faker
   favorite_things
+  http
   jbuilder (~> 2.0)
   jquery-rails
   ox
