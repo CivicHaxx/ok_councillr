@@ -48,7 +48,6 @@ namespace :okc do
 	  		end
 	  	end
 
-	  	#parser starts
 	  	meeting_ids.each do |id|
 	  	  puts "Parsing #{id} ⚡  "
 	  	  content  = open("#{AGENDA_DIR}/#{id}.html").read
@@ -74,9 +73,7 @@ namespace :okc do
 	  	puts "      rake db:drop db:create db:migrate okc:agenda_scrape"
 	  	puts
 	  	puts "-----------------------------------------------------------"
-
 	  end
-
   end
 
 end
