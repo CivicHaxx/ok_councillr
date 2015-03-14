@@ -7,6 +7,24 @@ namespace :okc do
   	Item.delete_all
   end
 
+  desc "Tests ParsedItem on a single file"
+  task :test_parser, [:num] do |t, args| 
+    require 'parsed_item'
+    
+    content  = open("lib/dirty_agendas/7849.html").read
+      sections = content.split("<br clear=\"all\">")
+      items    = sections.map { |item| Nokogiri::HTML(item) }
+      
+      items.each do |item|
+        item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
+
+        unless item_number.empty?
+          parsed_agenda_item = ParsedItem.new(item_number, item).to_h
+        binding.pry if parsed_agenda_item[:ward].length > 1 
+        end
+      end
+    end
+
   desc "Scrape, parse & persist City Council agendas"
   task :agenda_scrape, [:clean] do |t, args|
   	# Cleaner dosn't work yet. So don't pass any args into the task.
@@ -50,7 +68,7 @@ namespace :okc do
   		
       items.each do |item|
   			item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
-  			
+
   			unless item_number.empty?
   				parsed_agenda_item = ParsedItem.new(item_number, item).to_h
   				Item.create(parsed_agenda_item)
