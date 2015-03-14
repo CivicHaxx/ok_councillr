@@ -16,7 +16,6 @@ class ParsedItem
 		@ward            = find_ward
 		@title           = find_item_title
 		@sections        = hash_sections(raw_html)
-		@recommendations = @sections[:recommendations]
 
 		@item = nil
 	end
@@ -28,7 +27,6 @@ class ParsedItem
 			ward:            @ward,
 			title:           @title,
 			sections:        @sections,
-			recommendations: @recommendations
 		}
 	end
 
@@ -63,7 +61,7 @@ class ParsedItem
 	end
 
 	def hash_sections(contents)
-		keywords = [
+		@keywords = [
 			"Recommendations",
 			"Decision Advice and Other Information",
 			"Origin",
@@ -77,10 +75,28 @@ class ParsedItem
 		sections = Hash.new('')
 		current_section = ""
 
+		def is_b?(node)
+			node.css('b').length > 0
+		end
+
+		def is_i?(node)
+			node.css('i').length > 0
+		end
+
+		def match_words?(node)
+			@keywords.any? { |keyword| node.text[keyword] }
+		end
+
+		def is_header?(node)
+			is_b?(node) && !is_i?(node) && match_words?(node)
+		end
+
 		contents.css('td').map do |node|
 			if node.css('p').length > 0
-				sections[current_section] << node.css('p').map(&:text).join(" ")
-			elsif node.css('b').length > 0 && keywords.any? { |keyword| node.text[keyword] }
+				sections[current_section] << node.css('p')
+																				 .map(&:text)
+																				 .join(" ")
+			elsif is_header?(node)
 				current_section = node.text.downcase.gsub(" ", "_").to_sym
 				sections[current_section] = ""
 			else
