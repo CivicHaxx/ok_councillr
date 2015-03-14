@@ -12,6 +12,11 @@ class InitDatabaseItemsAgendaItemtype < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+    create_table :dirty_agendas do |t|
+      t.integer :meeting_id
+      t.text    :dirty_html
+    end
+
     create_table :items do |t|
       t.string :number
       t.string :title

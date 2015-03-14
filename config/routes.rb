@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
   end
 
+  resources :dirty_agenda, only: [:index, :show]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

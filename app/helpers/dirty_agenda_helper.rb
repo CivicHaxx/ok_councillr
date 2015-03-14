@@ -1,0 +1,2 @@
+module DirtyAgendaHelper
+end
