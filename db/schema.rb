@@ -18,8 +18,41 @@ ActiveRecord::Schema.define(version: 201503111185126) do
 
   create_table "agendas", force: :cascade do |t|
     t.date     "date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "committee_id"
+  end
+
+  add_index "agendas", ["committee_id"], name: "index_agendas_on_committee_id", using: :btree
+
+  create_table "committees", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "committees_councillors", force: :cascade do |t|
+    t.integer "committee_id"
+    t.integer "councillor_id"
+  end
+
+  add_index "committees_councillors", ["committee_id"], name: "index_committees_councillors_on_committee_id", using: :btree
+  add_index "committees_councillors", ["councillor_id"], name: "index_committees_councillors_on_councillor_id", using: :btree
+
+  create_table "councillors", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "ward"
+    t.date     "start_date_in_office"
+    t.string   "website"
+    t.string   "twitter_handle"
+    t.string   "facebook_handle"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "address"
+    t.string   "image"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "item_types", force: :cascade do |t|
@@ -68,4 +101,7 @@ ActiveRecord::Schema.define(version: 201503111185126) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "agendas", "committees"
+  add_foreign_key "committees_councillors", "committees"
+  add_foreign_key "committees_councillors", "councillors"
 end
