@@ -16,15 +16,15 @@ class ParsedItem
 		@ward            = find_ward
 		@title           = find_item_title
 		@sections        = hash_sections(raw_html)
+		@sections[:ward] = @ward
 
-		@item = nil
+		@item 					 = nil
 	end
 
 	def to_h
 		{
 			number:          @number,
 			# type:            @type,
-			ward:            @ward,
 			title:           @title,
 			sections:        @sections,
 		}
@@ -54,6 +54,7 @@ class ParsedItem
 				.chop
 				.sub("Ward:", "")
 				.split(", ")
+				.map { |i| i.to_i unless i == "All"; i }
 	end
 
 	def find_item_title
