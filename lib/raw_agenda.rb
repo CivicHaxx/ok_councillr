@@ -37,10 +37,15 @@ class RawAgenda
 					 						 'UTF-8', 
 					 						 { :invalid => :replace, 
 					 							 :undef   => :replace, 
-					 							 :replace => '?'
+					 							 :replace => '�'
 					 						 })
-		parser  = HTMLCleaner.new
-		content = parser.parse_html!(content).to_s
+		if DIRTY
+			content
+		else
+			parser  = HTMLCleaner.new
+			content = parser.parse_html!(content).to_s
+			content
+		end
 	end
 
 	def save

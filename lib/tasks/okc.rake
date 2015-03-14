@@ -8,7 +8,8 @@ namespace :okc do
   end
 
   desc "Scrape, parse & persist City Council agendas"
-  task agenda_scrape: :environment do
+  task :agenda_scrape, [:clean] do |t, args|
+  	args.with_defaults clean: "-c"
 		require 'http'
   	require 'nokogiri'
   	require 'open-uri'
@@ -18,8 +19,9 @@ namespace :okc do
   	require 'meeting_ids'
   	require 'html_stripper'
 
-  	BASE_URI = "http://app.toronto.ca/tmmis/"
-  	AGENDA_DIR = "lib/agendas"
+  	BASE_URI   = "http://app.toronto.ca/tmmis/"
+  	DIRTY      = args.clean == "-d" ? true : false
+  	AGENDA_DIR = DIRTY == true ? "lib/dirty_agendas" : "lib/agendas"
 
   	ids = MeetingIDs.new(12, 2014).ids
   	
