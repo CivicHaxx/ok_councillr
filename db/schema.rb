@@ -65,6 +65,11 @@ ActiveRecord::Schema.define(version: 201503111185126) do
 
   add_index "councillors", ["ward_id"], name: "index_councillors_on_ward_id", using: :btree
 
+  create_table "dirty_agendas", force: :cascade do |t|
+    t.integer "meeting_id"
+    t.text    "dirty_html"
+  end
+
   create_table "item_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -135,10 +140,10 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "wards", force: :cascade do |t|
-    t.integer  "number"
+    t.integer  "ward_number"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_foreign_key "agendas", "committees"
