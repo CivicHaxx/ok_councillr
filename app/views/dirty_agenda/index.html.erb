@@ -1,0 +1,6 @@
+<h1>City Council Agendas from 2014</h1>
+<ul>
+	<% @agendas. each do |agenda| %>
+		<li><%= link_to agenda.id, dirty_agenda_url(agenda.id) %></li>
+	<% end %>
+</ul>
