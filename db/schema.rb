@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 201503111185126) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dirty_agendas", force: :cascade do |t|
+    t.integer "meeting_id"
+    t.text    "dirty_html"
+  end
+
   create_table "item_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

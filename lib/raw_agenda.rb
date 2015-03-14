@@ -1,5 +1,6 @@
 class RawAgenda
 	attr_reader :id
+	
 	def initialize(id)
 		@id = id
 	end
@@ -23,19 +24,28 @@ class RawAgenda
 	  }
 	end
 
+	def post(form)
+		HTTP.with_headers("User-Agent" => "INTERNET EXPLORER").post(url, form: form).body
+	end
+
 	# TO DO: hook up the html stripper and start using clean data! 
 	def content
-		content = Net::HTTP.post_form(url, agenda_params(id)).body
-		content.to_s
-					 .scrub
-					 .encode(
-					 	'UTF-8', 
-					 	{ :invalid => :replace, 
-					 		:undef   => :replace, 
-					 		:replace => '?'
-					 	})
-		# parser = Ox::Sax::Stripper.new
-		# parser.parse!(content).to_s
+		content = post(agenda_params(id))
+		content = content.to_s
+					 					 .scrub
+					 					 .encode(
+					 						 'UTF-8', 
+					 						 { :invalid => :replace, 
+					 							 :undef   => :replace, 
+					 							 :replace => '�'
+					 						 })
+		if DIRTY
+			content
+		else
+			parser  = HTMLCleaner.new
+			content = parser.parse_html!(content).to_s
+			content
+		end
 	end
 
 	def save

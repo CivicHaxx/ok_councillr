@@ -1,11 +1,12 @@
+include ActionView::Helpers
+
 class ParsedItem
 	attr_reader :number, :type, :ward, :title, :sections, :recommendations
 	
 	# TO DO: 
-	# 	1. Get rid of the word "Ward" in the ward var
-	#  	2. Strip html before the doc even gets this far
-	#   3. break sections out for better granularity
-	#   4. get item_type_id from the type name
+	# 	1. Get rid of the word "Ward" in the ward var and create a foreign key instead
+	#   2. Break sections out for better granularity -- this requires updating the migration
+	#   3. get item_type_id from the type name
 
 	def initialize(item_number, item)
 		@item            = item
@@ -83,7 +84,8 @@ class ParsedItem
 				current_section = node.text.downcase.gsub(" ", "_").to_sym
 				sections[current_section] = ""
 			else
-				sections[current_section] << node.to_s
+				content = node.to_s
+				sections[current_section] << sanitize(content, tags: %w(p))
 			end
 		end.flatten
 		sections
