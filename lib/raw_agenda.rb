@@ -1,5 +1,6 @@
 class RawAgenda
 	attr_reader :id
+	
 	def initialize(id)
 		@id = id
 	end
@@ -30,7 +31,6 @@ class RawAgenda
 	# TO DO: hook up the html stripper and start using clean data! 
 	def content
 		content = post(agenda_params(id))
-		# content = Net::HTTP.post_form(url, agenda_params(id)).body
 		content = content.to_s
 					 					 .scrub
 					 					 .encode(
