@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :update, :edit, :destroy]
-  resources :user_sessions 
+  resources :user_sessions, only: [:new, :create, :destroy]
 
   get "signup" => "users#new", :as => :signup
   get "myvotes/:id" => "users#show", :as => :myvotes
