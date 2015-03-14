@@ -31,13 +31,10 @@ ActiveRecord::Schema.define(version: 201503111185126) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "committees_councillors", force: :cascade do |t|
-    t.integer "committee_id"
-    t.integer "councillor_id"
+  create_table "committees_councillors", id: false, force: :cascade do |t|
+    t.integer "committee_id",  null: false
+    t.integer "councillor_id", null: false
   end
-
-  add_index "committees_councillors", ["committee_id"], name: "index_committees_councillors_on_committee_id", using: :btree
-  add_index "committees_councillors", ["councillor_id"], name: "index_committees_councillors_on_councillor_id", using: :btree
 
   create_table "councillors", force: :cascade do |t|
     t.string   "first_name"
@@ -102,6 +99,4 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "agendas", "committees"
-  add_foreign_key "committees_councillors", "committees"
-  add_foreign_key "committees_councillors", "councillors"
 end
