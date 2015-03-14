@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   create_table "councillors", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "ward"
     t.date     "start_date_in_office"
     t.string   "website"
     t.string   "twitter_handle"
@@ -61,7 +60,10 @@ ActiveRecord::Schema.define(version: 201503111185126) do
     t.string   "image"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "ward_id"
   end
+
+  add_index "councillors", ["ward_id"], name: "index_councillors_on_ward_id", using: :btree
 
   create_table "item_types", force: :cascade do |t|
     t.string   "name"
@@ -72,7 +74,6 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   create_table "items", force: :cascade do |t|
     t.string   "number"
     t.string   "title"
-    t.string   "ward"
     t.text     "sections"
     t.text     "recommendations"
     t.integer  "item_type_id"
@@ -83,6 +84,11 @@ ActiveRecord::Schema.define(version: 201503111185126) do
 
   add_index "items", ["agenda_id"], name: "index_items_on_agenda_id", using: :btree
   add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
+
+  create_table "items_wards", id: false, force: :cascade do |t|
+    t.integer "ward_id", null: false
+    t.integer "item_id", null: false
+  end
 
   create_table "motion_types", force: :cascade do |t|
     t.string   "name"
@@ -128,9 +134,17 @@ ActiveRecord::Schema.define(version: 201503111185126) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  create_table "wards", force: :cascade do |t|
+    t.integer  "number"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "agendas", "committees"
   add_foreign_key "councillor_votes", "councillors"
   add_foreign_key "councillor_votes", "motions"
+  add_foreign_key "councillors", "wards"
   add_foreign_key "motions", "councillors"
   add_foreign_key "motions", "items"
   add_foreign_key "motions", "motion_types"
