@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 201503111185126) do
     t.integer "councillor_id", null: false
   end
 
+  create_table "councillor_votes", force: :cascade do |t|
+    t.string   "vote"
+    t.integer  "motion_id"
+    t.integer  "councillor_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "councillor_votes", ["councillor_id"], name: "index_councillor_votes_on_councillor_id", using: :btree
+  add_index "councillor_votes", ["motion_id"], name: "index_councillor_votes_on_motion_id", using: :btree
+
   create_table "councillors", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -73,6 +84,25 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   add_index "items", ["agenda_id"], name: "index_items_on_agenda_id", using: :btree
   add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
 
+  create_table "motion_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "motions", force: :cascade do |t|
+    t.string   "amendment_text"
+    t.integer  "councillor_id"
+    t.integer  "item_id"
+    t.integer  "motion_type_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "motions", ["councillor_id"], name: "index_motions_on_councillor_id", using: :btree
+  add_index "motions", ["item_id"], name: "index_motions_on_item_id", using: :btree
+  add_index "motions", ["motion_type_id"], name: "index_motions_on_motion_type_id", using: :btree
+
   create_table "user_votes", force: :cascade do |t|
     t.string   "vote",       null: false
     t.integer  "user_id"
@@ -99,4 +129,9 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "agendas", "committees"
+  add_foreign_key "councillor_votes", "councillors"
+  add_foreign_key "councillor_votes", "motions"
+  add_foreign_key "motions", "councillors"
+  add_foreign_key "motions", "items"
+  add_foreign_key "motions", "motion_types"
 end
