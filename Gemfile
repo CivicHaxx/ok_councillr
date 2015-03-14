@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sorcery'
+gem 'kaminari'
 
 # the html_stripper uses Ox to parse docs
 gem 'ox'
