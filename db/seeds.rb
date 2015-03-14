@@ -14,7 +14,6 @@ UserVote.destroy_all
 
 item_types = ItemType.create([{ name: 'Action' }, { name: 'Information' }, { name: 'Presentation' }])
 
-wards = %w(1 2 3 4 5 6 7 8 9 10 All)
 prefix = %w(EX CD GM PG)
 user_votes = %w(Yes No Skip)
 user_pc = ["M1P 0B6", "M6H 2P2", "M5H 1K4", "M5H 2N2", "M2K 1E1", "M9V 1R8"]
@@ -41,7 +40,6 @@ end
 	100.times do
 		item = Item.create(
 			title: Faker::Hacker.say_something_smart, 
-			ward: wards.sample,
 			number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
 			item_type_id: item_types.sample.id, 
 			agenda_id: agenda.id
