@@ -1,1 +1,12 @@
 <h1><%= @item.title%></h1>
+
+<ul>
+	<li><%= @item.number %></li>
+	<li>Item type</li>
+	<li><%= @item.ward %></li>
+</ul>
+
+<% @item.sections.each do  |title, body| %>
+	<h3><%= title.to_s %></h3>
+	<%= body %>
+<% end %>
