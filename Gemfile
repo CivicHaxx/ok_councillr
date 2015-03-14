@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'http'
 # for user sessions
 gem 'sorcery'
+gem 'kaminari'
+
 # the html_stripper uses Ox to parse docs
 gem 'ox'
 # for api serilization

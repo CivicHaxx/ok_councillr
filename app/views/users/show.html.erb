@@ -1,0 +1,11 @@
+<h1>My Votes</h1>
+
+<% @votes.each do |vote| %>
+	<%= vote.item.agenda.date %>
+	<%= vote.item.number %>
+	<%= vote.item.title %>
+	<%= vote.vote %>
+<br><br>
+<% end %>
+
+<%= paginate @votes %>
