@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+
   namespace :api do
     resources :agendas, only: [:index, :show]
     resources :items, only: [:index, :show]
   end
+
+  resources :users, only: [:index, :update, :edit, :destroy]
+  resources :user_sessions, only: [:new, :create, :destroy]
+
+  get "signup" => "users#new", :as => :signup
+  get "myvotes/:id" => "users#show", :as => :myvotes
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'logout' => 'user_sessions#destroy', :as => :logout
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
