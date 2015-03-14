@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
-	serialize :sections, Hash 
-
+	serialize :sections, Hash
+	
 	belongs_to :item_type
 	belongs_to :agenda
 
