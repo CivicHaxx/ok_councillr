@@ -1,6 +1,10 @@
 namespace :okc do
   desc "Gimme a fresh start. Drops the db and parses the data again."
-  task get_fresh: ['db:drop', 'db:create', 'db:migrate', 'db:seed', :delete_items, :agenda_scrape] do; end
+  task get_fresh: ['db:drop', 'db:setup', :delete_items, :agenda_scrape] do;
+   44.times do |i|
+      Ward.create(ward_number: i)
+    end 
+  end
 
   desc"Clears out items table"
   task delete_items: :environment do
@@ -8,9 +12,9 @@ namespace :okc do
   end
 
   desc "Tests ParsedItem on a single file"
-  task :test_parser, [:num] do |t, args| 
+  task test_parser: [:delete_items] do |t| 
     require 'parsed_item'
-    
+
     content  = open("lib/dirty_agendas/7849.html").read
       sections = content.split("<br clear=\"all\">")
       items    = sections.map { |item| Nokogiri::HTML(item) }
@@ -20,7 +24,9 @@ namespace :okc do
 
         unless item_number.empty?
           parsed_agenda_item = ParsedItem.new(item_number, item).to_h
-        binding.pry if parsed_agenda_item[:ward].length > 1 
+          Item.create(parsed_agenda_item)
+
+        #binding.pry if parsed_agenda_item[:ward].length > 1 
         end
       end
     end
