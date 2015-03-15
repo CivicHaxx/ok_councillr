@@ -1,3 +1,9 @@
+# TO DO: Make a scraper class that takes params to tell it which scraper to
+#   run. This Scraper class will be home to methods like save, file_name, 
+#   parse, scrub (or deep_clean) etc. It will delegate the scraping task
+#   to the correct sub class (agenda, votes, minutes, etc).
+
+
 namespace :okc do
   desc "Gimme a fresh start. Drops the db and parses the data again."
   task get_fresh: ['db:drop', 'db:setup', :delete_items, :agenda_scrape] do;
@@ -36,7 +42,6 @@ namespace :okc do
     require 'vote_scraper'
     VoteScraper.new(6).run
   end
-
 
   desc "Scrape, parse & persist City Council agendas"
   task :agenda_scrape, [:clean] do |t, args|
