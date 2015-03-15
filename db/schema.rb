@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   add_index "items", ["agenda_id"], name: "index_items_on_agenda_id", using: :btree
   add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
 
+  create_table "raw_vote_records", force: :cascade do |t|
+    t.string  "committee"
+    t.string  "date_time"
+    t.string  "agenda_item"
+    t.text    "agenda_item_title"
+    t.string  "motion_type"
+    t.string  "vote"
+    t.string  "result"
+    t.text    "vote_description"
+    t.integer "councillor_id"
+    t.string  "councillor_name"
+  end
+
   create_table "user_votes", force: :cascade do |t|
     t.string   "vote",       null: false
     t.integer  "user_id"

@@ -57,5 +57,7 @@ group :development, :test do
   gem 'favorite_things'
   gem 'best_errors'
   gem 'faker'
+  #used to colour output to the terminal. 
+  gem 'colored'
 end
 

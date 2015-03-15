@@ -1,6 +1,6 @@
 class CreateRawVotesTable < ActiveRecord::Migration
   def change
-    create_table :raw_vote_record do |t|
+    create_table :raw_vote_records do |t|
       t.string  :committee
       t.string  :date_time
       t.string  :agenda_item

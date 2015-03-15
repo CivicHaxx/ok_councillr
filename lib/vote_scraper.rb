@@ -1,5 +1,5 @@
 # encoding: utf-8
-require "net/http"
+require "http"
 require "awesome_print"
 require "colored"
 require "csv"
@@ -9,60 +9,13 @@ require "open-uri"
 require "active_support/all"
 require "active_record"
 
-require_relative "./db_setup.rb"
-require_relative "./db/migrations/001_create_vote_records_table.rb"
 
-configuration = YAML::load(IO.read("config/database.yml"))
-ActiveRecord::Base.establish_connection(configuration["development"])
-
-
-class VoteRecord < ActiveRecord::Base
+def post(params)
+  HTTP.with_headers("User-Agent" => "INTERNET EXPLORER").post(url, form: params).body.to_s
 end
 
-def migrate
-  CreateVoteRecordsTable.migrate(:change)
-end
-
-def run
-  base     = URI("http://app.toronto.ca/tmmis/getAdminReport.do")
-  term_url = "http://app.toronto.ca/tmmis/getAdminReport.do" +
-             "?function=prepareMemberVoteReport&termId="
-  term_ids = [3,4,6]
-
-  term_ids.each do |term_id|
-    puts "Getting term #{term_id}"
-
-    term_page = Nokogiri::HTML(open(term_url + term_id.to_s))
-    members   = term_page.css("select[name='memberId'] option")
-                         .map{|x| { id: x.attr("value"), name: x.text } }
-
-    members[1..-1].each do |member|
-      puts "\nGetting member vote report for #{member[:name]}"
-
-      params = report_download_params(term_id, member[:id])
-      
-      csv = Net::HTTP.post_form(base, params).body
-      
-      # TO DO: Split CSV.parse into a method
-      #    save each record csv in dir and then cyclcing over
-      CSV.parse(csv.scrub,
-                headers: true,
-                header_converters: lambda { |h| h.try(:parameterize).try(:underscore) })
-        .map{|x| x.to_hash.symbolize_keys }
-        .map{|x| x.merge(councillor_id: member[:id], councillor_name: member[:name]) }
-        .each do |x|
-          begin
-            VoteRecord.create!(x)
-            print "|".blue
-          rescue Encoding::UndefinedConversionError
-            record = Hash[x.map {|k, v| [k.to_sym, v.force_encoding('utf-8').scrub('')] }]
-            RawVoteRecord.create!(record)
-            print "|".red
-          end
-        end 
-    end
-  end
-
+def url
+  URI("http://app.toronto.ca/tmmis/getAdminReport.do")
 end
 
 def report_download_params(term_id, member_id)
@@ -80,6 +33,56 @@ def report_download_params(term_id, member_id)
       download: "csv",
       decisionBodyId: 0
     }
+end
+
+def term_page(id)
+  term_url = "http://app.toronto.ca/tmmis/getAdminReport.do" +
+             "?function=prepareMemberVoteReport&termId="
+  Nokogiri::HTML(HTTP.get(term_url + id.to_s).body.to_s)
+end
+
+def get_members(term_id)
+  term_page(term_id).css("select[name='memberId'] option")
+                    .map{|x| { id: x.attr("value"), name: x.text } }
+end
+
+def deep_clean(string)
+  string.scrub.encode('UTF-8', { invalid: :replace, undef: :replace, replace: '�'})
+end
+
+def run
+  term_ids = [6]
+
+  term_ids.each do |term_id|
+    puts "Getting term #{term_id}"
+
+    get_members(term_id)[1..-1].each do |member|
+      puts "\nGetting member vote report for #{member[:name]}"
+
+      params = report_download_params(term_id, member[:id])
+      
+      csv = post(params)
+      csv = deep_clean(csv)
+      
+      # TO DO: Split CSV.parse into a method
+      #    save each record csv in dir and then cyclcing over
+      CSV.parse(csv, headers: true,
+        header_converters: lambda { |h| h.try(:parameterize).try(:underscore) })
+        .map{|x| x.to_hash.symbolize_keys }
+        .map{|x| x.merge(councillor_id: member[:id], councillor_name: member[:name]) }
+        .each do |x|
+          begin
+            RawVoteRecord.create!(x)
+            print "|".blue
+          rescue Encoding::UndefinedConversionError
+            record = Hash[x.map {|k, v| [k.to_sym, v] }]
+            RawVoteRecord.create!(record)
+            print "|".red
+          end
+        end 
+    end
+  end
+
 end
 
 # results.first.map{x| [x[:date_time].to_time, x[:date_time]] }

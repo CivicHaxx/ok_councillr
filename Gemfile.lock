@@ -63,6 +63,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1)
+    colored (1.2)
     columnize (0.9.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
@@ -211,6 +212,7 @@ DEPENDENCIES
   active_model_serializers
   best_errors
   coffee-rails (~> 4.1.0)
+  colored
   faker
   favorite_things
   http
