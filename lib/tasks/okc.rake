@@ -16,20 +16,27 @@ namespace :okc do
     require 'parsed_item'
 
     content  = open("lib/dirty_agendas/7849.html").read
-      sections = content.split("<br clear=\"all\">")
-      items    = sections.map { |item| Nokogiri::HTML(item) }
-      
-      items.each do |item|
-        item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
+    sections = content.split("<br clear=\"all\">")
+    items    = sections.map { |item| Nokogiri::HTML(item) }
+    
+    items.each do |item|
+      item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
 
-        unless item_number.empty?
-          parsed_agenda_item = ParsedItem.new(item_number, item).to_h
-          Item.create(parsed_agenda_item)
+      unless item_number.empty?
+        parsed_agenda_item = ParsedItem.new(item_number, item).to_h
+        Item.create(parsed_agenda_item)
 
-        #binding.pry if parsed_agenda_item[:ward].length > 1 
-        end
+      #binding.pry if parsed_agenda_item[:ward].length > 1 
       end
     end
+  end
+
+  desc "Scrape, parse & persist raw vote records"
+  task :vote_scrape do
+    require 'vote_scraper'
+    VoteScraper.new(6).run
+  end
+
 
   desc "Scrape, parse & persist City Council agendas"
   task :agenda_scrape, [:clean] do |t, args|

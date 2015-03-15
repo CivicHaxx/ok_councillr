@@ -15,3 +15,6 @@
 # Ignore all downloaded agendas
 /lib/agendas/*.html
 /lib/dirty_agendas/*.html
+
+# Ignore vote record csvs
+/lib/vote_records/*.csv
