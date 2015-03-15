@@ -16,15 +16,15 @@ class ParsedItem
 		@ward            = find_ward
 		@title           = find_item_title
 		@sections        = hash_sections(raw_html)
+		@sections[:ward] = @ward
 
-		@item = nil
+		@item 					 = nil
 	end
 
 	def to_h
 		{
 			number:          @number,
 			# type:            @type,
-			ward:            @ward,
 			title:           @title,
 			sections:        @sections,
 		}
@@ -48,7 +48,13 @@ class ParsedItem
 	end
 
 	def find_ward
-		item.xpath("//table[@class='border']/tr/td/p/font").last.text.chop
+		item.xpath("//table[@class='border']/tr/td/p/font")
+				.last
+				.text
+				.chop
+				.sub("Ward:", "")
+				.split(", ")
+				.map { |i| i.to_i unless i == "All"; i }
 	end
 
 	def find_item_title
@@ -97,7 +103,7 @@ class ParsedItem
 																				 .map(&:text)
 																				 .join(" ")
 			elsif is_header?(node)
-				current_section = node.text.downcase.gsub(" ", "_").to_sym
+				current_section = node.text
 				sections[current_section] = ""
 			else
 				content = node.to_s
