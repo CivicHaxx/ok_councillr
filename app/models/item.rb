@@ -1,7 +1,6 @@
 class Item < ActiveRecord::Base
-	serialize :sections, #this should make a conflict
-
-
+	serialize :sections, Hash
+	
 	belongs_to :item_type
 	belongs_to :agenda
 

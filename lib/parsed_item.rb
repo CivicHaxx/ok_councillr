@@ -48,12 +48,7 @@ class ParsedItem
 	end
 
 	def find_ward
-		item.xpath("//table[@class='border']/tr/td/p/font")
-				.last
-				.text
-				.chop
-				.sub("Ward:", "")
-				.split(", ")
+		item.xpath("//table[@class='border']/tr/td/p/font").last.text.chop
 	end
 
 	def find_item_title
