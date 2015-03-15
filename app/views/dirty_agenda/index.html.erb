@@ -4,3 +4,6 @@
 		<li><%= link_to agenda.id, dirty_agenda_url(agenda.id) %></li>
 	<% end %>
 </ul>
+
+
+<%= paginate @agendas %>
