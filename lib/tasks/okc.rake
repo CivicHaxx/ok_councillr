@@ -1,11 +1,35 @@
 namespace :okc do
   desc "Gimme a fresh start. Drops the db and parses the data again."
-  task get_fresh: ['db:drop', 'db:create', 'db:migrate', 'db:seed', :delete_items, :agenda_scrape] do; end
+  task get_fresh: ['db:drop', 'db:setup', :delete_items, :agenda_scrape] do;
+   45.times do |i|
+      Ward.create(ward_number: i)
+    end 
+  end
 
   desc"Clears out items table"
   task delete_items: :environment do
   	Item.delete_all
   end
+
+  desc "Tests ParsedItem on a single file"
+  task test_parser: [:delete_items] do |t| 
+    require 'parsed_item'
+
+    content  = open("lib/dirty_agendas/7849.html").read
+      sections = content.split("<br clear=\"all\">")
+      items    = sections.map { |item| Nokogiri::HTML(item) }
+      
+      items.each do |item|
+        item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
+
+        unless item_number.empty?
+          parsed_agenda_item = ParsedItem.new(item_number, item).to_h
+          Item.create(parsed_agenda_item)
+
+        #binding.pry if parsed_agenda_item[:ward].length > 1 
+        end
+      end
+    end
 
   desc "Scrape, parse & persist City Council agendas"
   task :agenda_scrape, [:clean] do |t, args|
@@ -50,7 +74,7 @@ namespace :okc do
   		
       items.each do |item|
   			item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
-  			
+
   			unless item_number.empty?
   				parsed_agenda_item = ParsedItem.new(item_number, item).to_h
   				Item.create(parsed_agenda_item)
