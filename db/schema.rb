@@ -85,10 +85,13 @@ ActiveRecord::Schema.define(version: 201503111185126) do
     t.integer  "agenda_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "origin_id"
+    t.string   "origin_type"
   end
 
   add_index "items", ["agenda_id"], name: "index_items_on_agenda_id", using: :btree
   add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
+  add_index "items", ["origin_type", "origin_id"], name: "index_items_on_origin_type_and_origin_id", using: :btree
 
   create_table "items_wards", id: false, force: :cascade do |t|
     t.integer "ward_id", null: false
