@@ -9,7 +9,9 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require_tree .
- *= require_self
  */
+
+/*Glob import the tree. It might be a good idea to change this to get the cascading right*/
+@import "**/*";
+
+@import "foundation_and_overrides";

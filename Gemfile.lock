@@ -79,6 +79,9 @@ GEM
       did_you_mean
       pry-rails
       quiet_assets
+    foundation-rails (5.5.1.0)
+      railties (>= 3.1.0)
+      sass (>= 3.3.0, < 3.5)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -210,9 +213,9 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   best_errors
-  coffee-rails (~> 4.1.0)
   faker
   favorite_things
+  foundation-rails
   http
   jbuilder (~> 2.0)
   jquery-rails
