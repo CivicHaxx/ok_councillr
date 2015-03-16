@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
   end
 
-  resources :users, only: [:index, :update, :edit, :destroy]
+  resources :users
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get "signup" => "users#new", :as => :signup
