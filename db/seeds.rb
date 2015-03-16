@@ -77,11 +77,14 @@ end
 	100.times do |index|
 		current_origin_from = ((index % 2) == 0) ? agenda : councillors.sample
 
-		item = Item.create(
+item = Item.create(
 			title: Faker::Hacker.say_something_smart, 
 			wards: wards[1...rand(wards.count)],
 			number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
-		# => 	sections: "#{Faker::Lorem.paragraphs(5)}",
+			sections: {	"Recommendations" => "#{Faker::Lorem.paragraphs(5)}",
+									"Origin" => "#{Faker::Lorem.paragraphs(5)}",
+									"Summary" => "#{Faker::Lorem.paragraphs(5)}",
+									"Background Information" => "#{Faker::Lorem.paragraphs(5)}"},
       recommendations: "#{Faker::Company.bs} #{Faker::Company.catch_phrase}",
 			item_type_id: item_types.sample.id,
 			origin: current_origin_from
