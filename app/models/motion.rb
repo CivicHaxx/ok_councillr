@@ -3,5 +3,5 @@ class Motion < ActiveRecord::Base
   belongs_to :item
   belongs_to :motion_type
 
-  has_many :councillor_votes
+  has_many :councillor_votes, dependent: :destroy
 end
