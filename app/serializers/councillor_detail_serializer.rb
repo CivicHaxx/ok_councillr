@@ -4,5 +4,6 @@ class CouncillorDetailSerializer < ActiveModel::Serializer
 
 	has_one :ward
 	has_many :motions
+	has_many :councillor_vote
 	has_many :items, as: :origin
 end
