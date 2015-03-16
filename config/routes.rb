@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :wards, only: [:index, :show]
     resources :councillors, only: [:index, :show]
     resources :committees, only: [:index, :show]
+    resources :motions, only: [:index, :show]
   end
 
   resources :users
