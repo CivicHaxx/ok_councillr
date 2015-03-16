@@ -5,5 +5,6 @@ class Item < ActiveRecord::Base
 	belongs_to :origin, polymorphic: true
 
 	has_many :user_votes
+	has_many :motion
 	has_and_belongs_to_many :wards
 end
