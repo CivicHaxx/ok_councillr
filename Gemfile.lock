@@ -214,6 +214,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   best_errors
+  colored
   faker
   favorite_things
   foundation-rails
