@@ -8,6 +8,6 @@ class Api::CouncillorsController < ApplicationController
   def show
   	@councillor = Councillor.find(params[:id])
 
-		render json: @councillor
+		render json: @councillor, serializer: CouncillorDetailSerializer
   end
 end
