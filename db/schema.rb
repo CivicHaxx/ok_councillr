@@ -82,13 +82,14 @@ ActiveRecord::Schema.define(version: 201503111185126) do
     t.text     "sections"
     t.text     "recommendations"
     t.integer  "item_type_id"
-    t.integer  "agenda_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "origin_id"
+    t.string   "origin_type"
   end
 
-  add_index "items", ["agenda_id"], name: "index_items_on_agenda_id", using: :btree
   add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
+  add_index "items", ["origin_type", "origin_id"], name: "index_items_on_origin_type_and_origin_id", using: :btree
 
   create_table "items_wards", id: false, force: :cascade do |t|
     t.integer "ward_id", null: false
@@ -113,6 +114,19 @@ ActiveRecord::Schema.define(version: 201503111185126) do
   add_index "motions", ["councillor_id"], name: "index_motions_on_councillor_id", using: :btree
   add_index "motions", ["item_id"], name: "index_motions_on_item_id", using: :btree
   add_index "motions", ["motion_type_id"], name: "index_motions_on_motion_type_id", using: :btree
+
+  create_table "raw_vote_records", force: :cascade do |t|
+    t.string  "committee"
+    t.string  "date_time"
+    t.string  "agenda_item"
+    t.text    "agenda_item_title"
+    t.string  "motion_type"
+    t.string  "vote"
+    t.string  "result"
+    t.text    "vote_description"
+    t.integer "councillor_id"
+    t.string  "councillor_name"
+  end
 
   create_table "user_votes", force: :cascade do |t|
     t.string   "vote",       null: false
