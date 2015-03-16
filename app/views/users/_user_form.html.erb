@@ -1,6 +1,6 @@
 <%= form_for @user do |f| %>
 	<% if @user.errors.any? %>
-		<%= render 'shared/error_message', errors: @user.errors %>
+		<%= render partial: 'shared/error_message', locals: { errors: @user.errors }%>
 	<% end %>
 
 	<div>
