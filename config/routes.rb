@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :agendas, only: [:index, :show]
     resources :items, only: [:index, :show]
     resources :wards, only: [:index, :show]
+    resources :committees, only: [:index, :show]
   end
 
   resources :users
