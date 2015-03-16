@@ -81,8 +81,31 @@ namespace :okc do
       content  = open("#{AGENDA_DIR}/#{id}.html").read
       # For testing sanatize
       # DirtyAgenda.create(id: id, dirty_html: content)
-  		sections = content.split("<br clear=\"all\">")
-  		items    = sections.map { |item| Nokogiri::HTML(item) }
+  		
+      # find the date & meeting number and create a meeting in the db
+      sections    = content.split("<br clear=\"all\">")
+      items       = sections.map { |item| Nokogiri::HTML(item) }
+      @header_info = Nokogiri::HTML(items[1].to_s.split('<hr')[0])
+
+      def match_day?(node)
+        days = %w(Monday Tuesday Wednesday Thrusday Friday Saturday Sunday)
+        node if days.any? { |day| node.text[day] }
+      end
+      
+      def date
+        date = @header_info.xpath('//tr/*[2]/font').to_ary.map do |node|
+          match_day? node
+        end
+        date.compact[0].to_s
+                       .split("<br>")[1]
+                       .strip
+      end
+
+      binding.pry
+
+      Agenda.create( 
+        date: date
+        )
   		
       items.each do |item|
   			item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
