@@ -214,6 +214,11 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   best_errors
+<<<<<<< HEAD
+  coffee-rails (~> 4.1.0)
+  colored
+=======
+>>>>>>> 608e40f7f645ecc280f6b311124535c8ba38c3d6
   faker
   favorite_things
   foundation-rails

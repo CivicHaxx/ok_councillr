@@ -1,3 +1,9 @@
+# TO DO: Make a scraper class that takes params to tell it which scraper to
+#   run. This Scraper class will be home to methods like save, file_name, 
+#   parse, scrub (or deep_clean) etc. It will delegate the scraping task
+#   to the correct sub class (agenda, votes, minutes, etc).
+
+
 namespace :okc do
   desc "Gimme a fresh start. Drops the db and parses the data again."
   task get_fresh: ['db:drop', 'db:setup', :delete_items, :agenda_scrape] do;
@@ -16,20 +22,26 @@ namespace :okc do
     require 'parsed_item'
 
     content  = open("lib/dirty_agendas/7849.html").read
-      sections = content.split("<br clear=\"all\">")
-      items    = sections.map { |item| Nokogiri::HTML(item) }
-      
-      items.each do |item|
-        item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
+    sections = content.split("<br clear=\"all\">")
+    items    = sections.map { |item| Nokogiri::HTML(item) }
+    
+    items.each do |item|
+      item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
 
-        unless item_number.empty?
-          parsed_agenda_item = ParsedItem.new(item_number, item).to_h
-          Item.create(parsed_agenda_item)
+      unless item_number.empty?
+        parsed_agenda_item = ParsedItem.new(item_number, item).to_h
+        Item.create(parsed_agenda_item)
 
-        #binding.pry if parsed_agenda_item[:ward].length > 1 
-        end
+      #binding.pry if parsed_agenda_item[:ward].length > 1 
       end
     end
+  end
+
+  desc "Scrape, parse & persist raw vote records"
+  task :vote_scrape do
+    require 'vote_scraper'
+    VoteScraper.new(6).run
+  end
 
   desc "Scrape, parse & persist City Council agendas"
   task :agenda_scrape, [:clean] do |t, args|
