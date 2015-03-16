@@ -6,4 +6,6 @@ class Item < ActiveRecord::Base
 
 	has_many :user_votes
 	has_and_belongs_to_many :wards
+
+	accepts_nested_attributes_for :user_votes
 end
