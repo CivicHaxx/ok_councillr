@@ -8,6 +8,6 @@ class Api::CommitteesController < ApplicationController
 	def show
 		@committee = Committee.find(params[:id])
 
-		render json: @committee
+		render json: @committee, serializer: CommitteeDetailSerializer
 	end
 end
