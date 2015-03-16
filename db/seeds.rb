@@ -40,6 +40,7 @@ motion_types = MotionType.create([{ name: 'Adopted' }, { name: 'Received' }, { n
 		password: "password",
 		password_confirmation: "password"
 	)
+	print "❤️"; print " "
 end
 
 wards.each do |ward|
@@ -56,6 +57,7 @@ wards.each do |ward|
 	    image: Faker::Avatar.image,
 	    ward: ward
 		)
+	print "❤️"; print " "
 end
 
 rand(10).times do
@@ -64,6 +66,7 @@ rand(10).times do
 	5.times do
 		committee.councillors << councillors.sample
 	end
+	print "❤️"; print " "
 end
 
 2.times do 
@@ -78,7 +81,7 @@ end
 			title: Faker::Hacker.say_something_smart, 
 			wards: wards[1...rand(wards.count)],
 			number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
-			sections: "#{Faker::Lorem.paragraphs(5)}",
+		# => 	sections: "#{Faker::Lorem.paragraphs(5)}",
       recommendations: "#{Faker::Company.bs} #{Faker::Company.catch_phrase}",
 			item_type_id: item_types.sample.id,
 			origin: current_origin_from
@@ -111,5 +114,7 @@ end
 				item_id: item.id
 			)
 		end
+		print "❤️"; print " "
 	end
+print "💘💘💘"; print " "
 end
