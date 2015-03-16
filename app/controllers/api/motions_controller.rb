@@ -8,6 +8,6 @@ class Api::MotionsController < ApplicationController
   def show
   	@motion = Motion.find(params[:id])
 
-  	render json: @motion
+  	render json: @motion, serializer: MotionDetailSerializer
   end
 end
