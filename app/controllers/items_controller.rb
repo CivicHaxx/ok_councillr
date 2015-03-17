@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
 	def show 
 		@item = Item.find params[:id]
-		@user_vote = UserVote.find params[:id]
+		@user_vote = UserVote.new
 	end
 
 end

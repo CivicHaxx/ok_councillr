@@ -1,5 +1,4 @@
 class UserVotesController < ApplicationController
- before_filter :ensure_logged_in, only: [:create]
  before_filter :load_item
 
 def show
@@ -10,22 +9,28 @@ def new
 end
 
 def create
-	# @user_vote = UserVote.find(params[:item_id])	
-	# respond_to do |format|
- #      if @user_vote.save
- #        format.html 
- #        format.js 
- #      else
- #        format.html 
- #        format.js 
- #      end
- #    end    
+	@user_vote = @item.user_votes.build(vote_params)
+	@user_vote.user = current_user
+
+	if @user_vote.save
+      redirect_to item_path(@item.next)
+    else
+      render 
+    end
 end
 
 
 private
 	def load_item
 	  @item = Item.find(params[:item_id])
+	end
+
+  def vote_params
+  params.require(:user_vote).permit(
+    :vote,
+    :item_id,
+    :user_id
+    )
 	end
 	
 end
