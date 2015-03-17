@@ -54,6 +54,13 @@ namespace :okc do
     require 'meeting_ids'
     require 'html_stripper'
 
+    puts "Creating Item Types".blue
+    item_types = ItemType.create!([
+      { name: 'Action' }, 
+      { name: 'Information' }, 
+      { name: 'Presentation' }
+    ])
+
     BASE_URI   = "http://app.toronto.ca/tmmis/"
     # DIRTY      = args.clean == "-d" ? true : false
     # DIRTY by default so that we're working with the original docs.
@@ -72,8 +79,7 @@ namespace :okc do
   	end
 
   	ids.each do |id|
-  		start = Time.now.to_f
-  	  print "Parsing #{id} "
+  	  print "\nParsing #{id} "
       
       content      = open("#{AGENDA_DIR}/#{id}.html").read
       # For testing sanatize
@@ -112,10 +118,10 @@ namespace :okc do
           parsed_agenda_item[:origin_id] = @agenda.id
           parsed_agenda_item[:origin_type] = "Agenda"
   				Item.create(parsed_agenda_item)
+          print "⚡"
   			end
   		end
       x = DIRTY == true ? 35 : 500
-  	  puts "⚡" * ( (Time.now.to_f - start) * x )
   	end
 
   	puts "★ ★ ★  DONE PARSING ★ ★ ★".green

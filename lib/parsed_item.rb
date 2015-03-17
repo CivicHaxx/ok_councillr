@@ -12,7 +12,7 @@ class ParsedItem
 		@item            = item
 
 		@number          = item_number
-		@type            = find_item_type
+		@item_type_id       = find_item_type_id
 		@ward            = find_ward
 		@title           = find_item_title
 		@sections        = hash_sections(raw_html)
@@ -23,10 +23,10 @@ class ParsedItem
 
 	def to_h
 		{
-			number:          @number,
-			# type:            @type,
-			title:           @title,
-			sections:        @sections,
+			number:       @number,
+			item_type_id: @item_type_id,
+			title:        @title,
+			sections:     @sections,
 		}
 	end
 
@@ -43,8 +43,9 @@ class ParsedItem
 
 	private
 	attr_reader :item
-	def find_item_type
-		item.xpath("//table[@class='border']/tr/td/p/font").first.text.capitalize.chop
+	def find_item_type_id
+		type = item.xpath("//table[@class='border']/tr/td/p/font").first.text.capitalize.chop
+		ItemType.where("name = ?", type).first.id
 	end
 
 	def find_ward
