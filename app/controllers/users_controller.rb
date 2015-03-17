@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to items_path, notice: "Your account has been created"
     else
-      flash.now("Error creating account")
+      flash.now.alert = "Error creating account"
       render :new
     end
   end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_path(params[:id]), notice: "Your account has been updated"
     else
-      flash.now("Error updating account")
+      flash.now.alert = "Error updating account"
       render :edit
     end
   end

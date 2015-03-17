@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  root 'items#index'
+
   namespace :api do
     resources :agendas, only: [:index, :show]
     resources :items, only: [:index, :show]
@@ -10,12 +13,17 @@ Rails.application.routes.draw do
 
   resources :users
   resources :user_sessions, only: [:new, :create, :destroy]
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    resources :user_votes, only: [:new, :create]
+  end
 
-  get "signup" => "users#new", :as => :signup
+
+
+
+  get "signup"      => "users#new", :as => :signup
   get "myvotes/:id" => "users#show", :as => :myvotes
-  get 'login' => 'user_sessions#new', :as => :login
-  post 'logout' => 'user_sessions#destroy', :as => :logout
+  get 'login'       => 'user_sessions#new', :as => :login
+  post 'logout'     => 'user_sessions#destroy', :as => :logout
 
   resources :dirty_agenda, only: [:index, :show]
 
