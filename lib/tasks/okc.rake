@@ -78,8 +78,10 @@ namespace :okc do
   		end
   	end
 
-  	ids.each do |id|
-  	  print "\nParsing #{id} "
+    # Temporarily remove the loop for OKC
+  	# ids.each do |id|
+      id = "7849"
+  	  print "Parsing #{id} "
       
       content      = open("#{AGENDA_DIR}/#{id}.html").read
       # For testing sanatize
@@ -122,7 +124,7 @@ namespace :okc do
   			end
   		end
       x = DIRTY == true ? 35 : 500
-  	end
+  	# end
 
   	puts "★ ★ ★  DONE PARSING ★ ★ ★".green
   end

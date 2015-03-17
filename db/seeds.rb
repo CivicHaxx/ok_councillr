@@ -15,7 +15,7 @@ CouncillorVote.destroy_all
 puts "Destroying UserVotes".red
 UserVote.destroy_all
 puts "Destroying ItemTypes".red
-ItemType.destroy_all
+#ItemType.destroy_all
 puts "Destroying MotionTypes".red
 MotionType.destroy_all
 puts "Destroying Wards".red
@@ -99,7 +99,9 @@ end
 #       motions. Perhaps we should change this temporarily.
 
 puts "\nCreating fake motions and votes".yellow
-Agenda.third.items.all.each do |item|
+# Change this to the following when parsing ALL items
+# Agenda.third.items.all.each do
+Item.all.each do |item|
 	rand(5).times do 
 		motion_type    = motion_types.sample
 		amendment_text = (motion_type.name == "Amended") ? Faker::Lorem.paragraph(4, true, 6) : ""
