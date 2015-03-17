@@ -28,7 +28,7 @@ wards = []
 
 item_types = ItemType.create([{ name: 'Action' }, { name: 'Information' }, { name: 'Presentation' }])
 motion_types = MotionType.create([{ name: 'Adopted' }, { name: 'Received' }, { name: 'Amended' }])
-44.times { |ward_number| wards << Ward.create(ward_number: ward_number,	name: Faker::Company.name) }
+44.times { |ward_number| wards << Ward.create(ward_number: ward_number,	name: Faker::Address.street_name) }
 
 10.times do
 	users << User.create(
@@ -81,7 +81,10 @@ end
 			title: Faker::Hacker.say_something_smart, 
 			wards: wards[1...rand(wards.count)],
 			number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
-		# => 	sections: "#{Faker::Lorem.paragraphs(5)}",
+			sections: {	"Recommendations" => "#{Faker::Lorem.paragraphs(5)}",
+									"Origin" => "#{Faker::Lorem.paragraphs(5)}",
+									"Summary" => "#{Faker::Lorem.paragraphs(5)}",
+									"Background Information" => "#{Faker::Lorem.paragraphs(5)}"},
       recommendations: "#{Faker::Company.bs} #{Faker::Company.catch_phrase}",
 			item_type_id: item_types.sample.id,
 			origin: current_origin_from
