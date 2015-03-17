@@ -99,6 +99,11 @@ end
 puts "\nCreating Agendas and Items".blue
 Rake::Task['okc:agendas'].execute
 
+# TODO: Create fake motions and on each item and fake user votes on each
+#       motion. 
+# NOTE: We are currently building the app so users can vote on items and not 
+#       motions. Perhaps we should change this temporarily.
+
 2.times do 
 	agenda = Agenda.create(
 		date: Faker::Date.between(60.days.ago, Date.today)
