@@ -104,8 +104,9 @@ end
 #       motion. 
 # NOTE: We are currently building the app so users can vote on items and not 
 #       motions. Perhaps we should change this temporarily.
+
 puts "\nCreating fake motions and votes".yellow
-Agenda.first.items.all.each do |item|
+Agenda.third.items.all.each do |item|
 	rand(5).times do 
 		motion_type    = motion_types.sample
 		amendment_text = (motion_type.name == "Amended") ? Faker::Lorem.paragraph(4, true, 6) : ""
