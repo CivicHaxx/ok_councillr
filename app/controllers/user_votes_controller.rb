@@ -1,7 +1,8 @@
 class UserVotesController < ApplicationController
- before_filter :load_item
 
-def show
+def index
+    @user = current_user
+    @votes = @user.user_votes.page params[:page]
 end
 
 def new	
@@ -9,7 +10,8 @@ def new
 end
 
 def create
-	@user_vote = @item.user_votes.build(vote_params)
+	@item = Item.find(params[:item_id])
+  @user_vote = @item.user_votes.build(vote_params)
 	@user_vote.user = current_user
 
 	if @user_vote.save
@@ -19,11 +21,7 @@ def create
     end
 end
 
-
 private
-	def load_item
-	  @item = Item.find(params[:item_id])
-	end
 
   def vote_params
   params.require(:user_vote).permit(

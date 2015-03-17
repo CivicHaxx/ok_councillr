@@ -1,11 +1,9 @@
-<h1>My Votes</h1>
+<h1>My Profile</h1>
 
-<% @votes.each do |vote| %>
-	<%= vote.item.agenda.date %>
-	<%= vote.item.number %>
-	<%= vote.item.title %>
-	<%= vote.vote %>
-<br><br>
-<% end %>
+<h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
+<p>Email: <%= current_user.email %></p>
+<p>Postal Code: <%= current_user.postal_code %></p>
 
-<%= paginate @votes %>
+<%= link_to("Edit Profile", edit_user_path) %> 
+<%= link_to("My Votes", user_user_votes_path(@user)) %>
+

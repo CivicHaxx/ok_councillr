@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
-    @votes = @user.user_votes.page params[:page]
+    @user = current_user
   end
 
   def new
@@ -10,9 +9,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    @item = Item.first 
+    
     if @user.save
-      redirect_to items_path, notice: "Your account has been created"
+      redirect_to item_url(@item), notice: "Your account has been created"
     else
       flash.now.alert = "Error creating account"
       render :new
@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.update_atrributes(user_params)
+    @user = current_user
+    @user.update!(user_params)
     if @user.save
       redirect_to user_path(params[:id]), notice: "Your account has been updated"
     else
