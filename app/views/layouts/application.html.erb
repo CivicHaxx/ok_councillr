@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "OK Councillr" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -13,10 +13,50 @@
   </head>
 
   <body>
-  
-    <div class="body">
-      <%= yield %>
-    </div>
+    <header class="main-header">
+      <nav class="top-bar navigation" data-topbar role="navigation" data-options="is_hover: false">
+        <ul class="title-area">
+          <li>
+            <h1>OK Councillr</h1>
+          </li>
+          <li class="smaller-device-menu"><a href="#"><span>Menu</span></a></li>
+        </ul>
 
+        <section class="top-bar-section main-menu">
+          <ul class="right main-menu-right-side">
+            
+            <% if current_user %>
+              <li class="has-dropdown">
+                <a href="#">Profile</a>
+                <ul class="dropdown">
+                  <li>
+                    <%= link_to("My Profile", "#") %>
+                  </li>
+                  <li>
+                    <%= link_to("Logout", :logout, method: :post) %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to("Sign Up", :signup) %></li>
+              <li><%= link_to("Login", :login) %></li>
+            <% end %>
+
+            <li class="has-dropdown">
+              <a href="#">Vote</a>
+              <ul class="dropdown">
+                <li>
+                    <%= link_to("Voting", "#") %>
+                  </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
