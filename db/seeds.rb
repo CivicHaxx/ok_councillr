@@ -77,7 +77,7 @@ end
 	100.times do |index|
 		current_origin_from = ((index % 2) == 0) ? agenda : councillors.sample
 
-		item = Item.create(
+item = Item.create(
 			title: Faker::Hacker.say_something_smart, 
 			wards: wards[1...rand(wards.count)],
 			number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
