@@ -28,7 +28,7 @@ wards = []
 
 item_types = ItemType.create([{ name: 'Action' }, { name: 'Information' }, { name: 'Presentation' }])
 motion_types = MotionType.create([{ name: 'Adopted' }, { name: 'Received' }, { name: 'Amended' }])
-44.times { |ward_number| wards << Ward.create(ward_number: ward_number,	name: Faker::Company.name) }
+44.times { |ward_number| wards << Ward.create(ward_number: ward_number,	name: Faker::Address.street_name) }
 
 10.times do
 	users << User.create(

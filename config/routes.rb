@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   resources :users
   resources :user_sessions, only: [:new, :create, :destroy]
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    resources :user_votes, only: [:new, :create]
+  end
+
+
+
 
   get "signup"      => "users#new", :as => :signup
   get "myvotes/:id" => "users#show", :as => :myvotes
