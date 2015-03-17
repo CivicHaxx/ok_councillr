@@ -6,10 +6,8 @@
 
 namespace :okc do
   desc "Gimme a fresh start. Drops the db and parses the data again."
-  task get_fresh: ['db:drop', 'db:setup', :agendas] do
-   45.times do |i|
-      Ward.create(ward_number: i)
-    end 
+  task fresh: ['db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed'] do
+    puts "You look great today."
   end
 
   desc"Clears out items table"
