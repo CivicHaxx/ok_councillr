@@ -96,7 +96,7 @@ namespace :okc do
       end
 
       def meeting_num
-        @header_info.at('tr/td[2]').text
+        @header_info.at('tr/td[2]').text.strip
       end
 
       @agenda = Agenda.create({
@@ -109,6 +109,7 @@ namespace :okc do
 
   			unless item_number.empty?
   				parsed_agenda_item = ParsedItem.new(item_number, item).to_h
+          parsed_agenda_item[:origin_id] = @agenda.id
   				Item.create(parsed_agenda_item)
   			end
   		end
