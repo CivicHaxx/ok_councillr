@@ -12,7 +12,7 @@ puts "Destroying Motions".red
 Motion.destroy_all
 puts "Destroying CouncillorVotes".red
 CouncillorVote.destroy_all
-puts "Destroying UserVotes`"
+puts "Destroying UserVotes".red
 UserVote.destroy_all
 puts "Destroying ItemTypes".red
 ItemType.destroy_all

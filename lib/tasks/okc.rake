@@ -6,19 +6,19 @@
 
 namespace :okc do
   desc "Gimme a fresh start. Drops the db and parses the data again."
-  task get_fresh: ['db:drop', 'db:setup', :delete_items, :agenda_scrape] do;
+  task get_fresh: ['db:drop', 'db:setup', :agendas] do
    45.times do |i|
       Ward.create(ward_number: i)
     end 
   end
 
   desc"Clears out items table"
-  task delete_items: :environment do
-  	Item.delete_all
+  task destroy_items: :environment do
+  	Item.destroy_all
   end
 
   desc "Tests ParsedItem on a single file"
-  task test_parser: [:delete_items] do |t| 
+  task test_parser: [:destroy_items] do |t| 
     require 'parsed_item'
 
     content  = open("lib/dirty_agendas/7849.html").read
@@ -44,10 +44,9 @@ namespace :okc do
   end
 
   desc "Scrape, parse & persist City Council agendas"
-  task :agendas, [:clean] do |t, args|
+  task :agendas do |t|
   	# Cleaner dosn't work yet. So don't pass any args into the task.
-    args.with_defaults clean: "-c"
-
+    # args.with_defaults clean: "-c"
     require 'http'
     require 'nokogiri'
     require 'open-uri'
@@ -78,7 +77,7 @@ namespace :okc do
   		start = Time.now.to_f
   	  print "Parsing #{id} "
       
-      content  = open("#{AGENDA_DIR}/#{id}.html").read
+      content      = open("#{AGENDA_DIR}/#{id}.html").read
       # For testing sanatize
       # DirtyAgenda.create(id: id, dirty_html: content)
   		
