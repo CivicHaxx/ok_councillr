@@ -7,8 +7,11 @@ class UserSessionsController < ApplicationController
     @user = current_user
 
   	if @user = login(params[:email], params[:password])
-
-      @item  = @user.user_votes.last.item_id + 1
+      @item = if @user.user_votes.count == 0
+        Item.first.id
+      else
+        @user.user_votes.last.item_id + 1
+      end
 
   		redirect_back_or_to item_url(@item, notice: 'Login successful')
   	else
