@@ -3,12 +3,11 @@
 		line-height: 2.8125rem;
   	font-size: 1.0625rem;
   	margin: 0;
-		color: $colour
+		color: $text_colour
 	}
 
 	.navigation {
-		@extend .top-bar;
-		background-color: $BGColour;
+		background-color: $nav_bg;
 	}
 
 	.smaller-device-menu {
@@ -16,8 +15,21 @@
 		@extend .menu-icon;
 	}
 
-	.main-main {
-		@extend .top-bar-section;
+	.main-menu {
+		ul li {
+			background: $nav_bg;
+		}
+
+		.dropdown li:not(.has-form):not(.active):hover > a:not(.button):not(.submit) {
+			background: $mouseover_menu;
+		}
+
+		li:not(.has-form) a:not(.button):not(.submit) {
+			background: $nav_bg;
+		}
+	}
+
+	.main-menu-right-side {
 	}
 }
 
@@ -26,6 +38,6 @@
 }
 
 .main-header, .main-footer {
-	background-color: $BGColour;
-	color: $colour
+	background-color: $header_bg;
+	color: $header_colour
 }

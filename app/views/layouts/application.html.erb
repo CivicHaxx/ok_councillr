@@ -14,28 +14,40 @@
 
   <body>
     <header class="main-header">
-      <nav class="top-bar">
+      <nav class="top-bar navigation" data-topbar role="navigation" data-options="is_hover: false">
         <ul class="title-area">
           <li>
-            <h1>OK Counillr</h1>
+            <h1>OK Councillr</h1>
           </li>
-          <li class="toggle-top menu-icon"><a href=""><span>Menu</span></a></li>
+          <li class="smaller-device-menu"><a href="#"><span>Menu</span></a></li>
         </ul>
 
-        <section class="top-bar-section">
-          <ul class="right">
+        <section class="top-bar-section main-menu">
+          <ul class="right main-menu-right-side">
+            
+            <% if current_user %>
+              <li class="has-dropdown">
+                <a href="#">Profile</a>
+                <ul class="dropdown">
+                  <li>
+                    <%= link_to("My Profile", "#") %>
+                  </li>
+                  <li>
+                    <%= link_to("Logout", :logout, method: :post) %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to("Sign Up", :signup) %></li>
+              <li><%= link_to("Login", :login) %></li>
+            <% end %>
+
             <li class="has-dropdown">
-              <a href="">Profile</a>
+              <a href="#">Vote</a>
               <ul class="dropdown">
-                <li>Menu 1</li>
-                <li>Menu 2</li>
-              </ul>
-            </li>
-            <li class="has-dropdown">
-              <a href="">Vote</a>
-              <ul class="dropdown">
-                <li>Menu 1</li>
-                <li>Menu 2</li>
+                <li>
+                    <%= link_to("Voting", "#") %>
+                  </li>
               </ul>
             </li>
           </ul>
