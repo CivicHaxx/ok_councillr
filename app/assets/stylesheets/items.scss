@@ -1,3 +1,18 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.vote-buttons {
+	position: fixed;
+	bottom: 0;
+	background: white;
+	box-shadow: 0px -1px 1px black;
+	width: 100%	
+}
+
+.vote-form {
+	@extend .large-4;
+
+	form
+}
+

@@ -18,27 +18,39 @@
 	<% @item.sections.each_with_index do  |item, i| %>
 		<li class="accordion-navigation">
 			<a href="#panel<%= i %>a"><%= item[0] %></a>
-			<div id="panel<%= i %>a" class="content">
+			<div id="panel<%= i %>a" class="content <%= "active" if i == 0 %>">
 				<%= item[1].to_s %>
 			</div>
 		</li>
 	<% end %>
 </ul>
 
-<%= form_for [@item, @user_vote] do |f| %>
-	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field(:vote, value: "No") %>
-	<%= f.submit "No", {class: "button round"}%>
-<% end %>
+<div class="row">
+<div class="vote-buttons">
 
-<%= form_for [@item, @user_vote] do |f| %>
-	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field(:vote, value: "Skip") %>	
-	<%= f.submit "Skip", {class: "button round"}%>
-<% end %>
+	<div class="vote-form">
+		<%= form_for [@item, @user_vote] do |f| %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field(:vote, value: "No") %>
+			<%= f.submit "No", {class: "button round"}%>
+		<% end %>	
+	</div>
 
-<%= form_for [@item, @user_vote] do |f| %>
-	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field(:vote, value: "Yes") %>	
-	<%= f.submit "Yes", {class: "button round"}%>
-<% end %>
+	<div class="vote-form">
+		<%= form_for [@item, @user_vote] do |f| %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field(:vote, value: "Skip") %>	
+			<%= f.submit "Skip", {class: "button round"}%>
+		<% end %>	
+	</div>
+
+	<div class="vote-form">
+		<%= form_for [@item, @user_vote] do |f| %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field(:vote, value: "Yes") %>	
+			<%= f.submit "Yes", {class: "button round"}%>
+		<% end %>
+	</div>
+
+</div>
+</div>
