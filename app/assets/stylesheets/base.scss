@@ -1,0 +1,16 @@
+$BGColour: #0f3890;
+$colour: #FFF;
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 12px;
+}

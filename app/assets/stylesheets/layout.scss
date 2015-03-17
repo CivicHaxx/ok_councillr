@@ -1,0 +1,31 @@
+.main-header {
+	h1 {
+		line-height: 2.8125rem;
+  	font-size: 1.0625rem;
+  	margin: 0;
+		color: $colour
+	}
+
+	.navigation {
+		@extend .top-bar;
+		background-color: $BGColour;
+	}
+
+	.smaller-device-menu {
+		@extend .toggle-topbar;
+		@extend .menu-icon;
+	}
+
+	.main-main {
+		@extend .top-bar-section;
+	}
+}
+
+.main-footer {
+
+}
+
+.main-header, .main-footer {
+	background-color: $BGColour;
+	color: $colour
+}
