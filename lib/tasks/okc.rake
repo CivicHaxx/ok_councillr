@@ -78,15 +78,10 @@ namespace :okc do
   		end
   	end
 
-<<<<<<< HEAD
     # Temporarily remove the loop for OKC
   	# ids.each do |id|
       id = "7849"
   	  print "Parsing #{id} "
-=======
-  	ids.each do |id|
-  	  print "\nParsing #{id} "
->>>>>>> bf688461ccd2de3c3f77864187fc5149b8190f82
       
       content      = open("#{AGENDA_DIR}/#{id}.html").read
       # For testing sanatize
@@ -129,11 +124,7 @@ namespace :okc do
   			end
   		end
       x = DIRTY == true ? 35 : 500
-<<<<<<< HEAD
   	# end
-=======
-  	end
->>>>>>> bf688461ccd2de3c3f77864187fc5149b8190f82
 
   	puts "★ ★ ★  DONE PARSING ★ ★ ★".green
   end
