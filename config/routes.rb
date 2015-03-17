@@ -11,17 +11,15 @@ Rails.application.routes.draw do
     resources :motions, only: [:index, :show]
   end
 
-  resources :users
+  resources :users do
+    resources :user_votes, only: [:index]
+  end
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :items, only: [:index, :show] do
     resources :user_votes, only: [:new, :create]
   end
 
-
-
-
   get "signup"      => "users#new", :as => :signup
-  get "myvotes/:id" => "users#show", :as => :myvotes
   get 'login'       => 'user_sessions#new', :as => :login
   post 'logout'     => 'user_sessions#destroy', :as => :logout
 

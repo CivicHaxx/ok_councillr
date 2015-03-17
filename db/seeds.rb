@@ -15,7 +15,7 @@ CouncillorVote.destroy_all
 puts "Destroying UserVotes".red
 UserVote.destroy_all
 puts "Destroying ItemTypes".red
-ItemType.destroy_all
+#ItemType.destroy_all
 puts "Destroying MotionTypes".red
 MotionType.destroy_all
 puts "Destroying Wards".red
@@ -29,13 +29,6 @@ users            = []
 councillors      = []
 wards            = []
 people           = %w(👦 👧 👨 👩)
-
-puts "Creating Item Types".blue
-item_types = ItemType.create!([
-	{ name: 'Action' }, 
-	{ name: 'Information' }, 
-	{ name: 'Presentation' }
-])
 
 puts "Creating Motion Types".blue
 motion_types = MotionType.create!([
@@ -112,7 +105,7 @@ Item.all.each do |item|
 	rand(5).times do 
 		motion_type    = motion_types.sample
 		amendment_text = (motion_type.name == "Amended") ? Faker::Lorem.paragraph(4, true, 6) : ""
-	
+		
 		motion = Motion.create!(
 				amendment_text: amendment_text,
 				councillor_id: councillors.sample.id,
