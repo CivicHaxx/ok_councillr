@@ -83,29 +83,26 @@ namespace :okc do
       # DirtyAgenda.create(id: id, dirty_html: content)
   		
       # find the date & meeting number and create a meeting in the db
-      sections    = content.split("<br clear=\"all\">")
-      items       = sections.map { |item| Nokogiri::HTML(item) }
+      sections     = content.split("<br clear=\"all\">")
+      items        = sections.map { |item| Nokogiri::HTML(item) }
       @header_info = Nokogiri::HTML(items[1].to_s.split('<hr')[0])
 
-      def match_day?(node)
-        days = %w(Monday Tuesday Wednesday Thrusday Friday Saturday Sunday)
-        node if days.any? { |day| node.text[day] }
-      end
-      
       def date
-        date = @header_info.xpath('//tr/*[2]/font').to_ary.map do |node|
-          match_day? node
-        end
-        date.compact[0].to_s
-                       .split("<br>")[1]
-                       .strip
+        @header_info.at('tr[2]/td[2]')
+                    .at('br')
+                    .previous_sibling
+                    .text
+                    .strip
       end
 
-      binding.pry
+      def meeting_num
+        @header_info.at('tr/td[2]').text
+      end
 
-      Agenda.create( 
-        date: date
-        )
+      @agenda = Agenda.create({
+        date: date,
+        meeting_num: meeting_num
+      })
   		
       items.each do |item|
   			item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text

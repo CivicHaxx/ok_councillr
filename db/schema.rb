@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150316193949) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "committee_id"
-    t.integer  "meeting_num"
+    t.string   "meeting_num"
   end
 
   add_index "agendas", ["committee_id"], name: "index_agendas_on_committee_id", using: :btree
