@@ -1,40 +1,40 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => { class: "user-form" } do |f| %>
 	<% if @user.errors.any? %>
 		<%= render partial: 'shared/error_message', locals: { errors: @user.errors }%>
 	<% end %>
 
-	<div>
+	<div class="">
 		<%= f.label :first_name %>
 		<%= f.text_field :first_name %>
 	</div>
 
-	<div>
+	<div class="">
 		<%= f.label :last_name %>
 		<%= f.text_field :last_name %>
 	</div>
 
-	<div>
+	<div class="">
 		<%= f.label :postal_code %>
 		<%= f.text_field :postal_code %>
 	</div>
 
-	<div>
+	<div class="">
 		<%= f.label :email %>
 		<%= f.text_field :email %>
 	</div>
 
-	<div>
+	<div class="">
 		<%= f.label :password %>
 		<%= f.password_field :password %>
 	</div>
 
-	<div>
+	<div class="">
 		<%= f.label :password_confirmation %>
 		<%= f.password_field :password_confirmation %>
 	</div>
 
 	<div>
-		<%= f.submit %>
+		<%= f.submit "Submit", class: "submit" %>
 	</div>
 
 <% end %>
