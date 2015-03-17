@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 require "councillors_wards"
 
 Councillor.destroy_all
@@ -19,14 +12,14 @@ ItemType.destroy_all
 MotionType.destroy_all
 Ward.destroy_all
 
-prefix = %w(EX CD GM PG)
-user_votes = %w(Yes No Skip)
+prefix           = %w(EX CD GM PG)
+user_votes       = %w(Yes No Skip)
 councillor_votes = %w(Yes No Absent)
-user_pc = ["M1P 0B6", "M6H 2P2", "M5H 1K4", "M5H 2N2", "M2K 1E1", "M9V 1R8"]
-users = []
-councillors = []
-wards = []
-people = %w(👦 👧 👨 👩)
+user_pc          = ["M1P 0B6", "M6H 2P2", "M5H 1K4", "M5H 2N2", "M2K 1E1", "M9V 1R8"]
+users            = []
+councillors      = []
+wards            = []
+people           = %w(👦 👧 👨 👩)
 
 puts "Creating Item Types".blue
 item_types = ItemType.create([
@@ -154,5 +147,5 @@ Rake::Task['okc:agendas'].execute
 		end
 		print "❤️"; print " "
 	end
-print "💘💘💘"; print " "
+print "\n💘 💘 💘";
 end
