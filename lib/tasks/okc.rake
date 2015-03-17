@@ -71,8 +71,9 @@ namespace :okc do
   		end
   	end
 
-  	ids.each do |id|
-  		start = Time.now.to_f
+    # Temporarily remove the loop for OKC
+  	# ids.each do |id|
+      id = "7849"
   	  print "Parsing #{id} "
       
       content      = open("#{AGENDA_DIR}/#{id}.html").read
@@ -112,11 +113,11 @@ namespace :okc do
           parsed_agenda_item[:origin_id] = @agenda.id
           parsed_agenda_item[:origin_type] = "Agenda"
   				Item.create(parsed_agenda_item)
+          print "⚡"
   			end
   		end
       x = DIRTY == true ? 35 : 500
-  	  puts "⚡" * ( (Time.now.to_f - start) * x )
-  	end
+  	# end
 
   	puts "★ ★ ★  DONE PARSING ★ ★ ★".green
   end
