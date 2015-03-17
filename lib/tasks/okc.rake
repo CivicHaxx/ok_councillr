@@ -44,7 +44,7 @@ namespace :okc do
   end
 
   desc "Scrape, parse & persist City Council agendas"
-  task :agenda_scrape, [:clean] do |t, args|
+  task :agendas, [:clean] do |t, args|
   	# Cleaner dosn't work yet. So don't pass any args into the task.
     args.with_defaults clean: "-c"
 
@@ -63,16 +63,12 @@ namespace :okc do
     # Remove this when we have a better cleaner working.
     DIRTY      = true
     AGENDA_DIR = DIRTY == true ? "lib/dirty_agendas" : "lib/agendas"
-  	
-    council = Committee.create){
-      name: "City Countil",
-    })
 
     ids = MeetingIDs.new(12, 2014).ids
   	
   	ids.map do |id| # Check if the file exists, if not, download it.
   		unless File.exist? "#{AGENDA_DIR}/#{id}.html"
-  		  print "Saving #{id}"
+  		  print "Calling the internet and saving agenda #{id}".yellow
   			RawAgenda.new(id).save
   			puts " ✔ "
   		end
@@ -103,10 +99,12 @@ namespace :okc do
       end
 
       # find the date & meeting number and create a meeting in the db
+      council = Committee.where("name = 'City Council'")
+
       @agenda = Agenda.create({
         date: date,
-        meeting_num: meeting_num
-        committee_id: council.id
+        meeting_num: meeting_num,
+        committee_id: council.ids[0]
       })
   		
       items.each do |item|

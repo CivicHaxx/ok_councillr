@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require "councillors_wards"
 
 Councillor.destroy_all
 Committee.destroy_all
@@ -25,11 +26,23 @@ user_pc = ["M1P 0B6", "M6H 2P2", "M5H 1K4", "M5H 2N2", "M2K 1E1", "M9V 1R8"]
 users = []
 councillors = []
 wards = []
+people = %w(👦 👧 👨 👩)
 
-item_types = ItemType.create([{ name: 'Action' }, { name: 'Information' }, { name: 'Presentation' }])
-motion_types = MotionType.create([{ name: 'Adopted' }, { name: 'Received' }, { name: 'Amended' }])
-44.times { |ward_number| wards << Ward.create(ward_number: ward_number,	name: Faker::Address.street_name) }
+puts "Creating Item Types".blue
+item_types = ItemType.create([
+	{ name: 'Action' }, 
+	{ name: 'Information' }, 
+	{ name: 'Presentation' }
+])
 
+puts "Creating Motion Types".blue
+motion_types = MotionType.create([
+	{ name: 'Adopted' }, 
+	{ name: 'Received' },
+	{ name: 'Amended' }
+])
+
+puts "Creating Users".blue
 10.times do
 	users << User.create(
 		email: Faker::Internet.safe_email,
@@ -40,13 +53,16 @@ motion_types = MotionType.create([{ name: 'Adopted' }, { name: 'Received' }, { n
 		password: "password",
 		password_confirmation: "password"
 	)
-	print "❤️"; print " "
+	person = people.sample
+	print "#{person}"; print " "
 end
 
-wards.each do |ward|
-	councillors << Councillor.create(
-			first_name: Faker::Name.first_name,
-	    last_name: Faker::Name.last_name,
+puts "\nCreating Wards & Councillors".blue
+WARD_INFO.each do |ward|
+	wards << Ward.create({ ward_number: ward[2], name: ward[3] })
+	councillors << Councillor.create({
+			first_name: ward[1],
+	    last_name: ward[0],
 	    start_date_in_office: Faker::Date.backward(61),
 	    website: Faker::Internet.url,
 	    twitter_handle: Faker::Lorem.word,
@@ -55,12 +71,23 @@ wards.each do |ward|
 	    phone_number: Faker::PhoneNumber.phone_number,
 	    address: Faker::Address.street_address,
 	    image: Faker::Avatar.image,
-	    ward: ward
-		)
-	print "❤️"; print " "
+	    ward: wards.last
+	    })		
+	print "👏"; print "  "
 end
 
-rand(10).times do
+print "\nCreating City Council".blue
+@council = Committee.create({
+  name: "City Council",
+})
+councillors.each do |councillor|
+	@council.councillors << councillor
+end
+print " 👍"
+
+puts " "
+puts "Creating Random Committees".yellow
+rand(9).times do
 	committee = Committee.create(name: Faker::Company.name)
 
 	5.times do
@@ -68,6 +95,9 @@ rand(10).times do
 	end
 	print "❤️"; print " "
 end
+
+puts "\nCreating Agendas and Items".blue
+Rake::Task['okc:agendas'].execute
 
 2.times do 
 	agenda = Agenda.create(
