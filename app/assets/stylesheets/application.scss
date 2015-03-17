@@ -11,7 +11,11 @@
  * file per style scope.
  */
 
+@import "foundation_and_overrides";
 /*Glob import the tree. It might be a good idea to change this to get the cascading right*/
 @import "**/*";
 
-@import "foundation_and_overrides";
+
+.body {
+	@extend .row;
+}
