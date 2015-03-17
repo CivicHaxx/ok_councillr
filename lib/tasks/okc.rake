@@ -64,9 +64,13 @@ namespace :okc do
     DIRTY      = true
     AGENDA_DIR = DIRTY == true ? "lib/dirty_agendas" : "lib/agendas"
   	
+    council = Committee.create){
+      name: "City Countil",
+    })
+
     ids = MeetingIDs.new(12, 2014).ids
   	
-  	ids.map do |id|
+  	ids.map do |id| # Check if the file exists, if not, download it.
   		unless File.exist? "#{AGENDA_DIR}/#{id}.html"
   		  print "Saving #{id}"
   			RawAgenda.new(id).save
@@ -82,7 +86,6 @@ namespace :okc do
       # For testing sanatize
       # DirtyAgenda.create(id: id, dirty_html: content)
   		
-      # find the date & meeting number and create a meeting in the db
       sections     = content.split("<br clear=\"all\">")
       items        = sections.map { |item| Nokogiri::HTML(item) }
       @header_info = Nokogiri::HTML(items[1].to_s.split('<hr')[0])
@@ -99,9 +102,11 @@ namespace :okc do
         @header_info.at('tr/td[2]').text.strip
       end
 
+      # find the date & meeting number and create a meeting in the db
       @agenda = Agenda.create({
         date: date,
         meeting_num: meeting_num
+        committee_id: council.id
       })
   		
       items.each do |item|
@@ -110,6 +115,7 @@ namespace :okc do
   			unless item_number.empty?
   				parsed_agenda_item = ParsedItem.new(item_number, item).to_h
           parsed_agenda_item[:origin_id] = @agenda.id
+          parsed_agenda_item[:origin_type] = "Agenda"
   				Item.create(parsed_agenda_item)
   			end
   		end
