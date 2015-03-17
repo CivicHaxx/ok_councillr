@@ -25,32 +25,33 @@
 	<% end %>
 </ul>
 
-<div class="row">
-<div class="vote-buttons">
+<% if current_user %>
+	<div class="row">
+		<div class="vote-buttons">
+			<div class="vote-form">
+				<%= form_for [@item, @user_vote] do |f| %>
+					<%= f.hidden_field :user_id, value: current_user.id %>
+					<%= f.hidden_field(:vote, value: "No") %>
+					<%= f.submit "No", {class: "button round"}%>
+				<% end %>	
+			</div>
 
-	<div class="vote-form">
-		<%= form_for [@item, @user_vote] do |f| %>
-			<%= f.hidden_field :user_id, value: current_user.id %>
-			<%= f.hidden_field(:vote, value: "No") %>
-			<%= f.submit "No", {class: "button round"}%>
-		<% end %>	
+			<div class="vote-form">
+				<%= form_for [@item, @user_vote] do |f| %>
+					<%= f.hidden_field :user_id, value: current_user.id %>
+					<%= f.hidden_field(:vote, value: "Skip") %>	
+					<%= f.submit "Skip", {class: "button round"}%>
+				<% end %>	
+			</div>
+
+			<div class="vote-form">
+				<%= form_for [@item, @user_vote] do |f| %>
+					<%= f.hidden_field :user_id, value: current_user.id %>
+					<%= f.hidden_field(:vote, value: "Yes") %>	
+					<%= f.submit "Yes", {class: "button round"}%>
+				<% end %>
+			</div>
+
+		</div>
 	</div>
-
-	<div class="vote-form">
-		<%= form_for [@item, @user_vote] do |f| %>
-			<%= f.hidden_field :user_id, value: current_user.id %>
-			<%= f.hidden_field(:vote, value: "Skip") %>	
-			<%= f.submit "Skip", {class: "button round"}%>
-		<% end %>	
-	</div>
-
-	<div class="vote-form">
-		<%= form_for [@item, @user_vote] do |f| %>
-			<%= f.hidden_field :user_id, value: current_user.id %>
-			<%= f.hidden_field(:vote, value: "Yes") %>	
-			<%= f.submit "Yes", {class: "button round"}%>
-		<% end %>
-	</div>
-
-</div>
-</div>
+<% end %>
