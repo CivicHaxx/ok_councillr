@@ -1,16 +1,6 @@
 @import "foundation_and_overrides";
 @import "base";
 
-<<<<<<< HEAD
-@import "foundation_and_overrides";
-/*Glob import the tree. It might be a good idea to change this to get the cascading right*/
-@import "**/*";
-@import "items";
-
-.body {
-	@extend .row;
-}
-=======
 @import "layout";
 
 @import "items";
@@ -18,4 +8,3 @@
 @import "user_sessions";
 @import "dirty_agenda";
 @import "api";
->>>>>>> Remove @import */*
