@@ -8,4 +8,9 @@ class Item < ActiveRecord::Base
 	has_and_belongs_to_many :wards
 
 	accepts_nested_attributes_for :user_votes
+
+	def next
+		Item.where("id > ?", id).first 
+	end
+
 end
