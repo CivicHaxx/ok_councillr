@@ -47,7 +47,7 @@ puts "Creating Users".blue
 		password_confirmation: "password"
 	)
 	person = people.sample
-	print "#{person}"; print " "
+	print " #{person} "; print " "
 end
 
 puts "\nCreating Wards & Councillors".blue
@@ -147,5 +147,5 @@ Rake::Task['okc:agendas'].execute
 		end
 		print "❤️"; print " "
 	end
-print "\n💘 💘 💘";
+print "\n💘 💘 💘\n";
 end

@@ -37,7 +37,7 @@ namespace :okc do
     end
   end
 
-  desc "Scrape, parse & persist raw vote records"
+  desc "Scrapes, parses & persists raw vote records"
   task :vote_scrape do
     require 'vote_scraper'
     VoteScraper.new(6).run
@@ -117,10 +117,11 @@ namespace :okc do
   				Item.create(parsed_agenda_item)
   			end
   		end
-  	  puts "⚡" * ((Time.now.to_f - start)*50)
+      x = DIRTY == true ? 35 : 500
+  	  puts "⚡" * ( (Time.now.to_f - start) * x )
   	end
 
-  	puts "★ ★ ★  DONE ★ ★ ★"
+  	puts "★ ★ ★  DONE PARSING ★ ★ ★".green
   end
 
 end
