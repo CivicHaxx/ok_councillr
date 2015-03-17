@@ -46,8 +46,7 @@ puts "Creating Users".blue
 		password: "password",
 		password_confirmation: "password"
 	)
-	person = people.sample
-	print " #{person} "; print " "
+	print " #{people.sample} "; print " "
 end
 
 puts "\nCreating Wards & Councillors".blue
