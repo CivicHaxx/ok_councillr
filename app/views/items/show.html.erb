@@ -11,13 +11,15 @@
 </ul>
 
 <ul class="accordion" data-accordion>
-	<% @item.sections.each_with_index do  |item, i| %>
-		<li class="accordion-navigation">
-			<a href="#panel<%= i %>a"><%= item[0] %></a>
-			<div id="panel<%= i %>a" class="content <%= "active" if i == 0 %>">
-				<%= item[1].to_s %>
-			</div>
-		</li>
+	<% @item.sections.each_with_index do  |(title, content), index| %>
+		<% unless title == :ward %>
+			<li class="accordion-navigation">
+				<a href="#panel-<%= index %>a"><%= title %></a>
+				<div id="panel-<%= index %>a" class="content <%= "active" if title == "Summary" %>">
+					<%= content.to_s %>
+				</div>
+			</li>
+		<% end %>
 	<% end %>
 </ul>
 
