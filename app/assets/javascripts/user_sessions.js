@@ -2,6 +2,6 @@
 // All this logic will automatically be available in application.js.
 $(document).on("ready page:load", function() {
 	setTimeout(function() {
-		$("main").find("[data-alert]").fadeOut(600);
+		$("header").find("[data-alert]").fadeOut(600);
 	}, 5000);
 });

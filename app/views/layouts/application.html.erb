@@ -48,9 +48,7 @@
           </ul>
         </section>
       </nav>
-    </header>
 
-    <main class="row">
       <% if flash[:notice] %>
         <div data-alert class="notice-flash">
           <%= flash[:notice] %> <a href="#" class="close">&times;</a>
@@ -61,7 +59,9 @@
           <%= flash[:alert] %> <a href="#" class="close">&times;</a>
         </div>
       <% end %>
+    </header>
 
+    <main class="row">
       <%= yield %>
 
     </main>
