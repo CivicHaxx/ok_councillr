@@ -1,5 +1,4 @@
-Rails.application.routes.draw do
-  
+Rails.application.routes.draw do  
   root 'items#index'
 
   namespace :api do
@@ -14,16 +13,19 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_votes, only: [:index]
   end
-  resources :user_sessions, only: [:new, :create, :destroy]
+
   resources :items, only: [:index, :show] do
     resources :user_votes, only: [:new, :create]
   end
 
-  get "signup"      => "users#new", :as => :signup
+  resources :user_sessions, only: [:new, :create, :destroy]
+  resources :dirty_agenda, only: [:index, :show]
+
+  get 'signup'      => 'users#new', :as => :signup
+  get 'myprofile'   => 'users#show', :as => :myprofile
+  get 'myvotes'     => 'user_votes#index', :as => :myvotes
   get 'login'       => 'user_sessions#new', :as => :login
   post 'logout'     => 'user_sessions#destroy', :as => :logout
-
-  resources :dirty_agenda, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
