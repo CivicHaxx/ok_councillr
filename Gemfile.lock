@@ -80,6 +80,8 @@ GEM
       did_you_mean
       pry-rails
       quiet_assets
+    font-awesome-sass (4.3.2)
+      sass (~> 3.2)
     foundation-rails (5.5.1.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
@@ -217,6 +219,7 @@ DEPENDENCIES
   colored
   faker
   favorite_things
+  font-awesome-sass
   foundation-rails
   http
   jbuilder (~> 2.0)

@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+main {
+    padding-bottom: 10%;
+}
+
+li {
+    list-style-type: none;
+}
+
 .items-vote-on {
 	@include block-grid(
     // This controls how many elements will be on each row of the block grid. Set this to whatever number you need, up to the max allowed in the variable.
@@ -21,12 +29,28 @@
 	position: fixed;
 	bottom: 0;
 	background: white;
-	box-shadow: 0px -1px 1px black;
 	width: 100%	
 }
 
 .vote-form {
 	@extend .large-4;
-	float:left;
+	float:left;    
 }
 
+.yes-vote {
+    button {
+        background-color: #00CC66;        
+    }
+}
+
+.no-vote {
+    button {
+        background-color: #FF6B6B;        
+    }
+}
+
+.skip-vote {
+    button {
+        background-color: gray;        
+    }
+}
