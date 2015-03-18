@@ -1,7 +1,5 @@
 .main-header {
-
 	.title-area {
-
 		h1 {
 	  	line-height: 2.8125rem;
 			font-size: 1.75rem;
@@ -10,7 +8,6 @@
 	}
 
 	.navigation {
-		
 		background-color: $nav_bg;
 	}
 
@@ -20,7 +17,6 @@
 	}
 
 	.main-menu {
-
 		ul li {
 			background: $nav_bg;
 		}
@@ -40,11 +36,6 @@
 
 	.main-menu-right-side {
 	}
-}
-
-.main-header {
-	background-color: $header_bg;
-	color: $header_colour
 }
 
 .flash {
