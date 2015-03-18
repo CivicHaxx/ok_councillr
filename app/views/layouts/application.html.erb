@@ -14,20 +14,20 @@
 
   <body>
     <header class="main-header">
-      <nav class="top-bar navigation" data-topbar role="navigation" data-options="is_hover: false">
+      <nav class="top-bar navigation" data-topbar role="navigation">
         <ul class="title-area">
-          <li>
-            <h1>  <%=link_to 'OKCouncillr <i class="fa fa-check-square-o"></i>'.html_safe, root_url %> </h1>
+          <li class="name">
+            <h1><%=link_to 'OKCouncillr <i class="fa fa-check-square-o"></i>'.html_safe, root_url %></h1>
           </li>
-          <li class="smaller-device-menu"><a href="#"><span>Menu</span></a></li>
-        </ul>
+        </div>
 
+        <!-- <nav class="top-bar navigation main-menu" data-topbar role="navigation" data-options="is_hover: false"> -->
         <section class="top-bar-section main-menu">
-          <ul class="right main-menu-right-side">
-            
+          <ul class="right">
             <% if current_user %>
               <li class="has-dropdown">
                 <a href="#">Profile</a>
+                
                 <ul class="dropdown">
                   <li>
                     <%= link_to("My Profile", myprofile_path) %>
@@ -60,6 +60,7 @@
       <% if flash[:alert] %>
         <div data-alert class="alert-flash"> <%= flash[:alert] %>  <a href="#" class="close">&times;</a> </div>
       <% end %>
+      
       <%= yield %>
     </main>
   </body>
