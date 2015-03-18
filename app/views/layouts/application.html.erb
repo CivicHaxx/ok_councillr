@@ -29,17 +29,17 @@
               <li class="has-dropdown">
                 <a href="#">Profile</a>
                 <ul class="dropdown">
-                  <li class="active">
+                  <li>
                     <%= link_to("My Profile", "#") %>
                   </li>
-                  <li class="active">
+                  <li>
                     <%= link_to("Logout", :logout, method: :post) %>
                   </li>
                 </ul>
               </li>
             <% else %>
-              <li class="active"><%= link_to("Sign Up", :signup) %></li>
-              <li class="active"><%= link_to("Login", :login) %></li>
+              <li><%= link_to("Sign Up", :signup) %></li>
+              <li><%= link_to("Login", :login) %></li>
             <% end %>
 
             <li class="has-dropdown">
