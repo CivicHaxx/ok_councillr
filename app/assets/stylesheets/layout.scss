@@ -5,7 +5,7 @@
 	.title-area {
 		@extend .large-4;
 		@extend .medium-4;
-		@extend .small-4;
+		@extend .small-12;
 		@extend .columns;
 
 		h1 {
@@ -30,7 +30,7 @@
 	.main-menu {
 		@extend .large-8;
 		@extend .medium-8;
-		@extend .small-8;
+		@extend .small-12;
 		@extend .columns;
 		ul li {
 			background: $nav_bg;
