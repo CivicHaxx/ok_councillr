@@ -8,7 +8,8 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
-  
+    <body id="<%= controller_name %>-<%= action_name %>">
+
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
 
     <header class="main-header">
@@ -63,7 +64,7 @@
 
     </main>
 
-    <% if current_user && controller_name == 'items' && action_name == 'show' %>
+    <% if current_user && items_show_page? %>
       <%= render 'vote_buttons' %>
     <% end %>
 
