@@ -1,14 +1,20 @@
 .main-header {
-	h1 {
-  	line-height: 2.8125rem;
-		font-size: 2.0625rem;
-  	margin: 0;
-		color: $text_colour;
+
+	.title-area {
+
+		h1 {
+	  	line-height: 2.8125rem;
+			font-size: 1.75rem;
+	  	margin: 0px;
+			a {
+				color: $text_colour;
+			}
+		}
 	}
 
 	.navigation {
+		
 		background-color: $nav_bg;
-		height: 5%;
 	}
 
 	.smaller-device-menu {
@@ -17,12 +23,17 @@
 	}
 
 	.main-menu {
+
 		ul li {
 			background: $nav_bg;
 		}
 
-		.dropdown li:not(.has-form):not(.active):hover > a:not(.button):not(.submit) {
-			background: $mouseover_menu;
+		.dropdown {
+			li:not(.has-form):not(.active):hover {
+				> a:not(.button):not(.submit) {
+					background: $mouseover_menu;
+				}
+			}
 		}
 
 		li:not(.has-form) a:not(.button):not(.submit) {
