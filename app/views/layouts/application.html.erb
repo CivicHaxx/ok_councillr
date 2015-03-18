@@ -9,7 +9,6 @@
     <%= csrf_meta_tags %>
   </head>
   
-  <body id="<%= controller_name %>-<%= action_name %>">
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
 
     <header class="main-header">
@@ -64,7 +63,7 @@
 
     </main>
 
-    <% if current_user && on_page?(controller: "items", action: "show") %>
+    <% if current_user && controller_name == 'items' && action_name == 'show' %>
       <%= render 'vote_buttons' %>
     <% end %>
 

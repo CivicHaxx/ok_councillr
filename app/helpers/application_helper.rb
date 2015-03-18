@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-	def on_page?(controller: nil, action: nil)
-		current_page?(url_for(controller: controller, action: action))
+	def items_show_page?
+		controller_name == 'items' && action_name == 'show'
 	end
 end
