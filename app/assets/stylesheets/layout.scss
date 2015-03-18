@@ -4,6 +4,9 @@
 	  	line-height: 2.8125rem;
 			font-size: 1.75rem;
 	  	margin: 0px;
+			a {
+				color: $text_colour;
+			}
 		}
 	}
 
@@ -54,4 +57,8 @@
 .notice-flash {
 	@extend .flash;
 	@extend .success; 
+}
+
+h2 {
+	color: #0f3890;
 }
