@@ -40,13 +40,11 @@
 
 .flash {
 	@extend .alert-box; 
-	@extend .radius;
-	width: 50%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   font-size: 1rem;
-  }
+ }
 
 .alert-flash {
 	@extend .flash;
