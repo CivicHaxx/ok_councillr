@@ -4,6 +4,6 @@
 <p>Email: <%= current_user.email %></p>
 <p>Postal Code: <%= current_user.postal_code %></p>
 
-<%= link_to("Edit Profile", edit_user_path) %> 
-<%= link_to("My Votes", user_user_votes_path(@user)) %>
+<%= link_to("Edit Profile", edit_user_path(@user)) %> 
+<%= link_to("My Votes", myvotes_path(@user)) %>
 
