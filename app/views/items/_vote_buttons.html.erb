@@ -1,5 +1,5 @@
-<div class="row">
-	<div class="vote-buttons">
+<div class="vote-buttons">
+	<div class="row">
 		<div class="vote-form no-vote">
 			<%= form_for [@item, @user_vote] do |f| %>
 				<%= f.hidden_field :user_id, value: current_user.id %>
@@ -29,7 +29,6 @@
 						<i class="fa fa-heart fa-2x"></i>
 				<% end %>
 			<% end %>
-		</div>
-
-	</div>
-</div>
+		</div> <!-- yes vote -->
+	</div> <!-- row -->
+</div> <!-- vote-buttons -->
