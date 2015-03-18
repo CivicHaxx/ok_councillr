@@ -1,12 +1,6 @@
 .main-header {
-	// @extend .row;
-	// max-width: 100%;
 
 	.title-area {
-		@extend .large-4;
-		@extend .medium-4;
-		@extend .small-12;
-		@extend .columns;
 
 		h1 {
 	  	line-height: 2.8125rem;
@@ -19,6 +13,7 @@
 	}
 
 	.navigation {
+		
 		background-color: $nav_bg;
 	}
 
@@ -28,10 +23,7 @@
 	}
 
 	.main-menu {
-		@extend .large-8;
-		@extend .medium-8;
-		@extend .small-12;
-		@extend .columns;
+
 		ul li {
 			background: $nav_bg;
 		}
