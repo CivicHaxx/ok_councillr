@@ -29,16 +29,15 @@ li {
 	position: fixed;
 	bottom: 0;
 	background: $nav_bg;
-    width: 100%;
+  width: 100%;
 }
 
 .vote-form {
 	@extend .large-4;
 	float:left; 
-  text-align: centre;
-    
+  text-align: center;
   &.yes-vote button {
-    background-color: #00CC66;        
+      background-color: #00CC66;        
   }
   &.no-vote button {
     background-color: #FF6B6B;        
@@ -47,5 +46,6 @@ li {
     background-color: gray;        
   }
 }
+
 
 
