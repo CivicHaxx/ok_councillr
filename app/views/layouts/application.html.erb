@@ -56,8 +56,12 @@
     </header>
 
     <main class="row">
-      <p id="notice"> <%= flash[:notice] %> </p>
-      <p id="alert"> <%= flash[:alert] %> </p>
+      <% if flash[:notice] %>
+        <div data-alert class="notice-flash"> <%= flash[:notice] %>  <a href="#" class="close">&times;</a> </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div data-alert class="alert-flash"> <%= flash[:alert] %>  <a href="#" class="close">&times;</a> </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>
