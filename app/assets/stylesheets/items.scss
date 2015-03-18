@@ -7,7 +7,7 @@ main {
 }
 
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .items-vote-on {
@@ -28,29 +28,24 @@ li {
 .vote-buttons {
 	position: fixed;
 	bottom: 0;
-	background: white;
-	width: 100%	
+	background: $nav_bg;
+    width: 100%;
 }
 
 .vote-form {
 	@extend .large-4;
-	float:left;    
+	float:left; 
+  text-align: centre;
+    
+  &.yes-vote button {
+    background-color: #00CC66;        
+  }
+  &.no-vote button {
+    background-color: #FF6B6B;        
+  }
+  &.skip-vote button {
+    background-color: gray;        
+  }
 }
 
-.yes-vote {
-    button {
-        background-color: #00CC66;        
-    }
-}
 
-.no-vote {
-    button {
-        background-color: #FF6B6B;        
-    }
-}
-
-.skip-vote {
-    button {
-        background-color: gray;        
-    }
-}
