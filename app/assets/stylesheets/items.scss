@@ -33,17 +33,27 @@
 }
 
 .vote-form {
-	@extend .large-4;
-	float:left; 
+  @extend .small-4;
+  float:left; 
   text-align: center;
-  &.yes-vote button {
-      background-color: #00CC66;        
-  }
-  &.no-vote button {
+}
+
+.vote {
+  @extend .button;
+  @extend .round;
+  height: 5rem;
+  width: 5rem;
+  font-size: 1.5rem;
+
+  &.no {
     background-color: #FF6B6B;        
   }
-  &.skip-vote button {
+  &.skip {
     background-color: gray;        
+  }
+  &.yes {
+    background-color: #00CC66;        
+    padding-top: 1.1rem;
   }
 }
 
