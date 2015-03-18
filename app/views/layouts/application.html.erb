@@ -8,13 +8,14 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+
     <header class="main-header">
-      <nav class="top-bar navigation" data-topbar role="navigation">
+      <nav class="top-bar navigation" data-topbar role="navigation" data-options="is_hover: false">
         <ul class="title-area">
           <li class="name">
             <h1><%=link_to 'OKCouncillr <i class="fa fa-check-square-o"></i>'.html_safe, root_url %></h1>
