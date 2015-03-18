@@ -63,6 +63,12 @@
       <% end %>
 
       <%= yield %>
+
     </main>
+
+    <% if current_user && on_page?(controller: "items", action: "show") %>
+      <%= render 'vote_buttons' %>
+    <% end %>
+
   </body>
 </html>
