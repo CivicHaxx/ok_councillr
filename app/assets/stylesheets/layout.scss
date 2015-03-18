@@ -3,11 +3,22 @@
 		line-height: 2.8125rem;
   	font-size: 1.0625rem;
   	margin: 0;
-		color: $text_colour
+		color: $text_colour;
+  	background-color: $nav_bg;
 	}
 
 	.navigation {
 		background-color: $nav_bg;
+	}
+
+	.navigation.expanded {
+		.toggle-topbar a {
+			color: $text_colour;
+
+			span:after {
+				box-shadow: 0 0 0 1px $text_colour, 0 7px 0 1px $text_colour, 0 14px 0 1px $text_colour;
+			}
+		}
 	}
 
 	.smaller-device-menu {
