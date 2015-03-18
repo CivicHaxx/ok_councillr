@@ -17,7 +17,7 @@
       <nav class="top-bar navigation" data-topbar role="navigation" data-options="is_hover: false">
         <ul class="title-area">
           <li>
-            <h1>OK Councillr</h1>
+            <h1>  <%=link_to 'OKCouncillr <i class="fa fa-check-square-o"></i>'.html_safe, root_url %> </h1>
           </li>
           <li class="smaller-device-menu"><a href="#"><span>Menu</span></a></li>
         </ul>
@@ -30,7 +30,10 @@
                 <a href="#">Profile</a>
                 <ul class="dropdown">
                   <li>
-                    <%= link_to("My Profile", "#") %>
+                    <%= link_to("My Profile", myprofile_path) %>
+                  </li>
+                  <li>
+                    <%= link_to("My Votes", myvotes_path) %>
                   </li>
                   <li>
                     <%= link_to("Logout", :logout, method: :post) %>
@@ -42,13 +45,8 @@
               <li><%= link_to("Login", :login) %></li>
             <% end %>
 
-            <li class="has-dropdown">
-              <a href="#">Vote</a>
-              <ul class="dropdown">
-                <li>
-                    <%= link_to("Voting", "#") %>
-                  </li>
-              </ul>
+            <li>
+              <%= link_to("Get Voting!") %>
             </li>
           </ul>
         </section>
