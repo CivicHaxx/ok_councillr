@@ -54,3 +54,9 @@ li {
         background-color: gray;        
     }
 }
+
+.past-vote {
+    @extend .large-6;
+    @extend .columns;
+    @extend .large-offset-3;
+}

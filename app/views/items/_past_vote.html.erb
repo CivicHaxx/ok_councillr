@@ -1,0 +1,7 @@
+<div class="vote-buttons">
+	<div class="row">
+		<div class="past-vote">
+			<h4>You already voted '<%= @item.user_votes.where(user_id: current_user.id, item_id: @item.id).first.vote %>' for this agenda item</h4>		
+		</div>
+	</div>
+</div>
