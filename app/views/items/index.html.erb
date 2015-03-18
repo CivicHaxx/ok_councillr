@@ -1,8 +1,11 @@
 <h1>All Items</h1>
 
-<ul>
+<ul class="items-vote-on">
+	<li>Item</li>
+	<li>User Votes (Y-N-S)</li>
 	<% @items.each do |item| %>
 		<li><%= link_to item.number, item_path(item) %> - <%= item.title %></li>
+		<li><%= display_user_votes_for item %></li>
 	<% end %>
 </ul>
 
