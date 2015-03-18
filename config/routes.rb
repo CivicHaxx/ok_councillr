@@ -19,9 +19,12 @@ Rails.application.routes.draw do
     resources :user_votes, only: [:new, :create]
   end
 
-  get "signup"      => "users#new", :as => :signup
+
+  get 'signup'      => 'users#new', :as => :signup
   get 'login'       => 'user_sessions#new', :as => :login
   post 'logout'     => 'user_sessions#destroy', :as => :logout
+  get 'myprofile'   => 'users#show', :as => :myprofile
+  get 'myvotes'     => 'user_votes#index', :as => :myvotes
 
   resources :dirty_agenda, only: [:index, :show]
 
