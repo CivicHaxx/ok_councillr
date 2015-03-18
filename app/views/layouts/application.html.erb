@@ -9,9 +9,7 @@
     <%= csrf_meta_tags %>
   </head>
     <body id="<%= controller_name %>-<%= action_name %>">
-
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-
+    
     <header class="main-header">
       <nav class="top-bar navigation" data-topbar role="navigation" data-options="is_hover: false">
         <ul class="title-area">
@@ -68,5 +66,6 @@
       <%= render 'vote_buttons' %>
     <% end %>
 
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   </body>
 </html>

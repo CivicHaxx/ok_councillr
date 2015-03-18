@@ -2,14 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-main {
-    padding-bottom: 10%;
-}
-
-li {
-  list-style-type: none;
-}
-
+// grid for items index
 .items-vote-on {
 	@include block-grid(
     // This controls how many elements will be on each row of the block grid. Set this to whatever number you need, up to the max allowed in the variable.
@@ -25,7 +18,14 @@ li {
   );
 }
 
+#items-show{ 
+  main { 
+    padding-bottom: 10rem;
+  }
+}
+
 .vote-buttons {
+  padding-top: 1rem;
 	position: fixed;
 	bottom: 0;
 	background: $nav_bg;
