@@ -23,39 +23,5 @@
 </ul>
 
 <% if current_user %>
-	<div class="row">
-		<div class="vote-buttons">
-			<div class="vote-form no-vote">
-				<%= form_for [@item, @user_vote] do |f| %>
-					<%= f.hidden_field :user_id, value: current_user.id %>
-					<%= f.hidden_field(:vote, value: "No") %>					
-					<%= button_tag(type: 'submit', class: "button round") do %>
- 						<i class="fa fa-times fa-2x"></i>
-					<% end %>	
-				<% end %>	
-
-			</div>
-
-			<div class="vote-form skip-vote">
-				<%= form_for [@item, @user_vote] do |f| %>
-					<%= f.hidden_field :user_id, value: current_user.id %>
-					<%= f.hidden_field(:vote, value: "Skip") %>	
-					<%= button_tag(type: 'submit', class: "button round") do %>
- 						<i class="fa fa-step-forward fa-2x"></i>
-					<% end %>	
-				<% end %>
-			</div>
-
-			<div class="vote-form yes-vote">
-				<%= form_for [@item, @user_vote] do |f| %>
-					<%= f.hidden_field :user_id, value: current_user.id %>
-					<%= f.hidden_field(:vote, value: "Yes") %>	
-					<%= button_tag(type: 'submit', class: "button round") do %>
- 						<i class="fa fa-heart fa-2x"></i>
-					<% end %>
-				<% end %>
-			</div>
-
-		</div>
-	</div>
+	<%= render 'vote_buttons' %>
 <% end %>
