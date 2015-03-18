@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @item = Item.first 
     
     if @user.save
+      auto_login(@user)
       redirect_to item_url(@item), notice: "Your account has been created"
     else
       flash.now.alert = "Error creating account"
