@@ -2,12 +2,6 @@
 
 <ul>
 	<li>Item number: <%= @item.number %></li>
-	<li>
-	<% @item.wards.each do |ward| %>
-	  	Ward <%= ward.ward_number %>  - <%= ward.name %> | 		
-	<% end %>
-
-	</li>
 </ul>
 
 <ul class="accordion" data-accordion>
