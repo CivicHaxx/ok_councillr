@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = current_user
 
-  	if @user = login(params[:email], params[:password])
+  	if @user = login(params[:email], params[:password], params[:remember])
       @item = find_next_item(@user)
 
   		redirect_back_or_to item_url(@item, notice: 'Login successful')
