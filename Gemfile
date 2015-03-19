@@ -31,11 +31,14 @@ gem 'sorcery'
 # for pagination
 gem 'kaminari'
 # the html_stripper uses Ox to parse docs
+# remove this if we decide to only use Loofah
 gem 'ox'
 # for api serilization
 gem 'active_model_serializers'
-# Foundation framework
+# Foundation Scss framework
 gem 'foundation-rails'
+
+
 gem 'font-awesome-sass'
 
 # Use ActiveModel has_secure_password
