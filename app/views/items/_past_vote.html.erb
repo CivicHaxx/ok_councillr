@@ -4,8 +4,8 @@
 			<h4>Your vote for this item: <%= @past_vote %></h4>
 		</div>
 
-		<div class="columns medium-4">
-				<h4>Next Item <%=link_to '<i class=" fa fa-arrow-circle-right fa-2x"></i>'.html_safe, item_path(find_next_item(current_user)) %></h4>
+		<div class="columns medium-4 next">
+			<%=link_to 'Get Voting <i class="fa fa-arrow-circle-right"></i>'.html_safe, item_path(find_next_item(current_user)), class: "button extend" %>
 		</div>
 	</div>
 </div>

@@ -61,33 +61,32 @@
 }
 
 .past-vote {
-    @extend .vote-buttons;
+  @extend .vote-buttons;
+  h4 {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    height: 5rem;
+    line-height: 5rem;
+  }
 
-    h4 {
-      text-align: center;
-      color: white;
+  &.no-vote {
+    background: $no_color;
+  }
+
+  &.yes-vote {
+    background: $yes_color;
+  }
+
+  &.skip-vote {
+    background: $skip_color;
+  }
+  
+  .next {
+    padding-top: 0.75rem;
+    .button {
       font-size: 1.5rem;
-      height: 5rem;
-      padding-top: 0.75rem;
+      background-color: transparent;
     }
-
-    &.no-vote {
-      background: $no_color;
-    }
-
-    &.yes-vote {
-      background: $yes_color;
-    }
-
-    &.skip-vote {
-      background: $skip_color;
-    }
-    
-    a {
-      color: white;
-      span {
-        margin-bottom: 1rem;
-      }
-    }
-
+  }
 }
