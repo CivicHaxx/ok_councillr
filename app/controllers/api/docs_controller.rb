@@ -1,13 +1,7 @@
 class Api::DocsController < ApiController
 	
 	def index
-		@text = '<code lang="ruby"> puts "Hello, world!" </code>'
+		@text = '<p>Some text</p><code lang="ruby"> puts "Hello, world!" </code>'
+		binding.pry
 	end
-
-	def coderay(text)
-		text.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
-      CodeRay.scan($3, $2).div(:css => :class)
-    end
-	end
-
 end
