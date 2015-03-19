@@ -1,22 +1,18 @@
-// Place all the styles related to the Items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-// grid for items index
-.items-vote-on {
-	@include block-grid(
-    // This controls how many elements will be on each row of the block grid. Set this to whatever number you need, up to the max allowed in the variable.
-    // Available options: 1-12 by default, and false.
-    $per-row: 2,
-
-    // This controls how much space is between each item in the block grid.
-    // Use a variable or any pixel or em values.
-    $spacing: $block-grid-default-spacing,
-
-    // This controls whether or not base styles come through, set to false to leave out.
-    $base-style: true
-  );
+/***********  Items Index Page ***********/
+ 
+.carried {
+  background: $yes_color;
 }
+
+.lost {
+  background: $no_color;
+}
+
+.pending {
+  background: $skip_color;
+}
+ 
+/***********  Items Show Page ***********/
 
 #items-show{ 
   main { 
@@ -46,13 +42,13 @@
   font-size: 1.5rem;
 
   &.no {
-    background-color: #FF6B6B;        
+    background-color: $no_color;        
   }
   &.skip {
-    background-color: gray;        
+    background-color: $skip_color;        
   }
   &.yes {
-    background-color: #00CC66;        
+    background-color: $yes_color;        
     padding-top: 1.1rem;
   }
 }

@@ -15,15 +15,4 @@ class ItemsController < ApplicationController
 	def new_item_for_current_user(item)
 		item.user_votes.where("user_id = #{current_user.id}").empty?
 	end
-
-	def display_user_votes_for(item)
-		display_user_votes = []
-		user_votes         = %w(Yes No Skip)
-
-		user_votes.each do |user_vote|
-			display_user_votes << item.user_votes.where(vote: user_vote).count
-		end
-
-		display_user_votes.join('-')
-	end
 end

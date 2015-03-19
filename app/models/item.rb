@@ -14,4 +14,30 @@ class Item < ActiveRecord::Base
 		Item.where("id > ?", id).first 
 	end
 
+	def count_votes(vote)
+		user_votes.where(vote: vote).count
+	end
+
+	def count_yes
+		count_votes "Yes"
+	end
+
+	def count_no
+		count_votes "No"
+	end
+
+	def count_skip
+		count_votes "Skip"
+	end
+
+	def result
+		if count_yes > count_no && count_yes > count_skip
+			:carried
+		elsif count_no > count_yes && count_no > count_skip
+			:lost
+		else
+			:pending
+		end
+	end
+
 end
