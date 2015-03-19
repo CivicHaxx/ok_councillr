@@ -1,4 +1,4 @@
-<div class="user-form">
+<section class="user-form">
 	<h2>Choose a New Password</h2>
 
 	<%= form_for @user, url: password_reset_path(@token), html: { method: :put } do |f| %>
@@ -22,4 +22,4 @@
 	    <%= f.submit 'Reset Password', class: 'submit' %>
 	  </div>
 	<% end %>
-</div>
+</section>
