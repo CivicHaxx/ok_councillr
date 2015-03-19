@@ -40,6 +40,7 @@
   height: 5rem;
   width: 5rem;
   font-size: 1.5rem;
+  padding:0;
 
   &.no {
     background-color: $no_color;        
@@ -49,7 +50,7 @@
   }
   &.yes {
     background-color: $yes_color;        
-    padding-top: 1.1rem;
+    padding-top: .2rem;
   }
 }
 
