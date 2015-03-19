@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_sessions, only: [:new, :create, :destroy]
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :dirty_agenda, only: [:index, :show]
 
   get 'signup'      => 'users#new', :as => :signup
