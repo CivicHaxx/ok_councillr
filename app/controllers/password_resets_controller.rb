@@ -28,13 +28,25 @@ class PasswordResetsController < ApplicationController
   		return
   	end
 
-  	@user.password_confirmation = params[:user][:password_confirmation]
+    if params[:user][:password].blank?
+      flash.now[:alert] = "Password cannot be blank"
+      render :edit
+    else
+      if @user.update_attributes(user_params)
+        auto_login(@user)
+        redirect_to root_path, notice: 'Reset Password was successfully'
+      else
+        render :edit
+      end
+    end
+  end
 
-  	if @user.change_password!(params[:user][:password])
-      auto_login(@user)
-  		redirect_to root_path, notice: 'Reset Password was successfully'
-  	else
-  		render action: :edit
-  	end
+
+  private
+  def user_params
+    params.require(:user).permit(
+      :password,
+      :password_confirmation,
+    )
   end
 end
