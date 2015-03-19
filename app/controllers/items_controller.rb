@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 	helper_method :display_user_votes_for, :new_item_for_current_user
 
 	def index
-		@items = Item.all.page params[:page]
+		@items = Item.all.includes(:user_votes).page params[:page]
 	end
 
 	def show 
