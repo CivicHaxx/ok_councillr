@@ -1,3 +1,15 @@
 // Place all the styles related to the user_votes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-vote-yes {
+	background-color: $yes_color; 
+}
+
+.user-vote-no {
+	background-color: $no_color;
+}
+
+.user-vote-skip {
+	background-color: $skip_color;
+}
