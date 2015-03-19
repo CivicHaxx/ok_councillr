@@ -67,7 +67,11 @@
     </main>
 
     <% if current_user && items_show_page? %>
-      <%= render 'vote_buttons' %>
+      <% if new_item_for_current_user(@item) %>
+        <%= render 'vote_buttons' %>
+      <% else %>
+        <%= render 'past_vote' %>
+      <% end %>
     <% end %>
 
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>

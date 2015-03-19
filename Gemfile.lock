@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    RedCloth (4.2.9)
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
       actionview (= 4.2.0)
@@ -214,8 +215,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   active_model_serializers
   best_errors
+  coderay
   colored
   faker
   favorite_things
