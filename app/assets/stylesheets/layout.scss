@@ -1,3 +1,7 @@
+h2 {
+	color: #0f3890;
+}
+
 .main-header {
 	.title-area {
 		h1 {
@@ -59,6 +63,7 @@
 	@extend .success; 
 }
 
-h2 {
-	color: #0f3890;
+.form-field {
+	@extend .large-12; 
+	@extend .columns;
 }
