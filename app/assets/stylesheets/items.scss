@@ -68,7 +68,7 @@
       color: white;
       font-size: 1.5rem;
       height: 5rem;
-      padding-top: 1.5rem;
+      padding-top: 0.75rem;
     }
 
     &.no-vote {
@@ -82,4 +82,12 @@
     &.skip-vote {
       background: $skip_color;
     }
+    
+    a {
+      color: white;
+      span {
+        margin-bottom: 1rem;
+      }
+    }
+
 }
