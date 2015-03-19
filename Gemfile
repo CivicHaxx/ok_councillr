@@ -63,6 +63,8 @@ group :development, :test do
   gem 'favorite_things'
   gem 'best_errors'
   gem 'faker'
+  gem "letter_opener"
+  
   #used to colour output to the terminal. 
   gem 'colored'
 end
