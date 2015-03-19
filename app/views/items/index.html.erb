@@ -1,12 +1,29 @@
 <h2>All Items</h2>
 
-<ul class="items-vote-on">
-	<li>Item</li>
-	<li>User Votes (Y-N-S)</li>
-	<% @items.each do |item| %>
-		<li><%= link_to item.number, item_path(item) %> - <%= item.title %></li>
-		<li><%= display_user_votes_for item %></li>
-	<% end %>
-</ul>
+<table role="grid" summary="Voting results for OKCouncillr.">
+	<thead>
+		<tr>
+			<th>Number</th>
+			<th>Title</th>
+			<th>Yes</th>
+			<th>No</th>
+			<th>Pass</th>
+			<th>Result</th>
+			<tbody>
+			<% @items.each do |item| %>
+				<tr>
+					<td><%= link_to item.number, item_path(item) %></td>
+					<td><%= link_to item.title, item_path(item) %></td>
+					<td><%= item.count_yes %></td>
+					<td><%= item.count_no %></td>
+					<td><%= item.count_skip %></td>
+					<td class="<%= item.result.to_s %>"><%= item.result.to_s.capitalize %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</tr>
+	</thead>
+</table>
+
 
 <%= paginate @items %>

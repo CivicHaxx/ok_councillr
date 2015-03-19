@@ -31,12 +31,14 @@ gem 'sorcery'
 # for pagination
 gem 'kaminari'
 # the html_stripper uses Ox to parse docs
+# remove this if we decide to only use Loofah
 gem 'ox'
 # for api serilization
 gem 'active_model_serializers'
-# Foundation framework
+# Foundation Scss framework
 gem 'foundation-rails'
-# Used for icon fonts
+
+
 gem 'font-awesome-sass'
 # Code syntax highlighting
 gem 'coderay'
