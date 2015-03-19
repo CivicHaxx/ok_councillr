@@ -86,11 +86,7 @@
     padding-top: 0.75rem;
     .button {
       font-size: 1.5rem;
-      background-color: $yes_color;
-
-      &:hover {
-        background-color: darken($yes_color, 5%);
-      }
+      background-color: transparent;
     }
   }
 }
