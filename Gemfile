@@ -37,8 +37,7 @@ gem 'ox'
 gem 'active_model_serializers'
 # Foundation Scss framework
 gem 'foundation-rails'
-
-
+# for awesome icons
 gem 'font-awesome-sass'
 # Code syntax highlighting
 gem 'coderay'
