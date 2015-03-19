@@ -1,7 +1,8 @@
 <h2><%= @item.title%></h2>
 
-<ul>
+<ul class="small-block-grid-4">
 	<li>Item number: <%= @item.number %></li>
+	<li>Ward: <%= @item.sections[:ward].compact.join ", " %></li>
 </ul>
 
 <ul class="accordion" data-accordion>
