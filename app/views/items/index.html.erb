@@ -1,5 +1,30 @@
 <h1>All Items</h1>
 
+<table role="grid" summary="Voting results for OKCouncillr.">
+	<thead>
+		<tr>
+			<th>Number</th>
+			<th>Title</th>
+			<th>Yes</th>
+			<th>No</th>
+			<th>Pass</th>
+			<th>Result</th>
+			<tbody>
+			<% @items.each do |item| %>
+				<tr>
+					<td><%= link_to item.number, item_path(item) %></td>
+					<td><%= link_to item.number, item.title %></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</tr>
+	</thead>
+</table>
+
+
 <ul class="items-vote-on">
 	<li>Item</li>
 	<li>User Votes (Y-N-S)</li>
