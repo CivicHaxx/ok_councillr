@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true
   validates :password_confirmation, presence: true 
   validates :email, uniqueness: true 
+
+  def has_no_votes?
+  	user_votes.count == 0
+  end
 end

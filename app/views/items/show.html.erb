@@ -23,8 +23,10 @@
 	<% end %>
 </ul>
 
-<% if current_user && new_item_for_current_user(@item) %>
-	<%= render 'vote_buttons' %>
-<% else %>
-	<%= render 'past_vote' %>
+<% if current_user %>
+	<% if new_item_for_current_user(@item) %>
+		<%= render 'vote_buttons' %>
+	<% else %>
+		<%= render 'past_vote' %>
+	<% end %>
 <% end %>
