@@ -15,7 +15,7 @@
 		<% unless title == :ward %>
 			<li class="accordion-navigation">
 				<a href="#panel-<%= index %>a"><%= title %></a>
-				<div id="panel-<%= index %>a" class="content <%= "active" if title == "Summary" %>">
+				<div id="panel-<%= index %>a" class="content <%= "active" if index == 0 %>">
 					<%= content.to_s %>
 				</div>
 			</li>
@@ -23,10 +23,3 @@
 	<% end %>
 </ul>
 
-<% if current_user %>
-	<% if new_item_for_current_user(@item) %>
-		<%= render 'vote_buttons' %>
-	<% else %>
-		<%= render 'past_vote' %>
-	<% end %>
-<% end %>
