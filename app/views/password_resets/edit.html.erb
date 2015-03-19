@@ -1,0 +1,25 @@
+<section class="user-form">
+	<h2>Choose a New Password</h2>
+
+	<%= form_for @user, url: password_reset_path(@token), html: { method: :put } do |f| %>
+	  <% if @user.errors.any? %>
+			<%= render partial: 'shared/error_message', locals: { errors: @user.errors }%>
+	  <% end %>
+
+	  <div class="form-field">
+	    <%= f.label :email %><br>
+	    <%= @user.email %>
+	  </div>
+	  <div class="form-field">
+	    <%= f.label :password %><br>
+	    <%= f.password_field :password %>
+	  </div>
+	  <div class="form-field">
+	    <%= f.label :password_confirmation %><br>
+	    <%= f.password_field :password_confirmation %>
+	  </div>
+	  <div class="form-field">
+	    <%= f.submit 'Reset Password', class: 'submit' %>
+	  </div>
+	<% end %>
+</section>
