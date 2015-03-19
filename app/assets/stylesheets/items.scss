@@ -40,6 +40,7 @@
   height: 5rem;
   width: 5rem;
   font-size: 1.5rem;
+  padding:0;
 
   &.no {
     background-color: $no_color;        
@@ -49,7 +50,7 @@
   }
   &.yes {
     background-color: $yes_color;        
-    padding-top: 1.1rem;
+    padding-top: .2rem;
   }
 }
 
@@ -60,7 +61,33 @@
 }
 
 .past-vote {
-    @extend .large-6;
-    @extend .columns;
-    @extend .large-offset-3;
+    @extend .vote-buttons;
+
+    h4 {
+      text-align: center;
+      color: white;
+      font-size: 1.5rem;
+      height: 5rem;
+      padding-top: 0.75rem;
+    }
+
+    &.no-vote {
+      background: $no_color;
+    }
+
+    &.yes-vote {
+      background: $yes_color;
+    }
+
+    &.skip-vote {
+      background: $skip_color;
+    }
+    
+    a {
+      color: white;
+      span {
+        margin-bottom: 1rem;
+      }
+    }
+
 }
