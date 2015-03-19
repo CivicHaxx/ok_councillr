@@ -34,7 +34,7 @@ class PasswordResetsController < ApplicationController
     else
       if @user.update_attributes(user_params)
         auto_login(@user)
-        redirect_to root_path, notice: 'Reset Password was successfully'
+        redirect_to root_path, notice: 'Reset Password was successfull'
       else
         render :edit
       end
