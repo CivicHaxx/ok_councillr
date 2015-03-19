@@ -1,0 +1,10 @@
+<div class="user-form">
+	<h2>Forgot Password?</h2>
+
+	<%= form_tag password_resets_path, method: :post do %>
+		<div class="large-12 columns">
+			<%= label_tag :email %>
+			<%= text_field_tag :email  %> <%= submit_tag "Send Password", class: "submit" %>
+		</div>
+	<% end %>
+</div>
