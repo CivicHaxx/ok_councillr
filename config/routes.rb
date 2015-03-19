@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :councillors, only: [:index, :show]
     resources :committees, only: [:index, :show]
     resources :motions, only: [:index, :show]
+    resources :docs, only: [:index]
   end
 
   resources :users do
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :dirty_agenda, only: [:index, :show]
 
+  get 'api/docs'    => 'api#index', :as => :docs
   get 'signup'      => 'users#new', :as => :signup
   get 'myprofile'   => 'users#show', :as => :myprofile
   get 'myvotes'     => 'user_votes#index', :as => :myvotes

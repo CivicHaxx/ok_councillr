@@ -1,0 +1,42 @@
+<h1>OKCouncillr API</h1>
+
+<h2>URLs</h2>
+
+<div class="columns medium-6">
+	<ul class="square">
+		<li><%= link_to "/api/agendas", "/api/agendas" %></li>
+		<li><%= link_to "/api/agendas/:id", "/api/agendas/4" %>*</li>
+		<li><%= link_to "/api/items", "/api/items" %></li>
+		<li><%= link_to "/api/items/:id", "/api/items/4" %>*</li>
+		<li><%= link_to "/api/wards", "/api/wards" %></li>
+		<li><%= link_to "/api/wards/:id", "/api/wards/4" %>*</li>
+		<li><%= link_to "/api/councillors", "/api/councillors" %></li>
+	</ul>
+</div>
+
+<div class="columns medium-6">
+	<ul class="square">
+		<li><%= link_to "/api/councillors/:id", "/api/councillors/4" %>*</li>
+		<li><%= link_to "/api/committees", "/api/committees" %></li>
+		<li><%= link_to "/api/committees/:id", "/api/committees/4" %>*</li>
+		<li><%= link_to "/api/motions", "/api/motions" %></li>
+		<li><%= link_to "/api/motions/:id", "/api/motions/4" %>*</li>
+		<li><%= link_to "/api/docs", "/api/docs" %></li>
+		<li>* uses id 4 for the sake of example</li>
+	</ul>
+</div>
+
+<div class="columns medium-4">
+	<h2>Councillors</h2>
+	<p>URL: api/councillors</p>
+</div>
+<div class="columns medium-8">
+	<%= coderay(@councillors).html_safe %>
+</div>
+<div class="columns medium-4">
+	<h2>Item</h2>
+	<p>URL: api/item/75</p>
+</div>
+<div class="columns medium-8">
+	<%= coderay(@item).html_safe %>
+</div>

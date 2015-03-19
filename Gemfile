@@ -37,9 +37,11 @@ gem 'ox'
 gem 'active_model_serializers'
 # Foundation Scss framework
 gem 'foundation-rails'
-
-
+# for awesome icons
 gem 'font-awesome-sass'
+# Code syntax highlighting
+gem 'coderay'
+gem 'RedCloth'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
