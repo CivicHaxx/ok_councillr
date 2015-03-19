@@ -1,9 +1,16 @@
-<h1>My Profile</h1>
+<h2>My Profile</h2>
 
-<h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
-<p>Email: <%= current_user.email %></p>
-<p>Postal Code: <%= current_user.postal_code %></p>
+<div class="clearfix">
+	<section class="left">
+		<h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
 
-<%= link_to("Edit Profile", edit_user_path(@user)) %> 
-<%= link_to("My Votes", myvotes_path(@user)) %>
-
+		<p>Email: <%= current_user.email %></p>
+		<p>Postal Code: <%= current_user.postal_code %></p>
+	</section>
+	<aside class="right">
+		<ul class="side-nav">
+		  <li><%= link_to("My Votes", myvotes_path(@user), class: "button radius") %></li>
+		  <li><%= link_to("Edit Profile", edit_user_path(@user), class: "button radius") %></li>
+		</ul>
+	</aside>
+</div>

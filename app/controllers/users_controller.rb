@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @item = Item.first 
     
     if @user.save
+      auto_login(@user)
       redirect_to item_url(@item), notice: "Your account has been created"
     else
       flash.now.alert = "Error creating account"
@@ -21,8 +22,8 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update!(user_params)
-    if @user.save
+    
+    if @user.update_attributes(user_params)
       redirect_to user_path(params[:id]), notice: "Your account has been updated"
     else
       flash.now.alert = "Error updating account"
