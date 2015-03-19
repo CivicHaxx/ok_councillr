@@ -15,16 +15,4 @@ class ItemsController < ApplicationController
 	def new_item_for_current_user(item)
 		item.user_votes.where("user_id = #{current_user.id}").empty?
 	end
-
-	def count_votes(vote)
-		item.user_votes.where(vote: vote).count
-	end
-
-	def user_votes(item)
-		{ 
-			yes: count_votes "Yes"
-			no: count_votes "No"
-			pass: count_votes "Skip"
-		}
-	end
 end
