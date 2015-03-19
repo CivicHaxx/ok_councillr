@@ -64,4 +64,25 @@
     @extend .large-6;
     @extend .columns;
     @extend .large-offset-3;
+    padding-top: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    h4 {
+      text-align: center;
+      color: white;
+    }
+
+    &.no-vote {
+      background: $no_color;
+    }
+
+    &.yes-vote {
+      background: $yes_color;
+    }
+
+    &.skip-vote {
+      background: $skip_color;
+    }
 }
