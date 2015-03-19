@@ -31,7 +31,13 @@ class Item < ActiveRecord::Base
 	end
 
 	def result
-
+		if count_yes > count_no && count_yes > count_skip
+			:carried
+		elsif count_no > count_yes && count_no > count_skip
+			:lost
+		else
+			:pending
+		end
 	end
 
 end

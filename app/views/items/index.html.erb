@@ -17,6 +17,7 @@
 					<td><%= item.count_yes %></td>
 					<td><%= item.count_no %></td>
 					<td><%= item.count_skip %></td>
+					<td class="<%= item.result.to_s %>"><%= item.result.to_s.capitalize %></td>
 				</tr>
 			<% end %>
 			</tbody>
