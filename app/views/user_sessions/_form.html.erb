@@ -3,21 +3,21 @@
 
 	<%= form_tag user_sessions_path, :method => :post do %>
 
-		<div>
+		<div class="large-12 columns">
 			<%= label_tag :email %> <br>
 			<%= text_field_tag :email %> 
 		</div>
 
-		<div>
+		<div class="large-12 columns">
 			<%= label_tag :password %> <br>
 			<%= password_field_tag :password %>
 		</div>
 
-		<div>
+		<div class="large-12 columns">
 			<%= check_box_tag :remember %> <%= label_tag :remember, "Remember Me" %> 
 		</div>
 		<br>
-		<div>
+		<div class="large-12 columns">
 			<%= submit_tag "Login", class: "submit"  %>
 		</div>
 
