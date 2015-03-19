@@ -8,9 +8,5 @@ module ApplicationHelper
       CodeRay.scan($3, $2).div(:css => :class)
     end
 	end
-
-	def get_json_for(controller)
-
-	end
 		
 end

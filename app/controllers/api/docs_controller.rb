@@ -1,19 +1,11 @@
-class Api::DocsController < ApiController
+class Api::DocsController < ApplicationController
+	COUNCILLOR_JSON_PATH = Rails.root.join('db/data/api/councillors.json')
+	ITEM_JSON_PATH = Rails.root.join('db/data/api/item.json')
+
 	def index
-		@text = "<p>Some text</p><code lang=\"json\"> {
-		  \"councillors\": [{
-				\"id\": 1,
-				\"first_name\": \"Paul\",
-				\"last_name\": \"Ainslie\",
-				\"start_date_in_office\": \"2015-03-08\",
-				\"website\": \"http://reynolds.com/chanelle_powlowski\",
-				\"twitter_handle\": \"voluptatem\",
-				\"facebook_handle\": \"facere\",
-				\"email\": \"michael_cartwright@example.org\",
-				\"phone_number\": \"700-644-8668\",
-				\"address\": \"57097 Toy Run\",
-				\"image\": \"http://robohash.org/sitetqui.png?size=300x300\"
-	    }]
-		} </code>"
+		councillors_json = COUNCILLOR_JSON_PATH.read
+		item_json        = ITEM_JSON_PATH.read
+		@councillors     = "<code lang=\"JSON\">#{councillors_json}</code>"
+		@item            = "<code lang=\"JSON\"> #{item_json}</code>"
 	end
 end
