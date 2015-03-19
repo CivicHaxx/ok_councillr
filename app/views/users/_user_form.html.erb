@@ -3,32 +3,32 @@
 		<%= render partial: 'shared/error_message', locals: { errors: @user.errors }%>
 	<% end %>
 
-	<div class="">
+	<div class="large-12 columns">
 		<%= f.label :first_name %>
 		<%= f.text_field :first_name %>
 	</div>
 
-	<div class="">
+	<div class="large-12 columns">
 		<%= f.label :last_name %>
 		<%= f.text_field :last_name %>
 	</div>
 
-	<div class="">
+	<div class="large-12 columns">
 		<%= f.label :postal_code %>
-		<%= f.text_field :postal_code %>
+		<%= f.text_field :postal_code, placeholder: "X1X 1X1" %>
 	</div>
 
-	<div class="">
+	<div class="large-12 columns">
 		<%= f.label :email %>
-		<%= f.text_field :email %>
+		<%= f.text_field :email, placeholder: "sample@okcouncillr.com" %>
 	</div>
 
-	<div class="">
+	<div class="large-12 columns">
 		<%= f.label :password %>
-		<%= f.password_field :password %>
+		<%= f.password_field :password, placeholder: "minimum 8 characters" %>
 	</div>
 
-	<div class="">
+	<div class="large-12 columns">
 		<%= f.label :password_confirmation %>
 		<%= f.password_field :password_confirmation %>
 	</div>
