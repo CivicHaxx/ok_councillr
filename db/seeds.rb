@@ -23,7 +23,7 @@ Ward.destroy_all
 
 prefix           = %w(EX CD GM PG)
 user_votes       = %w(Yes No Skip)
-councillor_votes = %w(Yes No Absent)
+councillor_votes = %w(Yes No Skip)
 user_pc          = ["M1P 0B6", "M6H 2P2", "M5H 1K4", "M5H 2N2", "M2K 1E1", "M9V 1R8"]
 users            = []
 councillors      = []
