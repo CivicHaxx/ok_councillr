@@ -69,13 +69,19 @@ h4 {
   font-size: 1rem;
  }
 
+.notice-flash,
 .alert-flash {
 	@extend .flash;
+	position: absolute;
+	width: 100%;
+  z-index: 999;
+}
+
+.alert-flash {
 	@extend .alert; 
 }
 
 .notice-flash {
-	@extend .flash;
 	@extend .success; 
 }
 
