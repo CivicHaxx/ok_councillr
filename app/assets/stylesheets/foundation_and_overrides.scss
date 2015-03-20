@@ -1094,6 +1094,9 @@ $header-font-family: $font-family-serif;
 // $reveal-overlay-bg-old: $black;
 
 // We use these to control the style of the modal itself.
+div.reveal-modal-bg {
+	position: fixed;
+}
 // $reveal-modal-bg: $white;
 // $reveal-position-top: rem-calc(100);
 // $reveal-default-width: 80%;

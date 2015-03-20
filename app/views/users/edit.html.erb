@@ -3,13 +3,21 @@
 
 	<%= render 'user_form' %>
 
+	<div id="deleteAlert" class="reveal-modal small" data-reveal aria-labelledby="deleteTitle" aria-hidden="true" role="dialog">
+		<h2 id="deleteTitle">Are You Sure?</h2>
+		<p class="lead">Deleting your account will result in your voice not being heard</p>
+
+		<%= link_to "I understand the consequences, delete this account", @user, method: :delete, class: "button alert" %>
+		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+
 	<section class="form-field clearfix delete">
 		<h4>Delete This Account</h4>
 		<div>
 			Once you delete this account, there is no going back. Please be certain
 		</div>
 		<div class="right">
-			<%= link_to "Delete", @user, method: :delete, data: {confirm: "Are you sure you want to delete your account?"}, class: "button alert" %>
+			<%= link_to("Delete Account", "#", data: { reveal_id: :deleteAlert }, class: "button alert") %>
 		</div>
 	</section>
 </section>
