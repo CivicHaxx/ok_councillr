@@ -90,3 +90,33 @@
     }
   }
 }
+
+.accordion
+{
+
+  .accordion-navigation
+  {
+
+    .content
+    {
+      display: block;
+      max-height: 0;
+      overflow-y: auto;
+      // leave the top and bottom padding at 0, have the sides match the .active element's padding value below
+      padding: rem-calc(0 16);
+      // change as desired but the transition needs to cover both max-height and padding; this is how long the panel takes to close
+      transition: ease 0.4s all;
+      &.active
+      {
+        // change as desired
+        max-height: 80vh;
+        // change as desired
+        padding: rem-calc(16);
+        // change as desired; this is how long the panel takes to open
+        transition: ease 0.4s all;
+        // change as desired, but for best results keep at around half the other transition durations
+        transition-delay: 0.2s;
+      }
+    }
+  }
+}
