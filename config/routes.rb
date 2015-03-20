@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :user_votes, only: [:new, :create]
   end
 
+  resources :councillors, only: [:index, :show]
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :dirty_agenda, only: [:index, :show]
