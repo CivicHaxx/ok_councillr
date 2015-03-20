@@ -2,14 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user-vote-yes {
+.vote-yes {
 	background-color: $yes_color; 
 }
 
-.user-vote-no {
+.vote-no {
 	background-color: $no_color;
 }
 
-.user-vote-skip {
+.vote-skip {
 	background-color: $skip_color;
 }
