@@ -1,4 +1,4 @@
-<%= form_for @user, :html => { class: "user-form" } do |f| %>
+<%= form_for @user do |f| %>
 	<% if @user.errors.any? %>
 		<%= render partial: 'shared/error_message', locals: { errors: @user.errors }%>
 	<% end %>
@@ -33,8 +33,7 @@
 		<%= f.password_field :password_confirmation %>
 	</div>
 
-	<div>
+	<div class="form-field">
 		<%= f.submit "Submit", class: "submit" %>
 	</div>
-
 <% end %>

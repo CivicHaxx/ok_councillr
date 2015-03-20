@@ -1,3 +1,15 @@
-<h2>Edit Profile </h2>
+<section class="user-form">
+	<h2>Edit Profile</h2>
 
-<%= render 'user_form' %>
+	<%= render 'user_form' %>
+
+	<section class="form-field clearfix delete">
+		<h4>Delete This Account</h4>
+		<div>
+			Once you delete this account, there is no going back. Please be certain
+		</div>
+		<div class="right">
+			<%= link_to "Delete", @user, method: :delete, data: {confirm: "Are you sure you want to delete your account?"}, class: "button alert" %>
+		</div>
+	</section>
+</section>
