@@ -21,6 +21,8 @@
 
         <section class="top-bar-section main-menu">
           <ul class="right">
+          <li><%= link_to "API Docs", "/api/docs" %></li>
+          <li><%= link_to "Councillors", councillors_path %></li>
             <% if current_user %>
               <li class="has-dropdown">
                 <a href="#">Profile</a>
