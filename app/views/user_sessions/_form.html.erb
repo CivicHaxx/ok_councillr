@@ -4,12 +4,12 @@
 	<%= form_tag user_sessions_path, :method => :post do %>
 
 		<div class="form-field">
-			<%= label_tag :email %> <br>
+			<%= label_tag :email %>
 			<%= text_field_tag :email %> 
 		</div>
 
 		<div class="form-field user-form-password">
-			<%= label_tag :password %> <br>
+			<%= label_tag :password %>
 			<%= password_field_tag :password, "", class: "password" %>
 			<div class="forgot-password">
 				<%= link_to("Forgot Password?", new_password_reset_path) %>
