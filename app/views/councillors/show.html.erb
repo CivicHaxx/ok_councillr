@@ -1,9 +1,8 @@
-<div row="row">
-	<div class="medium-5 columns">
-		<%= image_tag(@councillor.image) %>
+<div class="row profile">
+	<div class="medium-4 columns">
+		<%= image_tag @councillor.image, class: "profile" %>
 	</div>
-
-	<div class="medium-7 columns councillor-info">
+	<div class="medium-8 columns councillor-info">
 		<h3><%= @councillor.first_name %> <%= @councillor.last_name %></h3>
 			<p>Ward <%= @councillor.ward.ward_number %> - <%= @councillor.ward.name %></p>
 			<p>In Office Since: <%= (@councillor.start_date_in_office).strftime("%B %e, %Y") %></p>
@@ -15,7 +14,7 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row vote-history">
 	<h3>Voting History</h3>
 	<table role="grid">
 		<thead>
