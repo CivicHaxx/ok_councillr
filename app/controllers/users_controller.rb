@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @item = Item.first 
+    @item = Item.first
     
     if @user.save
       auto_login(@user)
@@ -36,6 +36,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @item = Item.first
+    @user.destroy
+
+    logout
+    redirect_to item_url(@item), notice: "Your account has been deleted"
   end
 
   private
