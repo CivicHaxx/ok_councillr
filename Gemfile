@@ -39,6 +39,8 @@ gem 'foundation-rails'
 gem 'font-awesome-sass'
 # Code syntax highlighting
 gem 'coderay'
+# Jquery UI
+# gem 'jquery-ui-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
