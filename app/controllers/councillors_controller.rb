@@ -6,6 +6,7 @@ class CouncillorsController < ApplicationController
 
 	def show	
 		@councillor = Councillor.find params[:id]
+		@votes = @councillor.councillor_vote.includes(:motion) 
 	end
 
 
