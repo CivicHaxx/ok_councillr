@@ -5,11 +5,15 @@ h2 {
 .main-header {
 	.title-area {
 		h1 {
+			font-family: $title-font;
 	  	line-height: 2.8125rem;
 			font-size: 1.75rem;
 	  	margin: 0px;
 			a {
 				color: $text_colour;
+				.fa {
+					color: $no-color;
+				}
 			}
 		}
 	}
