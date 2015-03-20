@@ -1,21 +1,28 @@
-<div class="user-form">
+<section class="user-form">
 	<h2>Login</h2>
 
 	<%= form_tag user_sessions_path, :method => :post do %>
 
-		<div>
+		<div class="form-field">
 			<%= label_tag :email %> <br>
 			<%= text_field_tag :email %> 
 		</div>
 
-		<div>
+		<div class="form-field user-form-password">
 			<%= label_tag :password %> <br>
-			<%= password_field_tag :password %>
+			<%= password_field_tag :password, "", class: "password" %>
+			<div class="forgot-password">
+				<%= link_to("Forgot Password?", new_password_reset_path) %>
+			</div>
 		</div>
 
-		<div>
+		<div class="form-field">
+			<%= check_box_tag :remember %> <%= label_tag :remember, "Remember Me" %> 
+		</div>
+		<br>
+		<div class="form-field">
 			<%= submit_tag "Login", class: "submit"  %>
 		</div>
 
 	<% end %>
-</div>
+</section>

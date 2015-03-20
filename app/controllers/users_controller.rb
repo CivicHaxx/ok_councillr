@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user = current_user
     
     if @user.update_attributes(user_params)
-      redirect_to user_path(params[:id]), notice: "Your account has been updated"
+      redirect_to edit_user_path(params[:id]), notice: "Your account has been updated"
     else
       flash.now.alert = "Error updating account"
       render :edit
