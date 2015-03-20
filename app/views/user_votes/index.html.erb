@@ -13,7 +13,7 @@
 			<tr>
 				<td><%= link_to vote.item.number, item_path(vote.item) %></td>
 				<td><%= link_to vote.item.title, item_path(vote.item) %></td>
-				<td class="user-vote-<%=vote.vote.downcase %>">
+				<td class="vote-<%=vote.vote.downcase %>">
 					<%= vote.vote %>
 				</td>
 			</tr>

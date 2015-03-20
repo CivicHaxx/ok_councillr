@@ -15,4 +15,27 @@
 	</div>
 </div>
 
- 
+<h3>Voting History</h3>
+<table role="grid">
+	<thead>
+		<tr>
+			<th>Number</th>
+			<th>Title</th>
+			<th width="100">Vote</th>
+			<tbody>
+				<% @votes.each do |vote| %>
+					<% unless vote.motion.amendment_text == "" %>
+					<tr>
+						<td><%= vote.motion.item_id %></td>
+						<td><%= vote.motion.amendment_text %></td>
+						<td class="vote-<%= vote.vote.downcase %>">
+							<%= vote.vote %>
+						</td>
+					</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</tr>
+	</thead>
+	
+</table>
