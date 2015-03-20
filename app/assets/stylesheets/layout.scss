@@ -2,8 +2,12 @@ body {
 	overflow-y: scroll;
 }
 
-h2 {
+h2, 
+h3, 
+h4 {
 	color: #0f3890;
+	letter-spacing: -0.1666666667rem;
+	line-height: 1em;
 }
 
 .main-header {
