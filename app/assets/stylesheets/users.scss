@@ -21,3 +21,8 @@
 .error-message {
 	@extend .panel;
 }
+
+.delete {
+	margin-top: 3em;
+	@extend .panel;
+}
