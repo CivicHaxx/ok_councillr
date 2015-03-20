@@ -6,21 +6,19 @@
 			<th>Number</th>
 			<th>Title</th>
 			<th width="100">My Vote</th>
-			<tbody>
-				<% @votes.each do |vote| %>
-					<tr>
-						<td><%= link_to vote.item.number, item_path(vote.item) %></td>
-						<td><%= link_to vote.item.title, item_path(vote.item) %></td>
-						<td class="user-vote-<%=vote.vote.downcase %>">
-							<%= vote.vote %>
-						</td>
-					</tr>
-				<% end %>
-			</tbody>
 		</tr>
-	</thead>
-	
+	</thead>	
+	<tbody>
+		<% @votes.each do |vote| %>
+			<tr>
+				<td><%= link_to vote.item.number, item_path(vote.item) %></td>
+				<td><%= link_to vote.item.title, item_path(vote.item) %></td>
+				<td class="user-vote-<%=vote.vote.downcase %>">
+					<%= vote.vote %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
 </table>
-
 
 <%= paginate @votes %>

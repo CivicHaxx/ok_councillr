@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :user_votes
   has_many :items, through: :user_votes
 
+  validates :email, presence: true 
   validates :first_name, presence: true
   validates :last_name, presence: true 
   validates :password, length: { minimum: 8 }, unless: :allow_to_validate

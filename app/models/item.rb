@@ -14,20 +14,24 @@ class Item < ActiveRecord::Base
 		Item.where("id > ?", id).first 
 	end
 
-	def count_votes(vote)
-		user_votes.where(vote: vote).count
+	def get_user_votes_for(vote_type)
+		votes = Array.new(0)
+
+		user_votes.each { |user_vote| votes << user_vote if user_vote.vote == vote_type }
+
+		votes
 	end
 
 	def count_yes
-		count_votes "Yes"
+		get_user_votes_for("Yes").count
 	end
 
 	def count_no
-		count_votes "No"
+		get_user_votes_for("No").count
 	end
 
 	def count_skip
-		count_votes "Skip"
+		get_user_votes_for("Skip").count
 	end
 
 	def result
