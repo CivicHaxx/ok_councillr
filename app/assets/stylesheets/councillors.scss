@@ -2,16 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.medium-block-grid-6 {
+.councillors {
 	text-align: center;
-}
+	.card {
+		transition: background 1s ease,
+			color 1s ease, 
+			opacity 1s ease;
+		border-radius: 5px;
+	}
+	.card:hover {
+		background-color: lighten($primary-color, 15%);
+		opacity: 0.8;
+		color: white;
+		transition: background-color 1s ease, 
+			opacity 1s ease, 
+			color 1s ease;
+		h4 {
+			color: white;
+		}
+	}
 
+	h4 {
+		font-weight: 1.2rem;
+	}
+	p {
+		font-size: 0.874rem;
+	}
+}
 .profile img {
 	border: 1px solid grey;
 	padding: 0.5rem;
 	border-radius: 5px;
 }
-
 .councillor-info {
 	h3 {
 		font-weight: bold;
@@ -21,7 +43,6 @@
 		margin-bottom: 0.2rem;	
 	}
 }
-
 .vote-history {
 	padding-top: 2rem;
 }

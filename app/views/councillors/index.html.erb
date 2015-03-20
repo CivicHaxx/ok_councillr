@@ -1,11 +1,11 @@
-<ul class="medium-block-grid-6">
+<ul class="medium-block-grid-5 councillors">
 	<% @councillors.each do |councillor| %>
-		<li>
+		<li class="card">
 			<%= link_to(councillor_path(councillor)) do %>
 				<%= image_tag(councillor.image) %>
 				<h4><%= councillor.first_name %> <%= councillor.last_name %></h4>
 			<% end %>
-			Ward <%= councillor.ward.ward_number %> - <%= councillor.ward.name %>
+			<p>Ward <%= councillor.ward.ward_number %> - <%= councillor.ward.name %></p>
 		</li>
 	<% end %>
 </ul>
