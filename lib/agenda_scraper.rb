@@ -69,5 +69,8 @@ class AgendaScraper < Scraper
   # end
   end
 
-  puts "\n★ ★ ★  DONE PARSING ★ ★ ★".green
+  def run
+    parse
+    puts "\n★ ★ ★  DONE PARSING ★ ★ ★".green
+  end
 end
