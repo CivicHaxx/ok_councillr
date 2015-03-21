@@ -49,6 +49,7 @@ namespace :okc do
       { name: 'Information' }, 
       { name: 'Presentation' }
     ])
+    AgendaScraper.new.run
   end
 
 end
