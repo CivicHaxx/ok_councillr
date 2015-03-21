@@ -23,7 +23,7 @@ class AgendaScraper < Scraper
     end  
   end
   
-
+  def parse
   # Temporarily remove the loop for OKC
   # @ids.each do |id|
     id = "7849"
@@ -49,9 +49,9 @@ class AgendaScraper < Scraper
     # find the date & meeting number and create a meeting in the db
     council = Committee.where("name = 'City Council'")
 
-    @agenda = Agenda.create({
-      date: date,
-      meeting_num: meeting_num,
+    @agenda = Agenda.create!({
+      date:         date,
+      meeting_num:  meeting_num,
       committee_id: council.ids[0]
     })
   	
@@ -66,8 +66,8 @@ class AgendaScraper < Scraper
         print "⚡"
   		end
   	end
-    x = DIRTY == true ? 35 : 500
   # end
+  end
 
   puts "\n★ ★ ★  DONE PARSING ★ ★ ★".green
 end
