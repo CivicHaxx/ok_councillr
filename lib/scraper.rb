@@ -12,7 +12,6 @@ class Scraper
 
 	def initialize
 		@base_uri = "http://app.toronto.ca/tmmis/"
-		@raw_dir  = raw_dir(doc_type)
 	end
 
 	def post(url, params)
@@ -25,9 +24,7 @@ class Scraper
   def save(name, content)
     File.open(filename(name), 'w') { |f| f.write (content) }
   end
-  
-  private
-
+ 
 	def raw_dir(doc_type)
 		case doc_type
 		when "agendas" then "lib/dirty_agendas"

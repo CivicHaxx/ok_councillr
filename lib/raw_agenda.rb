@@ -1,3 +1,5 @@
+require 'agenda_scraper'
+
 class RawAgenda < AgendaScraper
 	attr_reader :id
 	

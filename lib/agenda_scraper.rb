@@ -1,6 +1,4 @@
 require 'scraper'
-require 'raw_agenda'
-require 'parsed_item'
 require 'meeting_ids'
 
 class AgendaScraper < Scraper
