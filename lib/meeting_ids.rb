@@ -1,10 +1,11 @@
-class MeetingIDs
+class MeetingIDs < Scraper
 	attr_reader :ids
 
-	def initialize(month, year)
-		@month = month
-		@year  = year
-		@ids   = meeting_ids
+	def initialize(month, year, base_uri)
+		super
+		@month    = month
+		@year     = year
+		@ids      = meeting_ids
 	end
 
 	private
@@ -21,7 +22,7 @@ class MeetingIDs
 	end
 
 	def calendar_page
-  	url  = URI("#{BASE_URI}meetingCalendarView.do")
+  	url  = URI("#{@base_uri}meetingCalendarView.do")
 		page = post(url, calendar_params(@month, @year))
 		Nokogiri::HTML(page)
 	end
@@ -38,10 +39,4 @@ class MeetingIDs
 	  }
 	end
 
-	def post(url, form)
-		HTTP.with_headers("User-Agent" => "INTERNET EXPLORER")
-				.post(url, form: form)
-				.body
-				.to_s
-	end
 end

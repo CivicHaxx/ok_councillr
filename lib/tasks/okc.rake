@@ -30,7 +30,6 @@ namespace :okc do
         parsed_agenda_item = ParsedItem.new(item_number, item).to_h
         Item.create(parsed_agenda_item)
 
-      #binding.pry if parsed_agenda_item[:ward].length > 1 
       end
     end
   end
@@ -43,90 +42,13 @@ namespace :okc do
 
   desc "Scrape, parse & persist City Council agendas"
   task :agendas do |t|
-  	# Cleaner dosn't work yet. So don't pass any args into the task.
-    # args.with_defaults clean: "-c"
-    require 'http'
-    require 'nokogiri'
-    require 'open-uri'
-    require 'awesome_print'
-    require 'raw_agenda'
-    require 'parsed_item'
-    require 'meeting_ids'
-    require 'html_stripper'
-
-    puts "Creating Item Types".blue
+    ## move all this to seeds?
+  	puts "Creating Item Types".blue
     item_types = ItemType.create!([
       { name: 'Action' }, 
       { name: 'Information' }, 
       { name: 'Presentation' }
     ])
-
-    BASE_URI   = "http://app.toronto.ca/tmmis/"
-    # DIRTY      = args.clean == "-d" ? true : false
-    # DIRTY by default so that we're working with the original docs.
-    # Remove this when we have a better cleaner working.
-    DIRTY      = true
-    AGENDA_DIR = DIRTY == true ? "lib/dirty_agendas" : "lib/agendas"
-
-    ids = MeetingIDs.new(12, 2014).ids
-  	
-  	ids.map do |id| # Check if the file exists, if not, download it.
-  		unless File.exist? "#{AGENDA_DIR}/#{id}.html"
-  		  print "Calling the internet and saving agenda #{id}".yellow
-  			RawAgenda.new(id).save
-  			puts " ✔ "
-  		end
-  	end
-
-    # Temporarily remove the loop for OKC
-  	# ids.each do |id|
-      id = "7849"
-  	  print "Parsing #{id} "
-      
-      content      = open("#{AGENDA_DIR}/#{id}.html").read
-      # For testing sanatize
-      # DirtyAgenda.create(id: id, dirty_html: content)
-  		
-      sections     = content.split("<br clear=\"all\">")
-      items        = sections.map { |item| Nokogiri::HTML(item) }
-      @header_info = Nokogiri::HTML(items[1].to_s.split('<hr')[0])
-
-      def date
-        @header_info.at('tr[2]/td[2]')
-                    .at('br')
-                    .previous_sibling
-                    .text
-                    .strip
-      end
-
-      def meeting_num
-        @header_info.at('tr/td[2]').text.strip
-      end
-
-      # find the date & meeting number and create a meeting in the db
-      council = Committee.where("name = 'City Council'")
-
-      @agenda = Agenda.create({
-        date: date,
-        meeting_num: meeting_num,
-        committee_id: council.ids[0]
-      })
-  		
-      items.each do |item|
-  			item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
-
-  			unless item_number.empty?
-  				parsed_agenda_item = ParsedItem.new(item_number, item).to_h
-          parsed_agenda_item[:origin_id] = @agenda.id
-          parsed_agenda_item[:origin_type] = "Agenda"
-  				Item.create(parsed_agenda_item)
-          print "⚡"
-  			end
-  		end
-      x = DIRTY == true ? 35 : 500
-  	# end
-
-  	puts "★ ★ ★  DONE PARSING ★ ★ ★".green
   end
 
 end
