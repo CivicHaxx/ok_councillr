@@ -1,10 +1,11 @@
-# TO DO: Make a scraper class that takes params to tell it which scraper to
-#   run. This Scraper class will be home to methods like save, file_name, 
-#   parse, scrub (or deep_clean) etc. It will delegate the scraping task
-#   to the correct sub class (agenda, votes, minutes, etc).
-
-
 namespace :okc do
+  
+  ##################################################################
+  #                                                                #
+  # GET FRESH                                                      #
+  #                                                                #
+  ##################################################################
+
   desc "Gimme a fresh start. Drops the db and parses the data again."
   task fresh: ['db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed'] do
     puts "You look great today.".magenta_on_white
@@ -15,6 +16,12 @@ namespace :okc do
   	Item.destroy_all
   end
 
+  ##################################################################
+  #                                                                #
+  # TEST PARSER                                                    #
+  #                                                                #
+  ##################################################################
+  
   desc "Tests ParsedItem on a single file"
   task test_parser: [:destroy_items] do |t| 
     require 'parsed_item'
@@ -34,12 +41,24 @@ namespace :okc do
     end
   end
 
+  ##################################################################
+  #                                                                #
+  # VOTE SCRAPER                                                   #
+  #                                                                #
+  ##################################################################
+
   desc "Scrapes, parses & persists raw vote records"
   task :vote_scrape do
     require 'vote_scraper'
     VoteScraper.new(6).run
   end
 
+  ##################################################################
+  #                                                                #
+  # VOTE SCRAPER                                                   #
+  #                                                                #
+  ##################################################################
+  
   desc "Scrape, parse & persist City Council agendas"
   task :agendas do |t|
     ## move all this to seeds?
