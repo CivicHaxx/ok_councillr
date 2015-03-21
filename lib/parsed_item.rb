@@ -1,6 +1,6 @@
 include ActionView::Helpers
 
-class ParsedItem
+class ParsedItem < AgendaScraper
 	attr_reader :number, :type, :ward, :title, :sections, :recommendations
 	
 	# TO DO: 
@@ -12,7 +12,7 @@ class ParsedItem
 		@item            = item
 
 		@number          = item_number
-		@item_type_id       = find_item_type_id
+		@item_type_id    = find_item_type_id
 		@ward            = find_ward
 		@title           = find_item_title
 		@sections        = hash_sections(raw_html)
@@ -28,17 +28,6 @@ class ParsedItem
 			title:        @title,
 			sections:     @sections,
 		}
-	end
-
-	def to_s
-		[
-			"Number: #{@number}",
-			"Title: #{@title}",
-			"Ward: #{@ward}",
-			"Type: #{@type}",
-			"-------",
-			@sections.to_a.join("\n")
-		].join("\n")
 	end
 
 	private
