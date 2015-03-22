@@ -25,7 +25,7 @@ class MeetingIDs
 	end
 
 	def calendar_page
-  	url  = URI("#{@base_uri}meetingCalendarView.do")
+  	url  = URI("meetingCalendarView.do")
 		page = post(url, calendar_params(@month, @year))
 		Nokogiri::HTML(page)
 	end

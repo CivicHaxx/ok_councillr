@@ -73,7 +73,7 @@ class ParsedItem
 				sections[current_section] = ""
 			else
 				content = node.to_s
-				sections[current_section] << content #sanitize(content, tags: %w(p))
+				sections[current_section] << sanitize(content, tags: %w(p))
 			end
 		end.flatten
 		sections
@@ -102,7 +102,7 @@ class ParsedItem
 			"Communications",
 			"Declared Interests"
 		]
-		
+
 		keywords.any? { |keyword| node.text[keyword] }
 	end
 
