@@ -1,8 +1,10 @@
+require 'scraper'
+
 class MeetingIDs < Scraper
 	attr_reader :ids
 
 	def initialize(month, year)
-		super
+		super(@base_uri)
 		@month    = month
 		@year     = year
 		@ids      = meeting_ids
