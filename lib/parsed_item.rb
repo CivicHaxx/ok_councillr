@@ -1,18 +1,20 @@
-include ActionView::Helpers
+require 'action_view/helpers'
 
 class ParsedItem
-	attr_reader :number, :type, :ward, :title, :sections, :recommendations
+	include ActionView::Helpers
+	include Scraper
+
+	attr_reader :number, :type, :ward, :title,
+							:sections, :recommendations
 	
 	# TO DO: 
-	# 	1. Get rid of the word "Ward" in the ward var and create a foreign key instead
-	#   2. Break sections out for better granularity -- this requires updating the migration
-	#   3. get item_type_id from the type name
+	# 	1. Create proper association between item and ward
 
 	def initialize(item_number, item)
 		@item            = item
 
 		@number          = item_number
-		@item_type_id       = find_item_type_id
+		@item_type_id    = find_item_type_id
 		@ward            = find_ward
 		@title           = find_item_title
 		@sections        = hash_sections(raw_html)
@@ -28,17 +30,6 @@ class ParsedItem
 			title:        @title,
 			sections:     @sections,
 		}
-	end
-
-	def to_s
-		[
-			"Number: #{@number}",
-			"Title: #{@title}",
-			"Ward: #{@ward}",
-			"Type: #{@type}",
-			"-------",
-			@sections.to_a.join("\n")
-		].join("\n")
 	end
 
 	private
@@ -68,35 +59,9 @@ class ParsedItem
 	end
 
 	def hash_sections(contents)
-		@keywords = [
-			"Recommendations",
-			"Decision Advice and Other Information",
-			"Origin",
-			"Summary",
-			"Background Information",
-			"Speakers",
-			"Communications",
-			"Declared Interests"
-		]
 
 		sections = Hash.new('')
 		current_section = ""
-
-		def is_b?(node)
-			node.css('b').length > 0
-		end
-
-		def is_i?(node)
-			node.css('i').length > 0
-		end
-
-		def match_words?(node)
-			@keywords.any? { |keyword| node.text[keyword] }
-		end
-
-		def is_header?(node)
-			is_b?(node) && !is_i?(node) && match_words?(node)
-		end
 
 		contents.css('td').map do |node|
 			if node.css('p').length > 0
@@ -113,4 +78,32 @@ class ParsedItem
 		end.flatten
 		sections
 	end
+
+	def is_header?(node)
+		is_bold?(node) && !is_italic?(node) && match_keywords?(node)
+	end
+
+	def is_bold?(node)
+		node.css('b').length > 0
+	end
+
+	def is_italic?(node)
+		node.css('i').length > 0
+	end
+
+	def match_keywords?(node)
+		keywords = [
+			"Recommendations",
+			"Decision Advice and Other Information",
+			"Origin",
+			"Summary",
+			"Background Information",
+			"Speakers",
+			"Communications",
+			"Declared Interests"
+		]
+
+		keywords.any? { |keyword| node.text[keyword] }
+	end
+
 end

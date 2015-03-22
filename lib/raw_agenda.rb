@@ -1,20 +1,13 @@
 class RawAgenda
+	include Scraper
+
 	attr_reader :id
 	
 	def initialize(id)
-		@id = id
-	end
-
-	def name
-		"#{@id}.html"
-	end
-
-	def filename
-		"#{AGENDA_DIR}/#{name}"
-	end
-
-	def url
-		URI "#{BASE_URI}viewPublishedReport.do?"
+		@id           = id
+		@raw_file_dir = raw_file_dir("agendas")
+		@filename     = "#{@raw_file_dir}/#{@id}.html"
+		@url          = URI "viewPublishedReport.do?"
 	end
 
 	def agenda_params(meeting_id)
@@ -24,31 +17,16 @@ class RawAgenda
 	  }
 	end
 
-	def post(form)
-		HTTP.with_headers("User-Agent" => "INTERNET EXPLORER").post(url, form: form).body
-	end
-
-	# TO DO: hook up the html stripper and start using clean data! 
 	def content
-		content = post(agenda_params(id))
-		content = content.to_s
-					 					 .scrub
-					 					 .encode(
-					 						 'UTF-8', 
-					 						 { :invalid => :replace, 
-					 							 :undef   => :replace, 
-					 							 :replace => '�'
-					 						 })
-		if DIRTY
-			content
-		else
-			parser  = HTMLCleaner.new
-			content = parser.parse_html!(content).to_s
-			content
-		end
+		content = post(url, agenda_params(@id))
+		content.to_s
+					 .scrub
+					 .encode(
+						 'UTF-8', 
+						 { :invalid => :replace, 
+							 :undef   => :replace, 
+							 :replace => '�'
+						 })
 	end
 
-	def save
-		File.open(filename, 'w') {|f| f.write(content) }	  
-	end
 end
