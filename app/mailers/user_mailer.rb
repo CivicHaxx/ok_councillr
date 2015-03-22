@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.reset_password_email.subject
   def activation_needed_email(user)
     @user = user
-    @url = activate_user_url
+    @url = activate_user_url(user.activation_token)
     mail to: user.email, subject: "Welocme to OK Councillr"
   end
 
