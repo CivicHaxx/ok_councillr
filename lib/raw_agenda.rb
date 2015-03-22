@@ -4,7 +4,6 @@ class RawAgenda
 	attr_reader :id
 	
 	def initialize(id)
-		super
 		@id           = id
 		@raw_file_dir = raw_file_dir("agendas")
 		@filename     = "#{@raw_file_dir}/#{@id}.html"

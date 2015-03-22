@@ -61,19 +61,14 @@ namespace :okc do
   
   desc "Scrape, parse & persist City Council agendas"
   task :agendas do |t|
-    require 'active_record'
-    require 'active_support/all'
-    require 'action_view/helpers'
     require 'awesome_print'
     require 'colored'
-    require 'csv'
     require 'http'
     require 'nokogiri'
     require 'open-uri'
-    
+
     require 'agenda_scraper'
     
-## move all this to seedxs?
   	puts "Creating Item Types".blue
     item_types = ItemType.create!([
       { name: 'Action' }, 
