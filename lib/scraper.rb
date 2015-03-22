@@ -1,22 +1,8 @@
-require 'active_record'
-require 'active_support/all'
-require 'action_view/helpers'
-require 'awesome_print'
-require 'colored'
-require 'csv'
-require 'http'
-require 'nokogiri'
-require 'open-uri'
-
-class Scraper
-
-	def initialize
-		@base_uri = "http://app.toronto.ca/tmmis/"
-	end
+module Scraper
 
 	def post(url, params)
     HTTP.with_headers("User-Agent" => "INTERNET EXPLORER")
-    .post(url, form: params)
+    .post("http://app.toronto.ca/tmmis/#{url}", form: params)
     .body
     .to_s
   end

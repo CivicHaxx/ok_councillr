@@ -1,7 +1,9 @@
-include ActionView::Helpers
-
-class ParsedItem < AgendaScraper
-	attr_reader :number, :type, :ward, :title, :sections, :recommendations
+class ParsedItem
+	include ActionView::Helpers
+	include Scraper
+	
+	attr_reader :number, :type, :ward, :title,
+							 :sections, :recommendations
 	
 	# TO DO: 
 	# 	1. Get rid of the word "Ward" in the ward var and create a foreign key instead

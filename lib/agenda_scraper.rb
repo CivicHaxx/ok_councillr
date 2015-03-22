@@ -1,7 +1,9 @@
-require 'scraper'
 require 'meeting_ids'
+require 'parsed_item'
 
-class AgendaScraper < Scraper
+class AgendaScraper
+
+  include Scraper
 
   def initialize
     super

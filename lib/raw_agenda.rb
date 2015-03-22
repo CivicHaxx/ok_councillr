@@ -1,6 +1,6 @@
-require 'agenda_scraper'
+class RawAgenda
+	include Scraper
 
-class RawAgenda < AgendaScraper
 	attr_reader :id
 	
 	def initialize(id)
