@@ -39,7 +39,7 @@ motion_types = MotionType.create!([
 
 puts "Creating Users".blue
 10.times do
-	users << User.create!(
+	@user = User.create(
 		email: Faker::Internet.safe_email,
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
@@ -48,6 +48,12 @@ puts "Creating Users".blue
 		password: "password",
 		password_confirmation: "password"
 	)
+
+	@user.save
+	@user.activate!
+
+	users << @user
+
 	print " #{people.sample} "; print " "
 end
 
