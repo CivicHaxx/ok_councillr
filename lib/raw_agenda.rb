@@ -5,19 +5,10 @@ class RawAgenda
 	
 	def initialize(id)
 		super
-		@id = id
-	end
-
-	def name
-		"#{@id}.html"
-	end
-
-	def filename
-		"#{@raw_dir}/#{name}"
-	end
-
-	def url
-		URI "#{@base_uri}viewPublishedReport.do?"
+		@id           = id
+		@raw_file_dir = raw_file_dir("agendas")
+		@filename     = "#{@raw_file_dir}/#{@id}.html"
+		@url          = URI "viewPublishedReport.do?"
 	end
 
 	def agenda_params(meeting_id)

@@ -11,10 +11,11 @@ module Scraper
     File.open(filename(name), 'w') { |f| f.write (content) }
   end
  
-	def raw_dir(doc_type)
+	def raw_file_dir(doc_type)
 		case doc_type
 		when "agendas" then "lib/dirty_agendas"
 		when "votes"	 then "lib/vote_records"
 		end
 	end
+
 end

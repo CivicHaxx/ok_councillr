@@ -2,20 +2,16 @@ require 'meeting_ids'
 require 'parsed_item'
 
 class AgendaScraper
-
   include Scraper
 
   def initialize
-    super
-    @raw_dir = raw_dir("agendas")
-    # ids can be moved to parent when scraping other doc types
-    # or create parent called meeting scraper
-    @ids     = MeetingIDs.new(12, 2014).ids
+    @raw_file_dir = raw_file_dir("agendas")
+    @ids          = MeetingIDs.new(12, 2014).ids
   end
 
   def get_agendas
     @ids.map do |id| # Check if the file exists, if not, download it.
-      unless File.exist? "#{@raw_dir}/#{id}.html"
+      unless File.exist? "#{@raw_file_dir}/#{id}.html"
         print "Calling the internet and saving agenda #{id}".yellow
         RawAgenda.new(id).save
         puts " ✔ "
@@ -29,7 +25,7 @@ class AgendaScraper
     id = "7849"
     print "Parsing #{id} "
     
-    content      = open("#{@raw_dir}/#{id}.html").read
+    content      = open("#{@raw_file_dir}/#{id}.html").read
     sections     = content.split("<br clear=\"all\">")
     items        = sections.map { |item| Nokogiri::HTML(item) }
     @header_info = Nokogiri::HTML(items[1].to_s.split('<hr')[0])
