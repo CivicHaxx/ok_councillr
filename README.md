@@ -1,4 +1,4 @@
-== OKCouncillor
+# OKCouncillor
 
 OKCouncillor is a data scraper, API, and civic engagement app. The scraper pulls data from the City of Toronto council meetings and parses it into a database, the API serves the data up as JSON, and the app allows people to discover how their councillor matches with their political leanings.
 
