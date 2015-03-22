@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @item = Item.first
     
     if @user.save
-      redirect_to item_url(@item), notice: "Your account has been created"
+      redirect_to item_url(@item), notice: "Your account has been created, an activation email has been sent"
     else
       flash.now.alert = "Error creating account"
       render :new
