@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, on: :create, unless: :allow_to_validate
   validates :email, uniqueness: true
 
+  def display_full_name
+    "#{first_name} #{last_name}"
+  end
+
   def allow_to_validate
     password.blank?
   end
