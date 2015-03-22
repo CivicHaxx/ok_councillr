@@ -2,8 +2,8 @@ require "councillors_wards"
 
 puts "Destroying Councillors".red
 Councillor.destroy_all
-puts "Destroying Committees".red
-Committee.destroy_all
+# puts "Destroying Committees".red
+# Committee.destroy_all
 puts "Destroying Users".red
 User.destroy_all
 #Agenda.destroy_all 
@@ -76,13 +76,19 @@ WARD_INFO.each do |ward|
 	print "👏"; print "  "
 end
 
+# This is now in the agenda_scraper this needs 
+# shoulsd go into the counillers scrape when we are doing that scraper
+# print "\nCreating City Council".blue
+# council = Committee.create!({
+#   name: "City Council",
+# })
+
 print "\nCreating City Council".blue
-@council = Committee.create!({
-  name: "City Council",
-})
+
+council = Committee.where("name = 'City Council'").first
 
 councillors.each do |councillor|
-	@council.councillors << councillor
+	council.councillors << councillor
 end
 print " 👍"
 

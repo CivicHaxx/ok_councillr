@@ -42,6 +42,14 @@ class AgendaScraper
       @header_info.at('tr/td[2]').text.strip
     end
 
+    # TODO: Move this into its own scraper
+    puts "Destroying Committees".red
+    Committee.destroy_all
+    print "\nCreating City Council".blue
+    @council = Committee.create!({
+      name: "City Council",
+    })
+
     # find the date & meeting number and create a meeting in the db
     council = Committee.where("name = 'City Council'")
 
