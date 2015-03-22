@@ -58,7 +58,7 @@ class AgendaScraper
   			parsed_agenda_item = ParsedItem.new(item_number, item).to_h
         parsed_agenda_item[:origin_id] = @agenda.id
         parsed_agenda_item[:origin_type] = "Agenda"
-  			Item.create(parsed_agenda_item)
+  			Item.create!(parsed_agenda_item)
         print "⚡"
   		end
   	end
