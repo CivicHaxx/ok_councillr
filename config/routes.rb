@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :user_votes, only: [:index]
+
+    member do
+      get :activate
+    end
   end
 
   resources :items, only: [:index, :show] do
