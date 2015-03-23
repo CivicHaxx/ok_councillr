@@ -1,6 +1,10 @@
 class Api::ItemsController < ApiController
   def index
-  	@items = Item.all.order(@@order)
+  	@items = if @@query == nil
+  		Item.all.order(@@order)
+  	else
+			Item.where("lower(name) LIKE ?", @@query).order(@@order)
+		end
 
 		render json: @items
   end

@@ -1,6 +1,10 @@
 class Api::CouncillorsController < ApiController
   def index
-  	@councillors = Councillor.all.order(@@order)
+  	@councillors = if @@query == nil
+  		Councillor.all.order(@@order)
+  	else
+			Councillor.where("lower(name) LIKE ?", @@query).order(@@order)
+		end
 
   	render json: @councillors
   end

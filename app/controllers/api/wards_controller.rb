@@ -1,6 +1,10 @@
 class Api::WardsController < ApiController
 	def index
-  	@wards = Ward.all.order(@@order)
+  	@wards = if @@query == nil
+  		Ward.all.order(@@order)
+  	else
+			Ward.where("lower(name) LIKE ?", @@query).order(@@order)
+		end
 
   	render json: @wards
   end
