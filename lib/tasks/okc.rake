@@ -48,7 +48,17 @@ namespace :okc do
   ##################################################################
 
   desc "Scrapes, parses & persists raw vote records"
-  task :vote_scrape do
+  task :votes do
+    require "http"
+    require "awesome_print"
+    require "colored"
+    require "csv"
+    require "pry"
+    require "nokogiri"
+    require "open-uri"
+    require "active_support/all"
+    require "active_record"
+    require 'scraper'
     require 'vote_scraper'
     VoteScraper.new(6).run
   end
@@ -66,7 +76,7 @@ namespace :okc do
     require 'http'
     require 'nokogiri'
     require 'open-uri'
-
+    require 'scraper'
     require 'agenda_scraper'
     
   	puts "Creating Item Types".blue
