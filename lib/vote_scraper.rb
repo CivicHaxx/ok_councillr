@@ -7,19 +7,59 @@ class VoteScraper
     @url          = "getAdminReport.do"
     @from_date    = from_date
     @to_date      = to_date
+    @member_emoji = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈)
+    @members      = get_members(@term_id)
+  end
+
+  def run
+    puts "Getting member vote reports"
+    @members[1..-1].each do |member|
+      member_name = camel_case_name(member)
+      unless File.exist? "#{@raw_file_dir}/#{member_name}.csv"
+        get_vote_record(member)
+      end
+      puts "\nParsing vote record for #{member[:name]}"
+      parse_vote_record(member)
+    end
   end
 
   def get_vote_record(member)
-    member_emoji = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈 )
-      puts "#{member[:name]} #{member_emoji.sample}"
-      
+      puts "#{member[:name]} #{@member_emoji.sample}"
       params    = report_download_params(@term_id, member[:id])
       csv       = post(@url, params)
-      binding.pry
-
       csv       = deep_clean(csv)
       save(file_name(member), csv)
   end
+  
+  def parse_vote_record(member)
+    csv = File.open(file_name(member), 'r')
+    CSV.parse(csv, headers: true,
+      header_converters: lambda { |h| h.try(:parameterize).try(:underscore) })
+      .map{|x| x.to_hash.symbolize_keys }
+      .map{|x| x.merge(councillor_id: member[:id], councillor_name: member[:name]) }
+      .each do |x|
+        begin
+          RawVoteRecord.create!(x)
+          print " 💚 "
+        rescue Encoding::UndefinedConversionError
+          record = Hash[x.map {|k, v| [k.to_sym, v] }]
+          RawVoteRecord.create!(record)
+          print " 💔 "
+        end
+      end 
+  end
+
+  private
+
+  def get_members(term_id)
+    get_term_page(term_id).css("select[name='memberId'] option")
+                          .map{|x| { id: x.attr("value"), name: x.text } }
+  end
+
+  def get_term_page(id)
+    Nokogiri::HTML(post(@url, term_page_params(@term_id)))
+  end
+
 
   def file_name(member)
     @raw_file_dir + camel_case_name(member) + ".csv"
@@ -29,31 +69,16 @@ class VoteScraper
     member[:name].downcase.gsub( " ", "_" ).to_s
   end
 
-  def run
-    puts "Getting member vote reports"
-    get_members(@term_id)[1..-1].each do |member|
-      member_name = camel_case_name(member)
-      unless File.exist? "#{@raw_file_dir}/#{member_name}.csv"
-        get_vote_record(member)
-      end
-    end
-  end
-  
-  def parse
-  CSV.parse(csv, headers: true,
-    header_converters: lambda { |h| h.try(:parameterize).try(:underscore) })
-    .map{|x| x.to_hash.symbolize_keys }
-    .map{|x| x.merge(councillor_id: member[:id], councillor_name: member[:name]) }
-    .each do |x|
-      begin
-        RawVoteRecord.create!(x)
-        print "|".blue
-      rescue Encoding::UndefinedConversionError
-        record = Hash[x.map {|k, v| [k.to_sym, v] }]
-        RawVoteRecord.create!(record)
-        print "|".red
-      end
-    end 
+  def term_page_params(term_id) #getAdminReport.do
+    {
+      function: 'prepareMemberVoteReport',
+      download: "N",
+      exportPublishReportID: "2",
+      termId: term_id,
+      memberId: "0",
+      fromDate: "",
+      toDate: ""
+    }
   end
 
   def report_download_params(term_id, member_id)
@@ -76,28 +101,4 @@ class VoteScraper
       }
   end
 
-  def term_page_params(term_id) #getAdminReport.do
-    {
-      function: 'prepareMemberVoteReport',
-      download: "N",
-      exportPublishReportID: "2",
-      termId: term_id,
-      memberId: "0",
-      fromDate: "",
-      toDate: ""
-    }
-  end
-
-  def get_term_page(id)
-    Nokogiri::HTML(post(@url, term_page_params(@term_id)))
-  end
-
-  def get_members(term_id)
-    get_term_page(term_id).css("select[name='memberId'] option")
-                          .map{|x| { id: x.attr("value"), name: x.text } }
-  end
-
-  def deep_clean(string)
-    string.scrub.encode('UTF-8', { invalid: :replace, undef: :replace, replace: '�'})
-  end
 end
