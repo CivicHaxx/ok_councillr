@@ -39,6 +39,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.7)
+    api-pagination (4.1.1)
     arel (6.0.0)
     awesome_print (1.6.1)
     bcrypt (3.1.10)
@@ -211,6 +212,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  api-pagination
   best_errors
   coderay
   colored
