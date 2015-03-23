@@ -5,7 +5,9 @@ class ApiController < ApplicationController
 
 	def change_query_order
 		unless params[:order] == nil
-			@@order = params[:order].to_sym
+			order_direction = params[:order].split(".")
+
+			@@order = (order_direction.length == 1) ? order_direction[0].to_sym : "#{order_direction[0]} #{order_direction[1]}"
 		end
 	end
 end
