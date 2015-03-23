@@ -7,6 +7,11 @@ module Scraper
     .to_s
   end
   
+  def get(url)
+    HTTP.with_headers("User-Agent" => "INTERNET EXPLORER")
+    .get(url)
+  end
+  
   def save(file_name, content)
     File.open(file_name, 'w') { |f| f.write (content) }
   end
