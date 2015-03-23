@@ -85,6 +85,13 @@ namespace :okc do
       { name: 'Information' }, 
       { name: 'Presentation' }
     ])
+    # TODO: Move this into its own scraper
+    puts "Destroying Committees".red
+    Committee.destroy_all
+    puts "Creating City Council".blue
+    @council = Committee.create!({
+      name: "City Council",
+    })
     AgendaScraper.new.run
   end
 

@@ -19,11 +19,11 @@ class AgendaScraper
     end  
   end
   
-  def parse
+  def parse_agendas
   # Temporarily remove the loop for OKC
   # @ids.each do |id|
     id = "7849"
-    print "Parsing #{id} "
+    print "\nParsing #{id} "
     
     content      = open("#{@raw_file_dir}/#{id}.html").read
     sections     = content.split("<br clear=\"all\">")
@@ -41,14 +41,6 @@ class AgendaScraper
     def meeting_num
       @header_info.at('tr/td[2]').text.strip
     end
-
-    # TODO: Move this into its own scraper
-    puts "Destroying Committees".red
-    Committee.destroy_all
-    print "\nCreating City Council".blue
-    @council = Committee.create!({
-      name: "City Council",
-    })
 
     # find the date & meeting number and create a meeting in the db
     council = Committee.where("name = 'City Council'")
@@ -74,7 +66,7 @@ class AgendaScraper
   end
 
   def run
-    parse
+    parse_agendas
     puts "\n★ ★ ★  DONE PARSING ★ ★ ★".green
   end
 end
