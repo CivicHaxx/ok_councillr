@@ -8,7 +8,7 @@
 <ul class="accordion" data-accordion>
 	<% @item.sections.each_with_index do  |(title, content), index| %>
 		<% unless title == :ward %>
-			<li class="accordion-navigation">
+			<li class="accordion-navigation <%= "active" if index == 0 %>">
 				<a href="#panel-<%= index %>a"><i class="fa fa-caret-right"></i> <%= title %></a>
 				<div id="panel-<%= index %>a" class="content <%= "active" if index == 0 %>">
 					<%= content.to_s %>
