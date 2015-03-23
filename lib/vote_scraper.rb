@@ -18,7 +18,7 @@ class VoteScraper
       unless File.exist? "#{@raw_file_dir}/#{member_name}.csv"
         get_vote_record(member)
       end
-      puts "\nParsing vote record for #{member[:name]}"
+      puts "\nParsing vote record for #{member[:name]} 💚 "
       parse_vote_record(member)
     end
   end
@@ -40,7 +40,6 @@ class VoteScraper
       .each do |x|
         begin
           RawVoteRecord.create!(x)
-          print " 💚 "
         rescue Encoding::UndefinedConversionError
           record = Hash[x.map {|k, v| [k.to_sym, v] }]
           RawVoteRecord.create!(record)
