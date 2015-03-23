@@ -2,10 +2,10 @@ class ApiController < ApplicationController
 	before_action :change_query_order, :add_querying, only: :index
 
 	@@order = :id
-	@@query = nil
+	@@query = ""
 
 	def add_querying
-		@@query = "%#{params[:q].downcase}%" unless params[:q] == nil
+		@@query = (params[:q] == nil) ? "" : "%#{params[:q].downcase}%" 
 	end
 
 	def change_query_order

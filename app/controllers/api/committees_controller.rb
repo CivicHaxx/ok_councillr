@@ -1,6 +1,6 @@
 class Api::CommitteesController < ApiController
 	def index
-		@committees = if @@query == nil
+		@committees = if @@query.empty?
 			Committee.all.order(@@order)
 		else
 			Committee.where("lower(name) LIKE ?", @@query).order(@@order)

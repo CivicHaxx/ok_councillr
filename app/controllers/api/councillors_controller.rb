@@ -1,6 +1,6 @@
 class Api::CouncillorsController < ApiController
   def index
-  	@councillors = if @@query == nil
+  	@councillors = if @@query.empty?
   		Councillor.all.order(@@order)
   	else
 			Councillor.where("lower(name) LIKE ?", @@query).order(@@order)

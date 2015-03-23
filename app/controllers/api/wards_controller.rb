@@ -1,6 +1,6 @@
 class Api::WardsController < ApiController
 	def index
-  	@wards = if @@query == nil
+  	@wards = if @@query.empty?
   		Ward.all.order(@@order)
   	else
 			Ward.where("lower(name) LIKE ?", @@query).order(@@order)

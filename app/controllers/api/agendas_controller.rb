@@ -1,6 +1,6 @@
 class Api::AgendasController < ApiController
 	def index
-		@agendas = if @@query == nil
+		@agendas = if @@query.empty?
 			Agenda.all.order(@@order)
 		else
 			Agenda.where("lower(name) LIKE ?", @@query).order(@@order)

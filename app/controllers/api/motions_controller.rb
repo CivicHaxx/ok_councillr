@@ -1,6 +1,6 @@
 class Api::MotionsController < ApiController
   def index
-  	@motions = if @@query == nil
+  	@motions = if @@query.empty?
   		Motion.all.order(@@order)
   	else
 			Motion.where("lower(name) LIKE ?", @@query).order(@@order)
