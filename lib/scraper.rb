@@ -23,4 +23,8 @@ module Scraper
 		end
 	end
 
+  def deep_clean(string)
+    string.scrub.encode('UTF-8', { invalid: :replace, undef: :replace, replace: '�'})
+  end
+
 end
