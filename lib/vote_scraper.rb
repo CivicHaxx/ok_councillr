@@ -1,10 +1,12 @@
 class VoteScraper
   include Scraper
 
-  def initialize(term_id)
+  def initialize(term_id, from_date, to_date)
     @term_id      = term_id
     @raw_file_dir = "#{raw_file_dir("votes")}/"
     @url          = "getAdminReport.do"
+    @from_date    = from_date
+    @to_date      = to_date
   end
 
   def get_vote_record(member)

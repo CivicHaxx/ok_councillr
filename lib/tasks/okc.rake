@@ -60,7 +60,7 @@ namespace :okc do
     require "active_record"
     require 'scraper'
     require 'vote_scraper'
-    VoteScraper.new(4).run
+    VoteScraper.new(4, "2014-02-16", "2014-02-22").run
   end
 
   ##################################################################
