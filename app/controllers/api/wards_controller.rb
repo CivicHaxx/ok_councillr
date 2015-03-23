@@ -1,6 +1,6 @@
 class Api::WardsController < ApiController
 	def index
-  	@wards = Ward.all
+  	@wards = Ward.all.order(@@order)
 
   	render json: @wards
   end

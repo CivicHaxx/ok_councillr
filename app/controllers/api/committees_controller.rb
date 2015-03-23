@@ -1,6 +1,7 @@
 class Api::CommitteesController < ApiController
 	def index
-		@committees = Committee.all
+		@committees = Committee.all.order(@@order)
+
 
 		render json: @committees
 	end

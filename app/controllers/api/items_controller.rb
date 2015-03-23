@@ -1,6 +1,6 @@
 class Api::ItemsController < ApiController
   def index
-  	@items = Item.all
+  	@items = Item.all.order(@@order)
 
 		render json: @items
   end

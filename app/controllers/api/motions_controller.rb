@@ -1,6 +1,6 @@
 class Api::MotionsController < ApiController
   def index
-  	@motions = Motion.all
+  	@motions = Motion.all.order(@@order)
 
   	render json: @motions
   end

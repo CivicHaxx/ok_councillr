@@ -1,6 +1,6 @@
 class Api::CouncillorsController < ApiController
   def index
-  	@councillors = Councillor.all
+  	@councillors = Councillor.all.order(@@order)
 
   	render json: @councillors
   end

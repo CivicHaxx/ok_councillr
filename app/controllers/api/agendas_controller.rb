@@ -1,6 +1,6 @@
 class Api::AgendasController < ApiController
 	def index
-		@agendas = Agenda.all
+		@agendas = Agenda.all.order(@@order)
 
 		render json: @agendas
 	end
