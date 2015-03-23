@@ -1,9 +1,9 @@
 class Api::AgendasController < ApiController
 	def index
 		@agendas = if @@query.empty?
-			Agenda.all.order(@@order)
+			paginate Agenda.all.order(@@order), per_page: change_per_page
 		else
-			Agenda.where("lower(name) LIKE ?", @@query).order(@@order)
+			paginate Agenda.where("lower(name) LIKE ?", @@query).order(@@order), per_page: change_per_page
 		end
 
 		render json: @agendas

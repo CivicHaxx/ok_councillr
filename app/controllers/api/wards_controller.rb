@@ -1,9 +1,9 @@
 class Api::WardsController < ApiController
 	def index
   	@wards = if @@query.empty?
-  		Ward.all.order(@@order)
+  		paginate Ward.all.order(@@order), per_page: change_per_page
   	else
-			Ward.where("lower(name) LIKE ?", @@query).order(@@order)
+			paginate Ward.where("lower(name) LIKE ?", @@query).order(@@order), per_page: change_per_page
 		end
 
   	render json: @wards

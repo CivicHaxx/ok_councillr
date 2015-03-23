@@ -1,9 +1,9 @@
 class Api::MotionsController < ApiController
   def index
   	@motions = if @@query.empty?
-  		Motion.all.order(@@order)
+  		paginate Motion.all.order(@@order), per_page: change_per_page
   	else
-			Motion.where("lower(name) LIKE ?", @@query).order(@@order)
+			paginate Motion.where("lower(name) LIKE ?", @@query).order(@@order), per_page: change_per_page
 		end
 
   	render json: @motions

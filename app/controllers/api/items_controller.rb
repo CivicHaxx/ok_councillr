@@ -1,9 +1,9 @@
 class Api::ItemsController < ApiController
   def index
   	@items = if @@query.empty?
-  		Item.all.order(@@order)
+  		paginate Item.all.order(@@order), per_page: change_per_page
   	else
-			Item.where("lower(name) LIKE ?", @@query).order(@@order)
+			paginate Item.where("lower(name) LIKE ?", @@query).order(@@order), per_page: change_per_page
 		end
 
 		render json: @items
