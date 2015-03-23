@@ -9,7 +9,7 @@ module Scraper
   
   def get(url)
     HTTP.with_headers("User-Agent" => "INTERNET EXPLORER")
-    .get(url)
+    .get("http://app.toronto.ca/tmmis/#{url}")
   end
   
   def save(file_name, content)
