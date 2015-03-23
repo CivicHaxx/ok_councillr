@@ -1,5 +1,7 @@
 <h2>My Votes</h2>
 
+<p>Ward <%= @user.ward_id %> - <%= @user.ward.name %></p>
+
 <table role="grid">
 	<thead>
 		<tr>
@@ -9,6 +11,10 @@
 		</tr>
 	</thead>	
 	<tbody>
+
+	<% if @votes == nil %>
+		<p>You have no votes. Get Voting! </p>
+	<% else %>
 		<% @votes.each do |vote| %>
 			<tr>
 				<td><%= link_to vote.item.number, item_path(vote.item) %></td>
@@ -18,6 +24,7 @@
 				</td>
 			</tr>
 		<% end %>
+	<% end %>
 	</tbody>
 </table>
 
