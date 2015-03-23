@@ -9,7 +9,7 @@ class VoteScraper
 
   def get_vote_record(member)
     member_emoji = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈 )
-      puts "Getting member vote report for #{member[:name]} #{member_emoji.sample}"
+      puts "#{member[:name]} #{member_emoji.sample}"
       
       params    = report_download_params(@term_id, member[:id])
       csv       = post(@url, params)
@@ -26,6 +26,7 @@ class VoteScraper
   end
 
   def run
+    puts "Getting member vote reports"
     get_members(@term_id)[1..-1].each do |member|
       member_name = camel_case_name(member)
       unless File.exist? "#{@raw_file_dir}/#{member_name}.csv"
@@ -68,9 +69,20 @@ class VoteScraper
       }
   end
 
+  def term_page_params(term_id) #getAdminReport.do
+    {
+      function: 'prepareMemberVoteReport',
+      download: "N",
+      exportPublishReportID: "2",
+      termId: term_id,
+      memberId: "0",
+      fromDate: "",
+      toDate: ""
+    }
+  end
+
   def get_term_page(id)
-    term_url = @url + "?function=prepareMemberVoteReport&termId="
-    Nokogiri::HTML(get(term_url + id.to_s).body.to_s)
+    Nokogiri::HTML(post(@url, term_page_params(@term_id)))
   end
 
   def get_members(term_id)
