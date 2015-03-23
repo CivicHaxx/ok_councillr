@@ -28,6 +28,10 @@ gem 'http'
 gem 'sorcery'
 # for pagination
 gem 'kaminari'
+
+# for pagination in the response header for APIs
+gem 'api-pagination'
+
 # the html_stripper uses Ox to parse docs
 # remove this if we decide to only use Loofah
 gem 'ox'
