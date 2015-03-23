@@ -3,7 +3,7 @@ class Api::MotionsController < ApiController
   	@motions = if @@query.empty?
   		paginate Motion.all.order(change_query_order), per_page: change_per_page
   	else
-			paginate Motion.where("lower(name) LIKE ?", @@query).order(change_query_order), per_page: change_per_page
+			paginate Motion.where("lower(amendment_text) LIKE ?", @@query).order(change_query_order), per_page: change_per_page
 		end
 
   	render json: @motions
