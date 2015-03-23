@@ -110,7 +110,7 @@ end
 # NOTE: We are currently building the app so users can vote on items and not 
 #       motions. Perhaps we should change this temporarily.
 
-puts "\nCreating fake motions and votes".yellow
+puts "Creating fake motions and votes".yellow
 # Change this to the following when parsing ALL items
 # Agenda.third.items.all.each do
 Item.all.each do |item|
