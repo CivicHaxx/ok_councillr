@@ -21,10 +21,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @item = Item.first 
     
-    @user.ward_id = get_ward(@user.street_name, @user.street_num)
+    ward_num = get_ward(@user.street_name, @user.street_num)
     
-    binding.pry
-
+    @user.ward_id = Ward.find_by(ward_number: ward_num).id
+  
     if @user.save
       redirect_to item_url(@item), notice: "Your account has been created, an activation email has been sent"
     else
