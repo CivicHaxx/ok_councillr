@@ -16,7 +16,7 @@ class VoteScraper
       params    = report_download_params(@term_id, member[:id])
       csv       = post(@url, params)
       binding.pry
-      
+
       csv       = deep_clean(csv)
       save(file_name(member), csv)
   end
@@ -67,7 +67,9 @@ class VoteScraper
         exportPublishReportId: 2,
         termId: term_id,
         memberId: member_id,
-        #city council for last term, for all, 0, for current term 961. why?
+        # TO DO: scrape decision body ids with councillor ids
+        # city council for last term is 261, for all committees, 0
+        # for current term 961. why?
         decisionBodyId: 261, 
         fromDate: @from_date,
         toDate: @to_date
