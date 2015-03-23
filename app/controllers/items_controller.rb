@@ -15,8 +15,7 @@ class ItemsController < ApplicationController
 		end
 	end
 
-	private 
-
+private 
 	def new_item_for_current_user(item)
 		item.user_votes.where("user_id = #{current_user.id}").empty?
 	end
