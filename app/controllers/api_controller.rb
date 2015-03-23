@@ -1,7 +1,6 @@
 class ApiController < ApplicationController
-	before_action :add_querying, :change_query_order, only: :index
+	before_action :add_querying, only: :index
 
-	@@order = :id
 	@@query = ""
 
 	def add_querying
@@ -13,7 +12,9 @@ class ApiController < ApplicationController
 	end
 
 	def change_query_order
-		unless params[:order] == nil
+		if params[:order] == nil
+			:id
+		else
 			orders = params[:order].split(",")
 
 			orders.map! do |order|
@@ -22,7 +23,7 @@ class ApiController < ApplicationController
 				(order_direction.length == 1) ? order_direction[0].to_sym : "#{order_direction[0]} #{order_direction[1]}"
 			end
 
-			@@order = orders
+			orders
 		end
 	end
 end
