@@ -1,11 +1,15 @@
 class ApiController < ApplicationController
-	before_action :change_query_order, :add_querying, only: :index
+	before_action :add_querying, :change_query_order, only: :index
 
 	@@order = :id
 	@@query = ""
 
 	def add_querying
 		@@query = (params[:q] == nil) ? "" : "%#{params[:q].downcase}%" 
+	end
+
+	def change_per_page
+		(params[:per_page].to_i > 100) ? 100 : params[:per_page].to_i
 	end
 
 	def change_query_order
