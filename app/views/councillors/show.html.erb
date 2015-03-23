@@ -2,7 +2,7 @@
 	<div class="medium-4 columns">
 		<%= image_tag @councillor.image, class: "profile" %>
 	</div>
-	<div class="medium-8 columns councillor-info">
+	<div class="medium-5 columns councillor-info">
 		<h3><%= @councillor.first_name %> <%= @councillor.last_name %></h3>
 			<p>Ward <%= @councillor.ward.ward_number %> - <%= @councillor.ward.name %></p>
 			<p>In Office Since: <%= (@councillor.start_date_in_office).strftime("%B %e, %Y") %></p>
@@ -11,6 +11,14 @@
 			<p>Twitter: <a href="http://www.twitter.com/<%= @councillor.twitter_handle %>" target="_blank"><%= @councillor.twitter_handle %></a></p>
 			<p>Facebook: <a href="http://www.facebook.com/<%= @councillor.facebook_handle %>" target="_blank"><%= @councillor.facebook_handle %></a></p>
 			<p>Address: <%= @councillor.address %></p>	
+	</div>
+	<div class="medium-3 columns councillor-info committee-info">
+		<p>Committees: </p>
+		<ul class="committees">
+		 	<% @councillor.committees.each do |committee| %>
+				<li><%= committee.name %></li>
+			<% end %>
+		</ul>
 	</div>
 </div>
 
