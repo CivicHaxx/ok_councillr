@@ -18,12 +18,17 @@ class VoteScraper
   end
 
   def file_name(member)
-    @raw_file_dir + member[:name].downcase.gsub( " ", "_" ) + ".csv"
+    @raw_file_dir + camel_case_name(member) + ".csv"
+  end
+
+  def camel_case_name(member)
+    member[:name].downcase.gsub( " ", "_" ).to_s
   end
 
   def run
     get_members(@term_id)[1..-1].each do |member|
-      unless File.exist? "#{@raw_file_dir}/#{member[:id]}.csv"
+      member_name = camel_case_name(member)
+      unless File.exist? "#{@raw_file_dir}/#{member_name}.csv"
         get_vote_record(member)
       end
     end
