@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :user_votes
   has_many :items, through: :user_votes
+  belongs_to :ward
 
   validates :email, presence: true 
   validates :first_name, presence: true
