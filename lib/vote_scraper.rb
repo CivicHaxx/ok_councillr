@@ -15,6 +15,8 @@ class VoteScraper
       
       params    = report_download_params(@term_id, member[:id])
       csv       = post(@url, params)
+      binding.pry
+      
       csv       = deep_clean(csv)
       save(file_name(member), csv)
   end
@@ -56,18 +58,19 @@ class VoteScraper
 
   def report_download_params(term_id, member_id)
       {
-        toDate: "",
-        termId: term_id,
-        sortOrder: "",
-        sortBy: "",
-        page: 0,
-        memberId: member_id,
-        itemsPerPage: 50,
         function: "getMemberVoteReport",
-        fromDate: "",
-        exportPublishReportId: 2,
         download: "csv",
-        decisionBodyId: 961 #city council, for all, 0
+        page: 0,
+        itemsPerPage: 50,
+        sortBy: "",
+        sortOrder: "",
+        exportPublishReportId: 2,
+        termId: term_id,
+        memberId: member_id,
+        #city council for last term, for all, 0, for current term 961. why?
+        decisionBodyId: 261, 
+        fromDate: @from_date,
+        toDate: @to_date
       }
   end
 
