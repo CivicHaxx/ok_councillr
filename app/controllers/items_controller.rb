@@ -2,11 +2,11 @@ class ItemsController < ApplicationController
 	helper_method :display_user_votes_for, :new_item_for_current_user
 
 	def index
-		@items = Item.all.includes(:user_votes).page params[:page]
+		@items = Item.where(item_type_id: 1).includes(:user_votes).page params[:page]
 	end
 
 	def show 
-		@item = Item.find params[:id]
+		@item = Item.where(item_type_id: 1).find params[:id]
 		@user_vote = UserVote.new
 
 		unless current_user == nil
