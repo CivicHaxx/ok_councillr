@@ -5,9 +5,15 @@ class ApiController < ApplicationController
 
 	def change_query_order
 		unless params[:order] == nil
-			order_direction = params[:order].split(".")
+			orders = params[:order].split(",")
 
-			@@order = (order_direction.length == 1) ? order_direction[0].to_sym : "#{order_direction[0]} #{order_direction[1]}"
+			orders.map! do |order|
+				order_direction = order.strip.split(".")
+
+				(order_direction.length == 1) ? order_direction[0].to_sym : "#{order_direction[0]} #{order_direction[1]}"
+			end
+
+			@@order = orders
 		end
 	end
 end
