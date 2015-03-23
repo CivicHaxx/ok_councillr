@@ -1,13 +1,13 @@
 class Api::ItemsController < ApiController
   def index
   	@items = if @@query.empty?
-  		paginate Item.all.order(change_query_order), per_page: change_per_page
+      Item.all.order(change_query_order)
   	else
-			paginate Item.where("lower(title) LIKE ? OR 
-        lower(origin_type) = ?", @@query, @@query.gsub("%", "")).order(change_query_order), per_page: change_per_page
+			Item.where("lower(title) LIKE ? OR 
+        lower(origin_type) = ?", @@query, @@query.gsub("%", "")).order(change_query_order)
 		end
 
-		render json: @items
+		paginate json: @items, per_page: change_per_page
   end
 
   def show

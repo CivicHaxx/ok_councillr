@@ -1,14 +1,14 @@
 class Api::CouncillorsController < ApiController
   def index
   	@councillors = if @@query.empty?
-  		paginate Councillor.all.order(change_query_order), per_page: change_per_page
+  		Councillor.all.order(change_query_order)
   	else
-			paginate Councillor.where("lower(first_name) LIKE ? OR 
+			Councillor.where("lower(first_name) LIKE ? OR 
         lower(last_name) LIKE ? OR 
-        lower(email) LIKE ?", @@query, @@query, @@query).order(change_query_order), per_page: change_per_page
+        lower(email) LIKE ?", @@query, @@query, @@query).order(change_query_order)
 		end
 
-  	render json: @councillors
+  	paginate json: @councillors, per_page: change_per_page
   end
 
   def show
