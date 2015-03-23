@@ -7,8 +7,8 @@ module Scraper
     .to_s
   end
   
-  def save(name, content)
-    File.open(filename(name), 'w') { |f| f.write (content) }
+  def save(file_name, content)
+    File.open(file_name, 'w') { |f| f.write (content) }
   end
  
 	def raw_file_dir(doc_type)
