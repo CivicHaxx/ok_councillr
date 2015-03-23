@@ -1,4 +1,4 @@
-class Api::CommitteesController < ApplicationController
+class Api::CommitteesController < ApiController
 	def index
 		@committees = Committee.all
 

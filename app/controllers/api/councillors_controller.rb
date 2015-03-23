@@ -1,4 +1,4 @@
-class Api::CouncillorsController < ApplicationController
+class Api::CouncillorsController < ApiController
   def index
   	@councillors = Councillor.all
 

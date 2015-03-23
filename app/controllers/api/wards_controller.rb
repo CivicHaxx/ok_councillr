@@ -1,4 +1,4 @@
-class Api::WardsController < ApplicationController
+class Api::WardsController < ApiController
 	def index
   	@wards = Ward.all
 

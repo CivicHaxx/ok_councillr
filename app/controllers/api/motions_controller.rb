@@ -1,4 +1,4 @@
-class Api::MotionsController < ApplicationController
+class Api::MotionsController < ApiController
   def index
   	@motions = Motion.all
 
