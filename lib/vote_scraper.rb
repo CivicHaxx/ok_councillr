@@ -2,24 +2,31 @@ class VoteScraper
   include Scraper
 
   def initialize(term_id)
-    @term_id  = term_id
-    @filename = "#{raw_file_dir("votes")}/#{name}.csv"
-    @url      = "getAdminReport.do"
+    @term_id      = term_id
+    @raw_file_dir = "#{raw_file_dir("votes")}/"
+    @url          = "getAdminReport.do"
   end
 
   def get_vote_records
     member_emoji = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈 )
     get_members(@term_id)[1..-1].each do |member|
-      puts "\nGetting member vote report for #{member[:name]} #{member_emoji.sample}"
-      params = report_download_params(@term_id, member[:id])
+      puts "Getting member vote report for #{member[:name]} #{member_emoji.sample}"
       
-      csv  = post(url, params)
-      csv  = deep_clean(csv)
-      name = member[:name].downcase.gsub( " ", "_" )
-      save(name, csv)
+      params    = report_download_params(@term_id, member[:id])
+      csv       = post(@url, params)
+      csv       = deep_clean(csv)
+      save(file_name(member), csv)
     end
   end
 
+  def file_name(member)
+    @raw_file_dir + member[:name].downcase.gsub( " ", "_" ) + ".csv"
+  end
+
+  def run
+    get_vote_records
+  end
+  
   def parse
   CSV.parse(csv, headers: true,
     header_converters: lambda { |h| h.try(:parameterize).try(:underscore) })
