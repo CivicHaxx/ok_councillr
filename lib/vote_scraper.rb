@@ -7,16 +7,14 @@ class VoteScraper
     @url          = "getAdminReport.do"
   end
 
-  def get_vote_records
+  def get_vote_record(member)
     member_emoji = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈 )
-    get_members(@term_id)[1..-1].each do |member|
       puts "Getting member vote report for #{member[:name]} #{member_emoji.sample}"
       
       params    = report_download_params(@term_id, member[:id])
       csv       = post(@url, params)
       csv       = deep_clean(csv)
       save(file_name(member), csv)
-    end
   end
 
   def file_name(member)
@@ -24,7 +22,11 @@ class VoteScraper
   end
 
   def run
-    get_vote_records
+    get_members(@term_id)[1..-1].each do |member|
+      unless File.exist? "#{@raw_file_dir}/#{member[:id]}.csv"
+        get_vote_record(member)
+      end
+    end
   end
   
   def parse
@@ -61,15 +63,14 @@ class VoteScraper
       }
   end
 
-  def term_page(id)
-    term_url = "http://app.toronto.ca/tmmis/getAdminReport.do" +
-               "?function=prepareMemberVoteReport&termId="
-    Nokogiri::HTML(HTTP.get(term_url + id.to_s).body.to_s)
+  def get_term_page(id)
+    term_url = @url + "?function=prepareMemberVoteReport&termId="
+    Nokogiri::HTML(get(term_url + id.to_s).body.to_s)
   end
 
   def get_members(term_id)
-    term_page(term_id).css("select[name='memberId'] option")
-                      .map{|x| { id: x.attr("value"), name: x.text } }
+    get_term_page(term_id).css("select[name='memberId'] option")
+                          .map{|x| { id: x.attr("value"), name: x.text } }
   end
 
   def deep_clean(string)
