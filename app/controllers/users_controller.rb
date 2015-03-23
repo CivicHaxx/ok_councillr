@@ -19,8 +19,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @item = Item.first
+    @item = Item.first 
     
+    @user.ward_id = get_ward(@user.street_name, @user.street_num)
+    
+    binding.pry
+
     if @user.save
       redirect_to item_url(@item), notice: "Your account has been created, an activation email has been sent"
     else
@@ -61,7 +65,20 @@ class UsersController < ApplicationController
       :password_confirmation,
       :first_name,
       :last_name,
-      :postal_code
+      :street_num,
+      :street_name
     )
   end
+
+  def post(street_name, street_num)
+    HTTP.post("http://www1.toronto.ca/cot-templating/ward?streetName=#{street_name}&streetNumber=#{street_num}")
+    .body
+    .to_s
+  end
+
+  def get_ward(street_name, street_num)
+    xml = Nokogiri::XML(post(street_name, street_num))
+    xml.xpath('//wardID').text.to_i
+  end
+
 end
