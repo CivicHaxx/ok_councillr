@@ -3,14 +3,14 @@ class Api::AgendasController < ApiController
 		committee_id = params[:committee_id]
 
 		@agendas = if @@query.empty? && committee_id == nil
-			Agenda.all.order(change_query_order)
+			Agenda.all
 		elsif @@query.empty? == false
-			Agenda.where("date = ?", Date.strptime(@@query.gsub("%",""), '%m-%d-%Y')).order(change_query_order)
+			Agenda.where("date = ?", Date.strptime(@@query.gsub("%",""), '%m-%d-%Y'))
 		else
-			Agenda.where("committee_id = ?", committee_id).order(change_query_order)
+			Agenda.where("committee_id = ?", committee_id)
 		end
 
-		paginate json: @agendas, per_page: change_per_page
+		paginate json: @agendas.order(change_query_order), per_page: change_per_page
 	end
 
 	def show

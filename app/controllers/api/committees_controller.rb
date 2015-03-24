@@ -1,12 +1,12 @@
 class Api::CommitteesController < ApiController
 	def index
 		@committees = if @@query.empty?
-			Committee.all.order(change_query_order)
+			Committee.all
 		else
-			Committee.where("lower(name) LIKE ?", @@query).order(change_query_order)
+			Committee.where("lower(name) LIKE ?", @@query)
 		end
 
-		paginate json: @committees, per_page: change_per_page
+		paginate json: @committees.order(change_query_order), per_page: change_per_page
 	end
 
 	def show
