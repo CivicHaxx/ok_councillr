@@ -79,7 +79,7 @@ namespace :okc do
     require 'scraper'
     require 'agenda_scraper'
     
-  	puts "Creating Item Types".blue
+    puts "Creating Item Types".blue
     item_types = ItemType.create!([
       { name: 'Action' }, 
       { name: 'Information' }, 
@@ -93,6 +93,25 @@ namespace :okc do
       name: "City Council",
     })
     AgendaScraper.new.run
+  end
+
+  ##################################################################
+  #                                                                #
+  # MINUTES SCRAPER                                                #
+  #                                                                #
+  ##################################################################
+  
+  desc "Scrape Minutes"
+  task :minutes do |t|
+    require 'awesome_print'
+    require 'colored'
+    require 'http'
+    require 'nokogiri'
+    require 'open-uri'
+    require 'scraper'
+    require 'minutes_scraper'
+    
+    MinutesScraper.new.run
   end
 
 end
