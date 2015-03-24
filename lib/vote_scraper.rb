@@ -14,8 +14,7 @@ class VoteScraper
   def run
     puts "Getting member vote reports"
     @members[1..-1].each do |member|
-      member_name = camel_case_name(member)
-      unless File.exist? "#{@raw_file_dir}/#{member_name}.csv"
+      unless File.exist? "#{file_name(member[:name])}.csv"
         get_vote_record(member)
       end
       puts "Parsing vote record for #{member[:name]} 💚 "
@@ -28,15 +27,11 @@ class VoteScraper
       params    = report_download_params(@term_id, member[:id])
       csv       = post(@url, params)
       csv       = deep_clean(csv)
-      save(file_name(member), csv)
+      save(file_name(member[:name]), csv)
   end
   
   def parse_vote_record(member)
-    csv = File.open(file_name(member), 'r')
-    CSV.parse(csv, headers: true,
-      header_converters: lambda { |h| h.try(:parameterize).try(:underscore) })
-      .map{|x| x.to_hash.symbolize_keys }
-      .map{|x| x.merge(councillor_id: member[:id], councillor_name: member[:name]) }
+    vote_record_hashes(member)
       .each do |x|
         begin
           RawVoteRecord.create!(x)
@@ -46,6 +41,24 @@ class VoteScraper
           print " 💔 "
         end
       end 
+  end
+
+  def vote_record_hashes(member)
+    open_vote_record(member).map do |x|
+      x.to_h
+       .symbolize_keys
+       .merge(councillor_id: member[:id], 
+          councillor_name: member[:name])
+    end
+  end
+
+  def open_vote_record(member)
+    csv = File.open(file_name(member[:name]), 'r')
+    CSV.parse(csv, headers: true, header_converters: camel_case_headers)
+  end
+
+  def camel_case_headers
+    lambda { |h| h.try(:parameterize).try(:underscore) }
   end
 
   private
@@ -60,12 +73,12 @@ class VoteScraper
   end
 
 
-  def file_name(member)
-    @raw_file_dir + camel_case_name(member) + ".csv"
+  def file_name(name)
+    @raw_file_dir + camel_case_name(name) + ".csv"
   end
 
-  def camel_case_name(member)
-    member[:name].downcase.gsub( " ", "_" ).to_s
+  def camel_case_name(name)
+    name.downcase.gsub( " ", "_" ).to_s
   end
 
   def term_page_params(term_id) #getAdminReport.do
