@@ -1,24 +1,36 @@
 <h2>My Votes</h2>
 
-<table role="grid">
-	<thead>
-		<tr>
-			<th>Number</th>
-			<th>Title</th>
-			<th width="100">My Vote</th>
-		</tr>
-	</thead>	
-	<tbody>
-		<% @votes.each do |vote| %>
-			<tr>
-				<td><%= link_to vote.item.number, item_path(vote.item) %></td>
-				<td><%= link_to vote.item.title, item_path(vote.item) %></td>
-				<td class="vote-<%=vote.vote.downcase %>">
-					<%= vote.vote %>
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<% if @ward != nil %>
+	<p>My Ward: Ward <%= @ward.ward_number %> - <%= @ward.name %></p>
+	<p>My Councillor: <%= link_to("#{@councillor.first_name} #{@councillor.last_name}", councillor_path(@councillor)) %></p>
+<% else %>
+	<p>To see your ward and councillor, add an address to your profile.</p>
+<% end %>
+
+<% if @votes == nil %>
+	<p>You have no votes. Get Voting! </p>
+<% else %>
+		<table role="grid">
+			<thead>
+				<tr>
+					<th>Number</th>
+					<th>Title</th>
+					<th width="100">My Vote</th>
+				</tr>
+			</thead>	
+
+			<tbody>
+				<% @votes.each do |vote| %>
+					<tr>
+						<td><%= link_to vote.item.number, item_path(vote.item) %></td>
+						<td><%= link_to vote.item.title, item_path(vote.item) %></td>
+						<td class="vote-<%=vote.vote.downcase %>">
+							<%= vote.vote %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+<% end %>
 
 <%= paginate @votes %>

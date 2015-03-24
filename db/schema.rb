@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322024540) do
+ActiveRecord::Schema.define(version: 20150323230429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,8 +145,7 @@ ActiveRecord::Schema.define(version: 20150322024540) do
     t.string   "salt"
     t.string   "first_name",                      null: false
     t.string   "last_name",                       null: false
-    t.string   "postal_code"
-    t.string   "address"
+    t.string   "street_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_me_token"
@@ -157,12 +156,15 @@ ActiveRecord::Schema.define(version: 20150322024540) do
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
+    t.integer  "street_num"
+    t.integer  "ward_id"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
+  add_index "users", ["ward_id"], name: "index_users_on_ward_id", using: :btree
 
   create_table "wards", force: :cascade do |t|
     t.integer  "ward_number"
@@ -178,4 +180,5 @@ ActiveRecord::Schema.define(version: 20150322024540) do
   add_foreign_key "motions", "councillors"
   add_foreign_key "motions", "items"
   add_foreign_key "motions", "motion_types"
+  add_foreign_key "users", "wards"
 end
