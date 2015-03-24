@@ -140,6 +140,19 @@ Item.all.each do |item|
 			)
 		end
 	end
+	
+	ward_number = item[:sections][:ward][0]
+
+	unless ward_number == nil
+	  item.wards << if(ward_number == "All") 
+	  	Ward.all 
+	  else
+	  	Ward.find(ward_number.to_i)
+	  end
+
+	  item.save
+	 end
+
 	print "❤️"; print " "
 end
 
