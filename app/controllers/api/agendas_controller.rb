@@ -3,7 +3,7 @@ class Api::AgendasController < ApiController
 		@agendas = if @@query.empty?
 			paginate Agenda.all.order(change_query_order), per_page: change_per_page
 		else
-			paginate Agenda.where("lower(name) LIKE ?", @@query).order(change_query_order), per_page: change_per_page
+			paginate Agenda.where("date = ?", Date.strptime(@@query.gsub("%",""), '%m-%d-%Y')).order(change_query_order), per_page: change_per_page
 		end
 
 		render json: @agendas

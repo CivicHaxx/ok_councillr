@@ -4,18 +4,23 @@
 	<% end %>
 
 	<div class="form-field">
-		<%= f.label :first_name %>
+		<%= f.label :first_name, "First Name" %>
 		<%= f.text_field :first_name %>
 	</div>
 
 	<div class="form-field">
-		<%= f.label :last_name %>
+		<%= f.label :last_name, "Last Name" %>
 		<%= f.text_field :last_name %>
 	</div>
 
 	<div class="form-field">
-		<%= f.label :postal_code %>
-		<%= f.text_field :postal_code, placeholder: "X1X 1X1" %>
+		<%= f.label :street_num, "Street Number" %>
+		<%= f.text_field :street_num, placeholder: "100" %>
+	</div>
+
+	<div class="form-field">
+		<%= f.label :street_name, "Street Name" %>
+		<%= f.text_field :street_name, placeholder: "Queen Street W." %>
 	</div>
 
 	<div class="form-field">
@@ -29,7 +34,7 @@
 	</div>
 
 	<div class="form-field">
-		<%= f.label :password_confirmation %>
+		<%= f.label :password_confirmation, "Password Confirmation" %>
 		<%= f.password_field :password_confirmation %>
 	</div>
 
