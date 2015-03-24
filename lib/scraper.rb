@@ -18,8 +18,9 @@ module Scraper
  
 	def raw_file_dir(doc_type)
 		case doc_type
-		when "agendas" then "lib/dirty_agendas"
-		when "votes"	 then "lib/vote_records"
+    when :agendas then "lib/dirty_agendas"
+		when :minutes then "lib/dirty_minutes"
+		when :votes	 then "lib/vote_records"
 		end
 	end
 
