@@ -54,10 +54,10 @@ class VoteScraper
 
   def open_vote_record(member)
     csv = File.open(file_name(member[:name]), 'r')
-    CSV.parse(csv, headers: true, header_converters: camel_case_headers)
+    CSV.parse(csv, headers: true, header_converters: sake_case_headers)
   end
 
-  def camel_case_headers
+  def sake_case_headers
     lambda { |h| h.try(:parameterize).try(:underscore) }
   end
 
