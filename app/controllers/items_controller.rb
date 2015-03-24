@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 	end
 
 	def show 
-		@item = Item.where(item_type_id: 1).first
+		@item = Item.find(params[:id])
 		@user_vote = UserVote.new
 
 		unless current_user == nil
