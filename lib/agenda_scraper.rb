@@ -13,7 +13,7 @@ class AgendaScraper
     @ids.map do |id| # Check if the file exists, if not, download it.
       unless File.exist? "#{@raw_file_dir}/#{id}.html"
         print "Calling the internet and saving agenda #{id}".yellow
-        RawAgenda.new(id).save
+        RawDocument.new(:agendas, id).save
         puts " ✔ "
       end
     end  
