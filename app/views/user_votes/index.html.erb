@@ -4,7 +4,7 @@
 	<p>My Ward: Ward <%= @ward.ward_number %> - <%= @ward.name %></p>
 	<p>My Councillor: <%= link_to("#{@councillor.first_name} #{@councillor.last_name}", councillor_path(@councillor)) %></p>
 <% else %>
-	<p>Add your address to your profile to find out your ward and councillor!</p>
+	<p>To see your ward and councillor, add an address to your profile.</p>
 <% end %>
 
 <% if @votes == nil %>
