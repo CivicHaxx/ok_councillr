@@ -18,7 +18,7 @@ class VoteScraper
       unless File.exist? "#{@raw_file_dir}/#{member_name}.csv"
         get_vote_record(member)
       end
-      puts "\nParsing vote record for #{member[:name]} 💚 "
+      puts "Parsing vote record for #{member[:name]} 💚 "
       parse_vote_record(member)
     end
   end
