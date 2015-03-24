@@ -1,15 +1,13 @@
 module Scraper
 
 	def post(url, params)
-    HTTP.with_headers("User-Agent" => "INTERNET EXPLORER")
-    .post("http://app.toronto.ca/tmmis/#{url}", form: params)
+    HTTP.post("http://app.toronto.ca/tmmis/#{url}", form: params)
     .body
     .to_s
   end
   
   def get(url)
-    HTTP.with_headers("User-Agent" => "INTERNET EXPLORER")
-    .get("http://app.toronto.ca/tmmis/#{url}")
+    HTTP.get("http://app.toronto.ca/tmmis/#{url}")
   end
   
   def save(file_name, content)
