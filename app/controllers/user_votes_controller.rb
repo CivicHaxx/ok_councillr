@@ -2,6 +2,11 @@ class UserVotesController < ApplicationController
   def index
       @user = current_user
       @votes = @user.user_votes.includes(:item).page params[:page]
+      
+      unless @user.ward == nil
+        @ward = @user.ward
+        @councillor = Councillor.find_by(ward: @ward)
+      end
   end
 
   def new	
