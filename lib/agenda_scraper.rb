@@ -1,19 +1,21 @@
 require 'meeting_ids'
+require 'raw_document'
 require 'parsed_item'
 
 class AgendaScraper
   include Scraper
 
   def initialize
-    @raw_file_dir = raw_file_dir("agendas")
+    @raw_file_dir = raw_file_dir(:agendas)
     @ids          = MeetingIDs.new(12, 2014).ids
   end
 
   def get_agendas
     @ids.map do |id| # Check if the file exists, if not, download it.
-      unless File.exist? "#{@raw_file_dir}/#{id}.html"
+      file_name = "#{@raw_file_dir}/#{id}.html"
+      unless File.exist? file_name
         print "Calling the internet and saving agenda #{id}".yellow
-        RawDocument.new(:agendas, id).save
+        save(file_name, RawDocument.new(:agendas, id).content)
         puts " ✔ "
       end
     end  
@@ -66,6 +68,7 @@ class AgendaScraper
   end
 
   def run
+    get_agendas
     parse_agendas
     puts "\n★ ★ ★  DONE PARSING ★ ★ ★".green
   end

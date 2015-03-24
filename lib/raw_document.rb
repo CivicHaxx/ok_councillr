@@ -4,22 +4,15 @@ class RawDocument
 	attr_reader :id
 	
 	def initialize(doc_type, id)
-		@id           = id
+		@meeting_id   = id
 		@raw_file_dir = raw_file_dir(doc_type)
 		@filename     = "#{@raw_file_dir}/#{@id}.html"
 		@url          = "viewPublishedReport.do?"
 		@query        = get_query(doc_type)
 	end
 
-	def agenda_params(meeting_id)
-	  {
-	    function:  "getCouncilAgendaReport",
-	    meetingId: meeting_id
-	  }
-	end
-
 	def content
-		content = post(url, agenda_params(@id))
+		content = post(@url, agenda_params)
 		content.to_s
 					 .scrub
 					 .encode(
@@ -28,6 +21,13 @@ class RawDocument
 							 :undef   => :replace, 
 							 :replace => '�'
 						 })
+	end
+
+	def agenda_params
+	  {
+	    function:  @query,
+	    meetingId: @meeting_id
+	  }
 	end
 
 	def get_query(doc_type)
