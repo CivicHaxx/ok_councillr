@@ -123,10 +123,12 @@
       padding: rem-calc(0 16);
       // change as desired but the transition needs to cover both max-height and padding; this is how long the panel takes to close
       transition: ease 0.4s all;
+      transition-delay: 0.2s;
+
       &.active
       {
         // change as desired
-        max-height: 200vh;
+        max-height: 1000vh;
         // change as desired
         padding: rem-calc(16);
         // change as desired; this is how long the panel takes to open
