@@ -80,7 +80,7 @@ class VoteScraper
   def camel_case_name(name)
     name.downcase.gsub( " ", "_" ).to_s
   end
-
+  # TO DO: Move all query params to scraper module
   def term_page_params(term_id) #getAdminReport.do
     {
       function: 'prepareMemberVoteReport',
