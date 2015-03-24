@@ -7,5 +7,6 @@ class CouncillorsController < ApplicationController
 		@councillor = Councillor.find params[:id]
 		@votes = @councillor.councillor_votes.includes(:motion)
 		@rvr_votes = @councillor.raw_vote_records
+		@absences = @councillor.councillor_vote.where(vote: "Skip").count
 	end
 end
