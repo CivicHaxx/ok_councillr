@@ -24,26 +24,59 @@
 
 <div class="row vote-history">
 	<h3>Voting History</h3>
-	<table role="grid">
-		<thead>
-			<tr>
-				<th>Number</th>
-				<th>Title</th>
-				<th width="100">Vote</th>
-				<tbody>
-					<% @votes.each do |vote| %>
-						<% unless vote.motion.amendment_text == "" %>
+
+	<ul class="tabs" data-tab role="tablist">
+	  <li class="tab-title active" role="presentational" ><a href="#voting-panel-1" role="tab" tabindex="0" aria-selected="true" controls="voting-panel-1">Fake Votes</a></li>
+	  <li class="tab-title" role="presentational" ><a href="#voting-panel-2" role="tab" tabindex="0"aria-selected="false" controls="voting-panel-2">Really Votes</a></li>
+	</ul>
+	<div class="tabs-content">
+	  <section role="tabpanel" aria-hidden="false" class="content active" id="voting-panel-1">
+	    <table role="grid">
+					<thead>
 						<tr>
-							<td><%= vote.motion.item_id %></td>
-							<td><%= vote.motion.amendment_text %></td>
-							<td class="vote-<%= vote.vote.downcase %>">
-								<%= vote.vote %>
-							</td>
+							<th>Number</th>
+							<th>Title</th>
+							<th width="100">Vote</th>
+							<tbody>
+								<% @votes.each do |vote| %>
+									<% unless vote.motion.amendment_text == "" %>
+									<tr>
+										<td><%= vote.motion.item_id %></td>
+										<td><%= vote.motion.amendment_text %></td>
+										<td class="vote-<%= vote.vote.downcase %>">
+											<%= vote.vote %>
+										</td>
+									</tr>
+									<% end %>
+								<% end %>
+							</tbody>
 						</tr>
-						<% end %>
-					<% end %>
-				</tbody>
-			</tr>
-		</thead>
-	</table>
+					</thead>
+				</table>
+	  </section>
+	  <section role="tabpanel" aria-hidden="true" class="content" id="voting-panel-2">
+	    <table role="grid">
+					<thead>
+						<tr>
+							<th>Number</th>
+							<th>Title</th>
+							<th width="100">Vote</th>
+							<tbody>
+								<% @rvr_votes.each do |vote| %>
+									<% unless vote.agenda_item_title == "" %>
+									<tr>
+										<td><%= vote.agenda_item %></td>
+										<td><%= vote.agenda_item_title %></td>
+										<td class="vote-<%= vote.vote.downcase %>">
+											<%= vote.vote %>
+										</td>
+									</tr>
+									<% end %>
+								<% end %>
+							</tbody>
+						</tr>
+					</thead>
+				</table>
+	  </section>
+	</div>
 </div>

@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 	end
 
 	def show 
-		@item = Item.find(params[:id])
+		@item = Item.find params[:id]
 		@user_vote = UserVote.new
 
 		unless current_user == nil
@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 		end
 	end
 
-private 
+	private 
 	def new_item_for_current_user(item)
 		item.user_votes.where("user_id = #{current_user.id}").empty?
 	end

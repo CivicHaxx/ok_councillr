@@ -7,7 +7,7 @@ namespace :okc do
   ##################################################################
 
   desc "Gimme a fresh start. Drops the db and parses the data again."
-  task fresh: ['db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed'] do
+  task fresh: ['db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed', :votes] do
     puts "You look great today.".magenta_on_white
   end
 
@@ -48,9 +48,19 @@ namespace :okc do
   ##################################################################
 
   desc "Scrapes, parses & persists raw vote records"
-  task :vote_scrape do
+  task :votes do
+    require "http"
+    require "awesome_print"
+    require "colored"
+    require "csv"
+    require "pry"
+    require "nokogiri"
+    require "open-uri"
+    require "active_support/all"
+    require "active_record"
+    require 'scraper'
     require 'vote_scraper'
-    VoteScraper.new(6).run
+    VoteScraper.new(4, "2014-02-16", "2014-02-22").run
   end
 
   ##################################################################
@@ -66,16 +76,42 @@ namespace :okc do
     require 'http'
     require 'nokogiri'
     require 'open-uri'
-
+    require 'scraper'
     require 'agenda_scraper'
     
-  	puts "Creating Item Types".blue
+    puts "Creating Item Types".blue
     item_types = ItemType.create!([
       { name: 'Action' }, 
       { name: 'Information' }, 
       { name: 'Presentation' }
     ])
+    # TODO: Move this into its own scraper
+    puts "Destroying Committees".red
+    Committee.destroy_all
+    puts "Creating City Council".blue
+    @council = Committee.create!({
+      name: "City Council",
+    })
     AgendaScraper.new.run
+  end
+
+  ##################################################################
+  #                                                                #
+  # MINUTES SCRAPER                                                #
+  #                                                                #
+  ##################################################################
+  
+  desc "Scrape Minutes"
+  task :minutes do |t|
+    require 'awesome_print'
+    require 'colored'
+    require 'http'
+    require 'nokogiri'
+    require 'open-uri'
+    require 'scraper'
+    require 'minutes_scraper'
+    
+    MinutesScraper.new.run
   end
 
 end

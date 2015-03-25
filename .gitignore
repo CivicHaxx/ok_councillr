@@ -12,9 +12,10 @@
 !/log/.keep
 /tmp
 
-# Ignore all downloaded agendas
+# Ignore all downloaded documents
 /lib/agendas/*.html
 /lib/dirty_agendas/*.html
+/lib/dirty_minutes/*.html
 
 # Ignore vote record csvs
 /lib/vote_records/*.csv

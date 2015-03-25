@@ -1,27 +1,27 @@
 require 'meeting_ids'
 require 'raw_document'
-require 'parsed_item'
 
-class AgendaScraper
+class MinutesScraper
   include Scraper
 
   def initialize
-    @raw_file_dir = raw_file_dir(:agendas)
+    @raw_file_dir = raw_file_dir(:minutes)
     @ids          = MeetingIDs.new(12, 2014).ids
   end
 
-  def get_agendas
-    @ids.map do |id| # Check if the file exists, if not, download it.
+  def get_minutes
+    #@ids.map do |id| # Check if the file exists, if not, download it.
+    id = "7849"
       file_name = "#{@raw_file_dir}/#{id}.html"
-      unless File.exist? file_name
-        print "Calling the internet and saving agenda #{id}".yellow
-        save(file_name, RawDocument.new(:agendas, id).content)
+      unless File.exist? "#{@raw_file_dir}/#{id}.html"
+        print "Calling the internet and saving minutes #{id}".yellow
+        save(file_name, RawDocument.new(:minutes, id).content)
         puts " ✔ "
       end
-    end  
+    #end  
   end
   
-  def parse_agendas
+  def parse_minutes
   # Temporarily remove the loop for OKC
   # @ids.each do |id|
     id = "7849"
@@ -32,6 +32,7 @@ class AgendaScraper
     items        = sections.map { |item| Nokogiri::HTML(item) }
     @header_info = Nokogiri::HTML(items[1].to_s.split('<hr')[0])
 
+    binding.pry
     def date
       @header_info.at('tr[2]/td[2]')
                   .at('br')
@@ -47,7 +48,7 @@ class AgendaScraper
     # find the date & meeting number and create a meeting in the db
     council = Committee.where("name = 'City Council'")
 
-    @agenda = Agenda.create!({
+    @minutes = Minutes.create!({
       date:         date,
       meeting_num:  meeting_num,
       committee_id: council.ids[0]
@@ -57,8 +58,8 @@ class AgendaScraper
   		item_number = item.xpath("//table[@class='border']/tr/td/font[@size='5']").text
 
   		unless item_number.empty?
-  			parsed_agenda_item = ParsedItem.new(item_number, item).to_h
-        parsed_agenda_item[:origin_id] = @agenda.id
+  			parsed_minutes_item = ParsedItem.new(item_number, item).to_h
+        parsed_agenda_item[:origin_id] = @minutes.id
         parsed_agenda_item[:origin_type] = "Agenda"
   			Item.create!(parsed_agenda_item)
         print "⚡"
@@ -68,8 +69,8 @@ class AgendaScraper
   end
 
   def run
-    get_agendas
-    parse_agendas
+    get_minutes
+    parse_minutes
     puts "\n★ ★ ★  DONE PARSING ★ ★ ★".green
   end
 end

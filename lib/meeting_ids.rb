@@ -1,5 +1,3 @@
-require 'scraper'
-
 class MeetingIDs
 	include Scraper
 
