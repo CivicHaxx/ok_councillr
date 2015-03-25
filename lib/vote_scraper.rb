@@ -39,17 +39,14 @@ class VoteScraper
       .each do |x|
         councillor_name = member[:name].split(" ")
         councillor = Councillor.find_by first_name: councillor_name[0], last_name: councillor_name.from(1).join(" ")
-        
-        if councillor == nil
-          print " 💔 #{member[:name]}\n"
-        else
-          begin
-            councillor.raw_vote_records.create!(x)
-          rescue Encoding::UndefinedConversionError
-            record = Hash[x.map {|k, v| [k.to_sym, v] }]
-            councillor.raw_vote_records.create!(record)
-            print " 💔 "
-          end
+        x[:councillor] = councillor
+
+        begin
+          RawVoteRecord.create!(x)
+        rescue Encoding::UndefinedConversionError
+          record = Hash[x.map {|k, v| [k.to_sym, v] }]
+          RawVoteRecord.create!(record)
+          print " 💔 "
         end
       end 
   end
