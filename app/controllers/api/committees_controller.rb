@@ -1,10 +1,10 @@
 class Api::CommitteesController < ApiController
 	def index
-		@committees = if @@query.empty?
-			Committee.all
-		else
-			Committee.where("lower(name) LIKE ?", @@query)
-		end
+		councillor_id = params[:councillor_id]
+		@committees = Committee.all
+
+		@committees = @committees.where("lower(name) LIKE ?", @@query) unless @@query.empty?
+		@committees = @committees.joins(:committees_councillors).where("councillor_id = ?", councillor_id) if councillor_id.present?
 
 		paginate json: @committees.order(change_query_order), per_page: change_per_page
 	end
