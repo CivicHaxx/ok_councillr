@@ -12,6 +12,9 @@ class VoteScraper
   end
 
   def run
+    puts "Destroying RawVoteRecord".red
+    RawVoteRecord.destroy_all
+
     puts "Getting member vote reports"
     
     @members[1..-1].each do |member|
