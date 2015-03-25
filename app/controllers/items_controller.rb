@@ -6,6 +6,9 @@ class ItemsController < ApplicationController
 
 		@items = if params[:search] == nil
 			@items.page params[:page]
+		elsif params[:search].to_i > 0
+			@items.joins(:items_wards).where("items_wards.ward_id = ?", params[:search].to_i)
+						.page params[:page]
 		else
 			@items.where("lower(title) LIKE ?", "%#{params[:search].downcase}%")
 						.page params[:page]
