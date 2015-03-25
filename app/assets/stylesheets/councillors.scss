@@ -5,20 +5,19 @@
 .councillors {
 	text-align: center;
 	.card {
-		transition: background 1s ease,
-			color 1s ease, 
-			opacity 1s ease;
 		border-radius: 5px;
 	}
 	.card:hover {
-		background-color: lighten($primary-color, 15%);
 		opacity: 0.8;
-		color: white;
-		transition: background-color 1s ease, 
+		color: $primary-color;
+		transition: color 1s ease, 
 			opacity 1s ease, 
 			color 1s ease;
 		h4 {
-			color: white;
+			color: $primary-color;
+			transition: color 1s ease, 
+			opacity 1s ease, 
+			color 1s ease;
 		}
 	}
 
@@ -43,6 +42,7 @@
 		margin-bottom: 0.2rem;	
 	}
 }
+
 .vote-history {
 	padding-top: 2rem;
 }
