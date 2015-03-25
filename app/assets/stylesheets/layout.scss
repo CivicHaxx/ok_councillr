@@ -1,11 +1,12 @@
 body {
 	overflow-y: scroll;
+	background: $body_background;
 }
 
 h2, 
 h3, 
 h4 {
-	color: #0f3890;
+	color: $black;
 	letter-spacing: -0.08rem;
 	line-height: 1em;
 }
@@ -18,7 +19,7 @@ h4 {
 			font-size: 1.75rem;
 	  	margin: 0px;
 			a {
-				color: $text_colour;
+				color: $primary-color;
 				.fa {
 					color: $no-color;
 				}
@@ -38,12 +39,16 @@ h4 {
 	.main-menu {
 		ul li {
 			background: $nav_bg;
+			
+			a {
+				color: $no_color;
+			}
 		}
-
+		
 		.dropdown {
 			li:not(.has-form):not(.active):hover {
 				> a:not(.button):not(.submit) {
-					background: $mouseover_menu;
+					background: $no_color;
 				}
 			}
 		}
@@ -53,12 +58,13 @@ h4 {
 		}
 	}
 
-	.main-menu-right-side {
-	}
 }
 
 .wrapper {
 	margin-top: 1rem;
+	background: $white;
+	padding: 1.5rem;
+	border-radius: 5px;
 }
 
 .flash {
