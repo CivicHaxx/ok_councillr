@@ -38,7 +38,7 @@ motion_types = MotionType.create!([
 ])
 
 puts "Creating Users".blue
-10.times do
+3.times do
 	@user = User.create(
 		email: Faker::Internet.safe_email,
 		first_name: Faker::Name.first_name,

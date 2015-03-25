@@ -7,24 +7,25 @@ class AgendaScraper
 
   def initialize
     @raw_file_dir = raw_file_dir(:agendas)
-    @ids          = MeetingIDs.new(12, 2014).ids
+    @ids          = MeetingIDs.new(12, 2015).ids
   end
 
   def get_agendas
-    @ids.map do |id| # Check if the file exists, if not, download it.
+    id = "9688"
+    #@ids.map do |id| # Check if the file exists, if not, download it.
       file_name = "#{@raw_file_dir}/#{id}.html"
       unless File.exist? file_name
         print "Calling the internet and saving agenda #{id}".yellow
         save(file_name, RawDocument.new(:agendas, id).content)
         puts " ✔ "
       end
-    end  
+    #end  
   end
   
   def parse_agendas
   # Temporarily remove the loop for OKC
   # @ids.each do |id|
-    id = "7849"
+    id = "9688"
     print "\nParsing #{id} "
     
     content      = open("#{@raw_file_dir}/#{id}.html").read
