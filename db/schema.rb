@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150323230429) do
-=======
 ActiveRecord::Schema.define(version: 20150324233543) do
->>>>>>> Add Ref To Actually Councillor For Raw Vote Record
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,9 +181,6 @@ ActiveRecord::Schema.define(version: 20150324233543) do
   add_foreign_key "motions", "councillors"
   add_foreign_key "motions", "items"
   add_foreign_key "motions", "motion_types"
-<<<<<<< HEAD
-  add_foreign_key "users", "wards"
-=======
   add_foreign_key "raw_vote_records", "councillors"
->>>>>>> Add Ref To Actually Councillor For Raw Vote Record
+  add_foreign_key "users", "wards"
 end
