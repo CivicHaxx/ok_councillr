@@ -1,4 +1,5 @@
 WARD_INFO = [
+	["","",0,"City of Toronto"],
 	["Ainslie","Paul",43,"Scarborough East"],
 	["Di Ciano","Justin",5,"Etobicoke-Lakeshore"],
 	["McConnell","Pam",28,"Toronto Centre-Rosedale"],
