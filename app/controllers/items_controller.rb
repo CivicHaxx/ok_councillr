@@ -2,10 +2,13 @@ class ItemsController < ApplicationController
 	helper_method :display_user_votes_for, :new_item_for_current_user
 
 	def index
+		@items = Item.where(item_type_id: 1).includes(:user_votes)
+
 		@items = if params[:search] == nil
-			Item.where(item_type_id: 1).includes(:user_votes).page params[:page]
+			@items.page params[:page]
 		else
-			Item.where(item_type_id: 1).where("lower(title) LIKE ?", "%#{params[:search].downcase}%").includes(:user_votes).page params[:page]
+			@items.where("lower(title) LIKE ?", "%#{params[:search].downcase}%")
+						.page params[:page]
 		end
 	end
 
