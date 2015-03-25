@@ -50,7 +50,6 @@ namespace :okc do
       unless item_number.empty?
         parsed_agenda_item = ParsedItem.new(item_number, item).to_h
         Item.create(parsed_agenda_item)
-
       end
     end
   end
@@ -63,7 +62,11 @@ namespace :okc do
 
   desc "Scrapes, parses & persists raw vote records"
   task :votes do
-    VoteScraper.new(4, "2014-02-16", "2014-02-22").run
+    VoteScraper.new(6, "2015-02-01", "2015-02-15").run
+    # to change the date range and the term for the votes, you need
+    # to changne the above info and change the params for getting 
+    # the csvs. e.g., The decision body ID for 2014 is 961 but it is
+    # 261 for last term.
   end
 
   ##################################################################
