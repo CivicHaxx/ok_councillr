@@ -13,6 +13,7 @@ class VoteScraper
 
   def run
     puts "Getting member vote reports"
+    
     @members[1..-1].each do |member|
       unless File.exist? "#{file_name(member[:name])}.csv"
         get_vote_record(member)
@@ -33,12 +34,19 @@ class VoteScraper
   def parse_vote_record(member)
     vote_record_hashes(member)
       .each do |x|
-        begin
-          RawVoteRecord.create!(x)
-        rescue Encoding::UndefinedConversionError
-          record = Hash[x.map {|k, v| [k.to_sym, v] }]
-          RawVoteRecord.create!(record)
-          print " 💔 "
+        councillor_name = member[:name].split(" ")
+        councillor = Councillor.find_by first_name: councillor_name[0], last_name: councillor_name.from(1).join(" ")
+        
+        if councillor == nil
+          print " 💔 #{member[:name]}\n"
+        else
+          begin
+            councillor.raw_vote_records.create!(x)
+          rescue Encoding::UndefinedConversionError
+            record = Hash[x.map {|k, v| [k.to_sym, v] }]
+            councillor.raw_vote_records.create!(record)
+            print " 💔 "
+          end
         end
       end 
   end
@@ -47,8 +55,6 @@ class VoteScraper
     open_vote_record(member).map do |x|
       x.to_h
        .symbolize_keys
-       .merge(councillor_id: member[:id], 
-          councillor_name: member[:name])
     end
   end
 
