@@ -76,7 +76,7 @@ WARD_INFO.each do |ward|
 		    ward: wards.last
 	   })
 	end
-	
+
 	print "👏"; print "  "
 end
 
@@ -148,8 +148,8 @@ Item.all.each do |item|
 	ward_number = item[:sections][:ward][0]
 
 	unless ward_number == nil
-	  item.wards << if(ward_number == "All") 
-	  	Ward.all 
+	  item.wards << if ward_number == "All"
+	  	Ward.find_by name: "City of Toronto"
 	  else
 	  	Ward.find(ward_number.to_i)
 	  end
