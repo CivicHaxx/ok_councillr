@@ -60,19 +60,23 @@ end
 puts "\nCreating Wards & Councillors".blue
 WARD_INFO.each do |ward|
 	wards << Ward.create!({ ward_number: ward[2], name: ward[3] })
-	councillors << Councillor.create!({
-			first_name: ward[1],
-	    last_name: ward[0],
-	    start_date_in_office: Faker::Date.backward(61),
-	    website: Faker::Internet.url,
-	    twitter_handle: Faker::Lorem.word,
-	    facebook_handle: Faker::Lorem.word,
-	    email: Faker::Internet.safe_email,
-	    phone_number: Faker::PhoneNumber.phone_number,
-	    address: Faker::Address.street_address,
-	    image: Faker::Avatar.image,
-	    ward: wards.last
-	    })		
+
+	unless ward[1].empty?
+		councillors << Councillor.create!({
+				first_name: ward[1],
+		    last_name: ward[0],
+		    start_date_in_office: Faker::Date.backward(61),
+		    website: Faker::Internet.url,
+		    twitter_handle: Faker::Lorem.word,
+		    facebook_handle: Faker::Lorem.word,
+		    email: Faker::Internet.safe_email,
+		    phone_number: Faker::PhoneNumber.phone_number,
+		    address: Faker::Address.street_address,
+		    image: Faker::Avatar.image,
+		    ward: wards.last
+	   })
+	end
+
 	print "👏"; print "  "
 end
 
@@ -144,8 +148,8 @@ Item.all.each do |item|
 	ward_number = item[:sections][:ward][0]
 
 	unless ward_number == nil
-	  item.wards << if(ward_number == "All") 
-	  	Ward.all 
+	  item.wards << if ward_number == "All"
+	  	Ward.find_by name: "City of Toronto"
 	  else
 	  	Ward.find(ward_number.to_i)
 	  end
