@@ -36,5 +36,4 @@ $(".next").click(function(){
 $('.synopsis .edit').click(function(e){
 	e.preventDefault();
 	$('#edit-form').slideToggle(500);
-	e.hide();
 })
