@@ -1,0 +1,15 @@
+<h3>Edit <%= @item.title %></h3>
+
+<%= form_for(@item) do |f| %>
+	<% if @item.errors.any? %>
+		<%= render 'shared/error_message', errors: @item.errors %>
+	<% end %>
+	<div class="field">
+		<%= f.label :synopsis %>
+		<%= f.text_area :synopsis %>
+	</div>
+	<div class="actions">
+		<%= f.submit "Submit", class: "button" %>
+	</div>
+<% end %>
+
