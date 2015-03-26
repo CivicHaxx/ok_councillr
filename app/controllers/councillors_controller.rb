@@ -11,7 +11,7 @@ class CouncillorsController < ApplicationController
 	end
 
 	private
-	def calulatated_absence_percent(councillor)
+	def calculated_absence_percent(councillor)
 		total_number_motion = Motion.count
 
 		(councillor.councillor_votes.where(vote: "Skip").count.to_f / total_number_motion) * 100
