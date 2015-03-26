@@ -1,6 +1,5 @@
 class Api::CouncillorsController < ApiController
   def index
-    date = params[:date]
     ward_id = params[:ward_id]
     councillor_name = params[:councillor_name]
     @councillors = Councillor.all
@@ -9,16 +8,7 @@ class Api::CouncillorsController < ApiController
         lower(last_name) LIKE ? OR 
         lower(email) LIKE ?", @@query, @@query, @@query) unless @@query.empty?
     @councillors = @councillors.where("ward_id = ?", ward_id) if ward_id.present?
-
-    if date.present?
-      dates = date.split(",")
-
-      @councillors = if dates.length > 1
-        @councillors.where("start_date_in_office >= ? AND start_date_in_office < ?", Date.strptime(dates[0], '%m-%d-%Y'), Date.strptime(dates[1], '%m-%d-%Y'))
-      else
-        @councillors.where("start_date_in_office = ?", Date.strptime(dates[0], '%m-%d-%Y'))
-      end
-    end
+    @councillors = search_by_date_range(params[:date], @councillors, "start_date_in_office")
 
     if councillor_name.present?
       councillor_name = councillor_name.downcase
