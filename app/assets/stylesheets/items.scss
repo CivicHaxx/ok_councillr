@@ -13,11 +13,17 @@
 }
  
 /***********  Items Show Page ***********/
-
+  
 #items-show{ 
   main { 
     padding-bottom: 10rem;
   }
+}
+
+.item-body {
+  position: relative;
+  display: none;
+
 }
 
 .vote-buttons {
@@ -41,6 +47,7 @@
   width: 5rem;
   font-size: 1.5rem;
   padding:0;
+  outline:none;
 
   &.no {
     background-color: $no_color;        
