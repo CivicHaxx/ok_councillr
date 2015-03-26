@@ -27,3 +27,8 @@ $(".skip").click(function(){
 	});
 });
 
+$(".next").click(function(){
+	$('.item-body').animate({
+		"left": "+=2000px"
+	});
+});

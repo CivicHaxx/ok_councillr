@@ -17,6 +17,7 @@
 #items-show{ 
   main { 
     padding-bottom: 10rem;
+    min-height: 100%;
   }
 
   h2 {
@@ -28,7 +29,7 @@
 .item-body {
   position: relative;
   display: none;
-
+  background: $white;
 }
 
 .vote-buttons {
