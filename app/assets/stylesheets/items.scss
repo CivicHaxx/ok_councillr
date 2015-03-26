@@ -18,13 +18,18 @@
   main { 
     padding-bottom: 10rem;
   }
+
+  h2 {
+    font-size: 1.75rem;
+    color: $charcoal;
+  }
 }
 
 .vote-buttons {
   padding-top: 1rem;
 	position: fixed;
 	bottom: 0;
-	background: $nav_bg;
+	background: $primary-color;
   width: 100%;
 }
 
