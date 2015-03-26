@@ -118,28 +118,6 @@ item_types = ItemType.create([
 	{ name: 'Presentation' }
 ])
 
-50.times do |index|
-	item = Item.create(
-		title: Faker::Hacker.say_something_smart, 
-		wards: wards[1...rand(wards.count)],
-		number: "#{prefix.sample}#{Faker::Number.number(1)}.#{Faker::Number.number(2)}",
-		sections: {
-			"Recommendations" => "#{Faker::Lorem.paragraphs(5)}",
-			"Decision Advice and Other Information" => "#{Faker::Lorem.paragraphs(5)}",
-			"Origin" => "#{Faker::Lorem.paragraphs(5)}",
-			"Summary" => "#{Faker::Lorem.paragraphs(5)}",
-			"Background Information" => "#{Faker::Lorem.paragraphs(5)}",
-			"Speakers" => "#{Faker::Lorem.paragraphs(5)}",
-			"Communications" => "#{Faker::Lorem.paragraphs(5)}",
-			"Declared Interests" => "#{Faker::Lorem.paragraphs(5)}"
-		},
-		item_type_id: item_types.sample.id,
-		origin: councillors.sample
-	)
-
-	print "🌞"; print " "
-end
-
 puts "\nCreating fake motions and votes".yellow
 # Change this to the following when parsing ALL items
 # Agenda.third.items.all.each do
