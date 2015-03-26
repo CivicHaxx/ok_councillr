@@ -5,8 +5,8 @@ class CouncillorsController < ApplicationController
 
 	def show	
 		@councillor = Councillor.find params[:id]
-		@votes = @councillor.councillor_votes.includes(:motion)
-		@rvr_votes = @councillor.raw_vote_records
+		@votes = @councillor.councillor_votes.includes(:motion).page params[:page]
+		@rvr_votes = @councillor.raw_vote_records. page params[:page]
 		@absences = calculated_absence_percent(@councillor)
 	end
 
