@@ -73,7 +73,7 @@ class ParsedItem
 				sections[current_section] = ""
 			else
 				content = node.to_s
-				sections[current_section] <<  sanitize(whitewash(content), tags: %w(p a span br))
+				sections[current_section] <<  sanitize(whitewash(content), tags: %w(div p a span br))
 			end
 		end.flatten
 		sections
