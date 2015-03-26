@@ -38,7 +38,7 @@ motion_types = MotionType.create!([
 ])
 
 puts "Creating Users".blue
-3.times do
+1.times do
 	@user = User.create(
 		email: Faker::Internet.safe_email,
 		first_name: Faker::Name.first_name,
@@ -66,13 +66,13 @@ WARD_INFO.each do |ward_info|
 				first_name: ward_info[1],
 		    last_name: ward_info[0],
 		    start_date_in_office: Faker::Date.backward(61),
-		    website: Faker::Internet.url,
+		    website: Faker::Internet.domain_name,
 		    twitter_handle: "@#{Faker::Internet.user_name}",
 		    facebook_handle: Faker::Internet.user_name,
 		    email: "councillor_#{ward_info[0].downcase}@toronto.ca",
 		    phone_number: Faker::PhoneNumber.phone_number,
 		    address: "100 Queen Street West, Toront, ON",
-		    image: Faker::Avatar.image,
+		    image: Faker::Avatar.image, #"http://placehold.it/300/F2DFB7/00b783&text=Councillor+#{ward_info[0]}",
 		    ward: wards.last
 	   })
 	end
