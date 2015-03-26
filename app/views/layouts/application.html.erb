@@ -8,8 +8,6 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <script src="//use.typekit.net/uyo0teu.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
   </head>
     <body id="<%= controller_name %>-<%= action_name %>">
     
@@ -17,7 +15,7 @@
       <nav class="top-bar navigation" data-topbar role="navigation" data-options="is_hover: false">
         <ul class="title-area">
           <li class="name">
-            <h1><%=link_to 'OKCouncillr <i class="fa fa-check-square-o"></i>'.html_safe, root_url %></h1>
+            <h1><%=link_to 'OKCouncillr', root_url %></h1>
           </li>
           <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>

@@ -1,6 +1,5 @@
 body {
 	overflow-y: scroll;
-	background: $body_background;
 }
 
 h2, 
@@ -14,7 +13,6 @@ h4 {
 .main-header {
 	.title-area {
 		h1 {
-			font-family: $title-font;
 	  	line-height: 2.8125rem;
 			font-size: 1.75rem;
 	  	margin: 0px;
@@ -28,7 +26,7 @@ h4 {
 	}
 
 	.navigation {
-		background-color: $nav_bg;
+		// background-color: $nav_bg;
 	}
 
 	.smaller-device-menu {
@@ -38,7 +36,7 @@ h4 {
 
 	.main-menu {
 		ul li {
-			background: $nav_bg;
+			// background: $nav_bg;
 			
 			a {
 				color: $no_color;
@@ -54,7 +52,7 @@ h4 {
 		}
 
 		li:not(.has-form) a:not(.button):not(.submit) {
-			background: $nav_bg;
+			// background: $nav_bg;
 		}
 	}
 

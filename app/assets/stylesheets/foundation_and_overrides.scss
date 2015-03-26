@@ -87,16 +87,14 @@ $include-html-global-classes: $include-html-classes;
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We use these to define default font stacks
-$font-family-sans-serif: museo-sans, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-$font-family-serif: "Ubuntu", Georgia, Cambria, "Times New Roman", Times, serif;
+$font-family-sans-serif: "Ubuntu", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+// $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
-$title-font: 'Lobster', cursive;
 
 // We use these to define default font weights
-// $font-weight-normal: normal !default;
-// $font-weight-bold: bold !default;
+$font-weight-normal: normal !default;
+$font-weight-bold: bold !default;
 
-// $white       : #FFFFFF;
 // $ghost       : #FAFAFA;
 // $snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
@@ -114,22 +112,36 @@ $title-font: 'Lobster', cursive;
 // $tuatara     : #444444;
 // $oil         : #333333;
 // $jet         : #222222;
-// $black       : #000000;
+
+ $teal				 : #00B7A3;
+ $blood-orange : #F26149;
+ $sand				 : #F2CC81;
+ $avocado			 : #AED25B;
+ $black        : #303030;
+ $white        : #F4F4F4;
+
 
 // We use these as default colors throughout
- $primary-color: #00b7a3;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+ $primary-color		: $teal;
+ $secondary-color : $sand;
+ $alert-color			: $blood-orange;
+ $success-color		: $avocado;
+
+// $warning-color: #F08A24;
+// $info-color: #A0D3E8;
+
+// OK Councillr Buttons
+$no_color:   $blood-orange;
+$skip_color: #F2CC81;
+$yes_color:  $avocado;
+
 
 // We use these to control various global styles
-// $body-bg: $white;
-// $body-font-color: $jet;
-// $body-font-family: $font-family-sans-serif;
-// $body-font-weight: $font-weight-normal;
-// $body-font-style: normal;
+ $body-bg: $white;
+ $body-font-color: $black;
+ $body-font-family: $font-family-sans-serif;
+ $body-font-weight: $font-weight-normal;
+ $body-font-style: normal;
 
 // We use this to control font-smoothing
 // $font-smoothing: antialiased;
@@ -196,7 +208,7 @@ $title-font: 'Lobster', cursive;
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-$header-font-family: $font-family-serif;
+$header-font-family: $font-family-sans-serif;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 // $header-font-color: $jet;
@@ -1368,8 +1380,8 @@ div.reveal-modal-bg {
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $nav_bg;
-$topbar-bg: $nav_bg;
+// $topbar-bg-color: $nav_bg;
+// $topbar-bg: $nav_bg;
 
 // Height and margin
 // $topbar-height: rem-calc(45);
@@ -1421,10 +1433,10 @@ $topbar-link-color-active-hover: $white;
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: rem-calc(13);
 // $topbar-menu-link-weight: $font-weight-bold;
-$topbar-menu-link-color: $text_colour;
-$topbar-menu-icon-color: $text_colour;
-$topbar-menu-link-color-toggled: $text_colour;
-$topbar-menu-icon-color-toggled: $text_colour;
+// $topbar-menu-link-color: $;
+// $topbar-menu-icon-color: $;
+// $topbar-menu-link-color-toggled: $;
+// $topbar-menu-icon-color-toggled: $;
 
 // Transitions and breakpoint styles
 // $topbar-transition-speed: 300ms;
