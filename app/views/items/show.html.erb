@@ -1,9 +1,10 @@
-<h2><%= @item.title%></h2>
+<div class="item-body">
+	<h2><%= @item.title%></h2>
 
-<ul class="small-block-grid-4">
-	<li>Item number: <%= @item.number %></li>
-	<li>Ward: <%= @item.sections[:ward].compact.join ", " %></li>
-</ul>
+	<ul class="small-block-grid-4">
+		<li>Item number: <%= @item.number %></li>
+		<li>Ward: <%= @item.sections[:ward].compact.join ", " %></li>
+	</ul>
 
 <ul class="accordion" data-accordion>
 	<% @item.sections.each_with_index do  |(title, content), index| %>
@@ -15,6 +16,7 @@
 				</div>
 			</li>
 		<% end %>
-	<% end %>
-</ul>
+	</ul>
+	
+</div>
 

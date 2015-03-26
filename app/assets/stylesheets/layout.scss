@@ -5,29 +5,31 @@ body {
 h2, 
 h3, 
 h4 {
-	color: #0f3890;
+	color: $black;
 	letter-spacing: -0.08rem;
 	line-height: 1em;
 }
 
 .main-header {
+
+	border-bottom: 3px solid $primary-color;
+
 	.title-area {
+
 		h1 {
-			font-family: $title-font;
-	  	line-height: 2.8125rem;
-			font-size: 1.75rem;
-	  	margin: 0px;
 			a {
-				color: $text_colour;
-				.fa {
-					color: $no-color;
-				}
+				background: url(ok-councillr-logo.svg) no-repeat;
+				display: block;
+				height: 45px;
+				overflow: hidden;
+				text-indent: 300px;
+				width: 146px;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				padding: 0px;
+				margin: 0.5rem 1rem 0rem;
 			}
 		}
-	}
-
-	.navigation {
-		background-color: $nav_bg;
 	}
 
 	.smaller-device-menu {
@@ -37,28 +39,33 @@ h4 {
 
 	.main-menu {
 		ul li {
-			background: $nav_bg;
+			// background: $nav_bg;
+			
+			a {
+				color: $no_color;
+			}
 		}
-
+		
 		.dropdown {
 			li:not(.has-form):not(.active):hover {
 				> a:not(.button):not(.submit) {
-					background: $mouseover_menu;
+					background: $no_color;
 				}
 			}
 		}
 
 		li:not(.has-form) a:not(.button):not(.submit) {
-			background: $nav_bg;
+			// background: $nav_bg;
 		}
 	}
 
-	.main-menu-right-side {
-	}
 }
 
 .wrapper {
 	margin-top: 1rem;
+	background: $white;
+	padding: 1.5rem;
+	border-radius: 5px;
 }
 
 .flash {

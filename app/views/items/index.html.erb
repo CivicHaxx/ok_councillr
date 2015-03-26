@@ -1,10 +1,16 @@
 <h2>All Items</h2>
 
 <%= form_tag items_path, method: :get do %>
-	<div class="form-field">
+	<div class="form-field large-12 columns">
+	<div class="row collapse">
 		<%= label_tag :search %>
-		<%= text_field_tag :search, params[:search], placeholder: "Search for names or ward number" %> 
-		<%= submit_tag "Search", class: "submit" %>
+		<div class="small-10 columns">
+			<%= text_field_tag :search, params[:search], placeholder: "Search by Item Title or Ward Number" %> 
+		</div>
+		<div class="small-2 columns">
+			<%= submit_tag "Search", class: "button postfix" %>
+		</div>
+		</div>
 	</div>
 <% end %>
 
@@ -17,20 +23,20 @@
 			<th>No</th>
 			<th>Skip</th>
 			<th>Result</th>
-			<tbody>
-			<% @items.each do |item| %>
-				<tr>
-					<td><%= link_to item.number, item_path(item) %></td>
-					<td><%= link_to item.title, item_path(item) %></td>
-					<td><%= item.count_yes %></td>
-					<td><%= item.count_no %></td>
-					<td><%= item.count_skip %></td>
-					<td class="<%= item.result.to_s %>"><%= item.result.to_s.capitalize %></td>
-				</tr>
-			<% end %>
-			</tbody>
 		</tr>
 	</thead>
+	<tbody>
+		<% @items.each do |item| %>
+			<tr>
+				<td><%= link_to item.number, item_path(item) %></td>
+				<td><%= link_to item.title, item_path(item) %></td>
+				<td><%= item.count_yes %></td>
+				<td><%= item.count_no %></td>
+				<td><%= item.count_skip %></td>
+				<td class="<%= item.result.to_s %>"><%= item.result.to_s.capitalize %></td>
+			</tr>
+		<% end %>
+	</tbody>
 </table>
 
 
