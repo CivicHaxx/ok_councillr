@@ -33,59 +33,57 @@
 	<div class="tabs-content">
 	  <section role="tabpanel" aria-hidden="false" class="content" id="okc-votes">
 	    <table role="grid">
-					<thead>
-						<tr>
-							<th>Number</th>
-							<th>Title</th>
-							<th width="100">Vote</th>
-							<tbody>
-								<% @votes.each do |vote| %>
-									<% unless vote.motion.amendment_text == "" %>
-									<tr>
-										<td><%= vote.motion.item_id %></td>
-										<td><%= vote.motion.amendment_text %></td>
-										<td class="vote-<%= vote.vote.downcase %>">
-											<%= vote.vote %>
-										</td>
-									</tr>
-									<% end %>
-								<% end %>
-							</tbody>
-						</tr>
-					</thead>
-				</table>
-				<%= paginate @votes %>
+				<thead>
+					<tr>
+						<th>Number</th>
+						<th>Title</th>
+						<th width="100">Vote</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @votes.each do |vote| %>
+						<% unless vote.motion.amendment_text == "" %>
+							<tr>
+								<td><%= vote.motion.item_id %></td>
+								<td><%= vote.motion.amendment_text %></td>
+								<td class="vote-<%= vote.vote.downcase %>">
+									<%= vote.vote %>
+								</td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+			<%= paginate @votes %>
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content active" id="real-votes">
 	    <table role="grid">
-					<thead>
+				<thead>
+					<tr>
+						<th class="number">Number</th>
+						<th class="title">Title</th>
+						<th class="type">Motion Type</th>
+						<th class="">Vote</th>
+						<th class="result">Result</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @rvr_votes.each do |vote| %>
+						<% unless vote.agenda_item_title == "" %>
 						<tr>
-							<th class="number">Number</th>
-							<th class="title">Title</th>
-							<th class="type">Motion Type</th>
-							<th class="">Vote</th>
-							<th class="result">Result</th>
-							<tbody>
-								<% @rvr_votes.each do |vote| %>
-									<% unless vote.agenda_item_title == "" %>
-									<tr>
-										<td><%= vote.agenda_item %></td>
-										<td><%= vote.agenda_item_title %></td>
-										<td><%= vote.motion_type %></td>
-										<td class="vote-<%= vote.vote.downcase %>">
-											<%= vote.vote %>
-										</td>
-										<td>
-											<%= vote.result %>
-										</td>
-									</tr>
-									<% end %>
-								<% end %>
-							</tbody>
+							<td><%= vote.agenda_item %></td>
+							<td><%= vote.agenda_item_title %></td>
+							<td><%= vote.motion_type %></td>
+							<td class="vote-<%= vote.vote.downcase %>">
+								<%= vote.vote %>
+							</td>
+							<td> <%= vote.result %> </td>
 						</tr>
-					</thead>
-				</table>
-				<%= paginate @rvr_votes %>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+			<%= paginate @rvr_votes %>
 	  </section>
 	</div>
 </div>
