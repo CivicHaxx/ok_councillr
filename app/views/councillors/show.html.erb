@@ -11,7 +11,7 @@
 			<p>Twitter: <a href="http://www.twitter.com/<%= @councillor.twitter_handle %>" target="_blank"><%= @councillor.twitter_handle %></a></p>
 			<p>Facebook: <a href="http://www.facebook.com/<%= @councillor.facebook_handle %>" target="_blank"><%= @councillor.facebook_handle %></a></p>
 			<p>Address: <%= @councillor.address %></p>
-			<p>Number of Times Absences: <%= number_to_percentage(@absences, precision: 0) %> </p>
+			<p>% of Absences: <%= number_to_percentage(@absences, precision: 0) %> </p>
 	</div>
 	<div class="medium-3 columns councillor-info committee-info">
 		<p>Committees: </p>
