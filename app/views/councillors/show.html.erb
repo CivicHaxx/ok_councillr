@@ -11,15 +11,16 @@
 			<p>Twitter: <a href="http://www.twitter.com/<%= @councillor.twitter_handle %>" target="_blank"><%= @councillor.twitter_handle %></a></p>
 			<p>Facebook: <a href="http://www.facebook.com/<%= @councillor.facebook_handle %>" target="_blank"><%= @councillor.facebook_handle %></a></p>
 			<p>Address: <%= @councillor.address %></p>
-			<p>Absences: <%= number_to_percentage(@absences, precision: 0) %> </p>
 	</div>
 	<div class="medium-3 columns councillor-info committee-info">
-		<p>Committees: </p>
+		<h4>Committees: </h4>
 		<ul class="committees">
 		 	<% @councillor.committees.each do |committee| %>
 				<li><%= committee.name %></li>
 			<% end %>
 		</ul>
+		<h4>Absences</h4>
+		<p>Absences: <%= number_to_percentage(@absences, precision: 0) %> </p>
 	</div>
 </div>
 
