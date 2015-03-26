@@ -38,7 +38,7 @@ motion_types = MotionType.create!([
 ])
 
 puts "Creating Users".blue
-3.times do
+1.times do
 	@user = User.create(
 		email: Faker::Internet.safe_email,
 		first_name: Faker::Name.first_name,
@@ -58,21 +58,21 @@ puts "Creating Users".blue
 end
 
 puts "\nCreating Wards & Councillors".blue
-WARD_INFO.each do |ward|
-	wards << Ward.create!({ ward_number: ward[2], name: ward[3] })
+WARD_INFO.each do |ward_info|
+	wards << Ward.create!({ ward_number: ward_info[2], name: ward_info[3] })
 
-	unless ward[1].empty?
+	unless ward_info[1].empty?
 		councillors << Councillor.create!({
-				first_name: ward[1],
-		    last_name: ward[0],
+				first_name: ward_info[1],
+		    last_name: ward_info[0],
 		    start_date_in_office: Faker::Date.backward(61),
-		    website: Faker::Internet.url,
-		    twitter_handle: Faker::Lorem.word,
-		    facebook_handle: Faker::Lorem.word,
-		    email: Faker::Internet.safe_email,
+		    website: Faker::Internet.domain_name,
+		    twitter_handle: "@#{Faker::Internet.user_name}",
+		    facebook_handle: Faker::Internet.user_name,
+		    email: "councillor_#{ward_info[0].downcase}@toronto.ca",
 		    phone_number: Faker::PhoneNumber.phone_number,
-		    address: Faker::Address.street_address,
-		    image: Faker::Avatar.image,
+		    address: "100 Queen Street West, Toront, ON",
+		    image: Faker::Avatar.image, #"http://placehold.it/300/F2DFB7/00b783&text=Councillor+#{ward_info[0]}",
 		    ward: wards.last
 	   })
 	end
@@ -114,7 +114,7 @@ end
 # NOTE: We are currently building the app so users can vote on items and not 
 #       motions. Perhaps we should change this temporarily.
 
-puts "Creating fake motions and votes".yellow
+puts "\nCreating fake motions and votes".yellow
 # Change this to the following when parsing ALL items
 # Agenda.third.items.all.each do
 Item.all.each do |item|
@@ -151,7 +151,7 @@ Item.all.each do |item|
 	  item.wards << if ward_number == "All"
 	  	Ward.find_by name: "City of Toronto"
 	  else
-	  	Ward.find(ward_number.to_i)
+	  	Ward.find_by(ward_number: ward_number.to_i)
 	  end
 
 	  item.save

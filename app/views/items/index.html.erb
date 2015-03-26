@@ -17,20 +17,20 @@
 			<th>No</th>
 			<th>Skip</th>
 			<th>Result</th>
-			<tbody>
-			<% @items.each do |item| %>
-				<tr>
-					<td><%= link_to item.number, item_path(item) %></td>
-					<td><%= link_to item.title, item_path(item) %></td>
-					<td><%= item.count_yes %></td>
-					<td><%= item.count_no %></td>
-					<td><%= item.count_skip %></td>
-					<td class="<%= item.result.to_s %>"><%= item.result.to_s.capitalize %></td>
-				</tr>
-			<% end %>
-			</tbody>
 		</tr>
 	</thead>
+	<tbody>
+		<% @items.each do |item| %>
+			<tr>
+				<td><%= link_to item.number, item_path(item) %></td>
+				<td><%= link_to item.title, item_path(item) %></td>
+				<td><%= item.count_yes %></td>
+				<td><%= item.count_no %></td>
+				<td><%= item.count_skip %></td>
+				<td class="<%= item.result.to_s %>"><%= item.result.to_s.capitalize %></td>
+			</tr>
+		<% end %>
+	</tbody>
 </table>
 
 
