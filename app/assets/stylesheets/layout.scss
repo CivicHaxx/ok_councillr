@@ -11,22 +11,25 @@ h4 {
 }
 
 .main-header {
+
+	border-bottom: 3px solid $primary-color;
+
 	.title-area {
+
 		h1 {
-	  	line-height: 2.8125rem;
-			font-size: 1.75rem;
-	  	margin: 0px;
 			a {
-				color: $primary-color;
-				.fa {
-					color: $no-color;
-				}
+				background: url(ok-councillr-logo.svg) no-repeat;
+				display: block;
+				height: 45px;
+				overflow: hidden;
+				text-indent: 300px;
+				width: 146px;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				padding: 0px;
+				margin: 0.5rem 1rem 0rem;
 			}
 		}
-	}
-
-	.navigation {
-		// background-color: $nav_bg;
 	}
 
 	.smaller-device-menu {
