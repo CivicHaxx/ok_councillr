@@ -73,10 +73,14 @@ class ParsedItem
 				sections[current_section] = ""
 			else
 				content = node.to_s
-				sections[current_section] << sanitize(content, tags: %w(p))
+				sections[current_section] <<  sanitize(whitewash(content), tags: %w(p a span br))
 			end
 		end.flatten
 		sections
+	end
+
+	def whitewash(section)
+		Loofah.fragment(section).scrub!(:whitewash).to_s
 	end
 
 	def is_header?(node)
