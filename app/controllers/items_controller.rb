@@ -27,16 +27,18 @@ class ItemsController < ApplicationController
 	
 	def edit
 		@item = Item.find params[:id]
+		authorize! :update, @item, message: "You are not allowed to edit this item."
 	end
 
 	def update
 		@item = Item.find params[:id]
 
-		if @item.update_attributes item_params
-			redirect_to item_path(@item)
-		else
-			render :edit
-		end
+			if @item.update_attributes item_params
+					redirect_to item_path(@item)
+			else
+				render :show
+			end
+	
 	end
 
 	private 

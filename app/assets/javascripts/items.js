@@ -32,3 +32,9 @@ $(".next").click(function(){
 		"left": "+=2000px"
 	});
 });
+
+$('.synopsis .edit').click(function(e){
+	e.preventDefault();
+	$('#edit-form').slideToggle(500);
+	e.hide();
+})

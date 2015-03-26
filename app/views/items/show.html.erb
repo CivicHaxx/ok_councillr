@@ -7,13 +7,20 @@
 	</ul>
 
 	<h3>Synopsis</h3>
-	<div class="panel callout radius">
+	<div class="synopsis panel callout radius">
+		<% if can? :update, @item %>
+			<%= link_to "Edit", edit_item_path(@item), class: "button tiny edit right" %>
+		<% end %>
 		<% if @item.synopsis.nil? %>
 			<p>This item doesn't have a synopsis yet.</p>
 		<% else %>
 			<p><%= @item.synopsis %></p>
 		<% end %>
-		<%= link_to "Edit the Synopsis", edit_item_path(@item), class: "button" %>
+		<% if can? :update, @item %>
+			<div id="edit-form">
+				<%= render "edit" %>
+			</div>
+		<% end %>
 	</div>
 
 	<ul class="accordion" data-accordion>
