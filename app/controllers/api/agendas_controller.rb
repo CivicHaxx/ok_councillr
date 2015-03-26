@@ -1,12 +1,13 @@
 class Api::AgendasController < ApiController
 	def index
-		@agendas = if @@query.empty?
-			paginate Agenda.all.order(change_query_order), per_page: change_per_page
-		else
-			paginate Agenda.where("date = ?", Date.strptime(@@query.gsub("%",""), '%m-%d-%Y')).order(change_query_order), per_page: change_per_page
-		end
+		committee_id = params[:committee_id]
+		@agendas = Agenda.all
 
-		render json: @agendas
+		@agendas = search_by_date_range(@@query.gsub("%",""), @agendas, "date") unless @@query.empty?
+
+		@agendas = @agendas.where("committee_id = ?", committee_id) if committee_id.present?
+
+		paginate json: @agendas.order(change_query_order), per_page: change_per_page
 	end
 
 	def show

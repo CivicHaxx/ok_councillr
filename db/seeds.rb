@@ -114,6 +114,14 @@ end
 # NOTE: We are currently building the app so users can vote on items and not 
 #       motions. Perhaps we should change this temporarily.
 
+puts "\nCreating Fake Councillor Items".yellow
+
+item_types = ItemType.create([
+	{ name: 'Action' }, 
+	{ name: 'Information' }, 
+	{ name: 'Presentation' }
+])
+
 puts "\nCreating fake motions and votes".yellow
 # Change this to the following when parsing ALL items
 # Agenda.third.items.all.each do
