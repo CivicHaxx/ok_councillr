@@ -4,7 +4,7 @@
 	</div>
 	<div class="medium-5 columns councillor-info">
 		<h3><%= @councillor.first_name %> <%= @councillor.last_name %></h3>
-			<p>Ward <%= @councillor.ward.ward_number %> - <%= @councillor.ward.name %></p>
+			<h4 class="subheader">Ward <%= @councillor.ward.ward_number %> - <%= @councillor.ward.name %></h4>
 			<p>In Office Since: <%= (@councillor.start_date_in_office).strftime("%B %e, %Y") %></p>
 			<p>Email: <%= mail_to @councillor.email%> </p>
 			<p>Website: <a href="<%= @councillor.website %>" target="_blank"><%= @councillor.website %></a></p>
