@@ -19,8 +19,23 @@
 				<li><%= committee.name %></li>
 			<% end %>
 		</ul>
-		<h4>Absences</h4>
-		<p>Absences: <%= number_to_percentage(@absences, precision: 0) %> </p>
+		<div class="vote-summary">
+			<h4>Vote Summary</h4>
+			<table>
+				<tr>
+					<td>Yes:</td>
+					<td><%= number_to_percentage(@yes_votes, precision: 0) %></td>
+				</tr>
+				<tr>
+					<td>No:</td>
+					<td><%= number_to_percentage(@no_votes, precision: 0) %></td>
+				</tr>
+				<tr>
+					<td>Absent:</td>
+					<td><%= number_to_percentage(@absences, precision: 0) %></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
 
