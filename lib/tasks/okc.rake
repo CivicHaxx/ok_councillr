@@ -1,3 +1,19 @@
+require 'active_record'
+require 'active_support/all'
+require 'awesome_print'
+require 'colored'
+require 'csv'
+require 'http'
+require 'nokogiri'
+require 'open-uri'
+require 'pry'
+
+require 'scraper'
+require 'vote_scraper'
+require 'agenda_scraper'
+require 'parsed_item'
+require 'minutes_scraper'
+
 namespace :okc do
   
   ##################################################################
@@ -24,8 +40,6 @@ namespace :okc do
   
   desc "Tests ParsedItem on a single file"
   task test_parser: [:destroy_items] do |t| 
-    require 'parsed_item'
-
     content  = open("lib/dirty_agendas/7849.html").read
     sections = content.split("<br clear=\"all\">")
     items    = sections.map { |item| Nokogiri::HTML(item) }
@@ -36,7 +50,6 @@ namespace :okc do
       unless item_number.empty?
         parsed_agenda_item = ParsedItem.new(item_number, item).to_h
         Item.create(parsed_agenda_item)
-
       end
     end
   end
@@ -49,18 +62,11 @@ namespace :okc do
 
   desc "Scrapes, parses & persists raw vote records"
   task :votes do
-    require "http"
-    require "awesome_print"
-    require "colored"
-    require "csv"
-    require "pry"
-    require "nokogiri"
-    require "open-uri"
-    require "active_support/all"
-    require "active_record"
-    require 'scraper'
-    require 'vote_scraper'
-    VoteScraper.new(4, "2014-02-16", "2014-02-22").run
+    VoteScraper.new(6, "2015-02-01", "2015-02-15").run
+    # to change the date range and the term for the votes, you need
+    # to changne the above info and change the params for getting 
+    # the csvs. e.g., The decision body ID for 2014 is 961 but it is
+    # 261 for last term.
   end
 
   ##################################################################
@@ -71,14 +77,6 @@ namespace :okc do
   
   desc "Scrape, parse & persist City Council agendas"
   task :agendas do |t|
-    require 'awesome_print'
-    require 'colored'
-    require 'http'
-    require 'nokogiri'
-    require 'open-uri'
-    require 'scraper'
-    require 'agenda_scraper'
-    
     puts "Creating Item Types".blue
     item_types = ItemType.create!([
       { name: 'Action' }, 
@@ -103,14 +101,6 @@ namespace :okc do
   
   desc "Scrape Minutes"
   task :minutes do |t|
-    require 'awesome_print'
-    require 'colored'
-    require 'http'
-    require 'nokogiri'
-    require 'open-uri'
-    require 'scraper'
-    require 'minutes_scraper'
-    
     MinutesScraper.new.run
   end
 
