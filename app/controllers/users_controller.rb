@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     end
   
     if @user.save
+      auto_login(@user)
       redirect_to item_url(@item), notice: "Your account has been created"
     else
       flash.now.alert = "Error creating account"
@@ -35,7 +36,6 @@ class UsersController < ApplicationController
       ward_num = get_ward(user_params[:street_name], user_params[:street_num])
       @user.ward_id = Ward.find_by(ward_number: ward_num).id
     end
-    
     
     if @user.update_attributes(user_params)
       redirect_to edit_user_path(params[:id]), notice: "Your account has been updated"
