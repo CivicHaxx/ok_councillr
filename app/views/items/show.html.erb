@@ -1,23 +1,46 @@
 <div class="item-body">
 	<h2><%= @item.title%></h2>
 
-	<ul class="small-block-grid-4">
+	<ul class="small-block-grid-2">
 		<li>Item number: <%= @item.number %></li>
 		<li>Ward: <%= @item.sections[:ward].compact.join ", " %></li>
 	</ul>
 
-<ul class="accordion" data-accordion>
-	<% @item.sections.each_with_index do  |(title, content), index| %>
-		<% unless title == :ward %>
-			<li class="accordion-navigation <%= "active" if index == 0 %>">
-				<a href="#panel-<%= index %>a"><i class="fa fa-caret-right"></i> <%= title %></a>
-				<div id="panel-<%= index %>a" class="content <%= "active" if index == 0 %>">
-					<%= content.html_safe %>
-				</div>
-			</li>
+	<h3>Synopsis</h3>
+	<div class="synopsis panel callout radius">
+		
+		<% if can? :update, @item %>
+			<%= link_to "Edit", edit_item_path(@item), class: "button tiny edit right" %>
 		<% end %>
-	<% end %>
-</ul>
+		
+		<div id="text">
+			<% if @item.synopsis.nil? %>
+				<p>This item doesn't have a synopsis yet.</p>
+			<% else %>
+				<p><%= @item.synopsis %></p>
+			<% end %>
+		</div>
+		
+		<% if can? :update, @item %>
+			<div id="edit-form">
+				<%= render "edit" %>
+			</div>
+		<% end %>
+	
+	</div>
+
+	<ul class="accordion" data-accordion>
+		<% @item.sections.each_with_index do  |(title, content), index| %>
+			<% unless title == :ward %>
+				<li class="accordion-navigation <%= "active" if index == 0 %>">
+					<a href="#panel-<%= index %>a"><i class="fa fa-caret-right"></i> <%= title %></a>
+					<div id="panel-<%= index %>a" class="content <%= "active" if index == 0 %>">
+						<%= content.html_safe %>
+					</div>
+				</li>
+			<% end %>
+		<% end %>
+	</ul>
 	
 </div>
 
