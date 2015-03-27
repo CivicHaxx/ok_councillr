@@ -19,7 +19,10 @@ class UsersController < ApplicationController
     end
   
     if @user.save
+      UserMailer.welcome_email(@user).deliver_later
+      
       auto_login(@user)
+
       redirect_to item_url(@item), notice: "Your account has been created"
     else
       flash.now.alert = "Error creating account"
