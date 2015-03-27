@@ -1,14 +1,4 @@
 class UsersController < ApplicationController
-  def activate
-    if (@user = User.load_from_activation_token(params[:id]))
-      @user.activate!
-      auto_login(@user)
-      redirect_to edit_user_path(@user.id), notice: "Your account has been successfully activated."
-    else
-      not_authenticated
-    end
-  end
-
   def show
     @user = current_user
   end
@@ -29,7 +19,7 @@ class UsersController < ApplicationController
     end
   
     if @user.save
-      redirect_to item_url(@item), notice: "Your account has been created, an activation email has been sent"
+      redirect_to item_url(@item), notice: "Your account has been created"
     else
       flash.now.alert = "Error creating account"
       render :new
