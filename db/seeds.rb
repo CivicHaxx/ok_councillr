@@ -71,7 +71,7 @@ WARD_INFO.each do |ward_info|
 		    facebook_handle: Faker::Internet.user_name,
 		    email: "councillor_#{ward_info[0].downcase}@toronto.ca",
 		    phone_number: Faker::PhoneNumber.phone_number,
-		    address: "100 Queen Street West, Toront, ON",
+		    address: "100 Queen Street West, Toronto, ON",
 		    image: Faker::Avatar.image, #"http://placehold.it/300/F2DFB7/00b783&text=Councillor+#{ward_info[0]}",
 		    ward: wards.last
 	   })

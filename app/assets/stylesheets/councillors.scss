@@ -47,6 +47,14 @@
 	padding-top: 2rem;
 }
 
+.tabs .tab-title > a {
+	background: white;
+}
+
+.tabs .tab-title.active > a {
+	background: $ghost;
+}
+
 .committee-info {
 	padding-top: 2.2rem;
 }
