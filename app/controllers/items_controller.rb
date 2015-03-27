@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 		@items = if params[:search] == nil
 			@items.page params[:page]
 		elsif params[:search].to_i > 0
-			@items.joins(:items_wards).where("items_wards.ward_id = ?", params[:search].to_i)
+			@items.joins(:items_wards, :wards).where("ward_number = ?", params[:search].to_i)
 						.page params[:page]
 		else
 			@items.where("lower(title) LIKE ?", "%#{params[:search].downcase}%")
@@ -24,9 +24,29 @@ class ItemsController < ApplicationController
 			@past_vote = @past_vote.first.vote unless @past_vote.count == 0 
 		end
 	end
+	
+	def edit
+		@item = Item.find params[:id]
+		authorize! :update, @item, message: "You are not allowed to edit this item."
+	end
+
+	def update
+		@item = Item.find params[:id]
+
+			if @item.update_attributes item_params
+					redirect_to item_path(@item)
+			else
+				render :show
+			end
+	
+	end
 
 	private 
 	def new_item_for_current_user(item)
 		item.user_votes.where("user_id = #{current_user.id}").empty?
+	end
+
+	def item_params
+		params.require(:item).permit(:synopsis)
 	end
 end

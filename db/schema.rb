@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324233543) do
+ActiveRecord::Schema.define(version: 20150326221114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150324233543) do
     t.datetime "updated_at",   null: false
     t.integer  "origin_id"
     t.string   "origin_type"
+    t.text     "synopsis"
   end
 
   add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
@@ -141,11 +142,11 @@ ActiveRecord::Schema.define(version: 20150324233543) do
   add_index "user_votes", ["user_id"], name: "index_user_votes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                           null: false
+    t.string   "email",                                           null: false
     t.string   "crypted_password"
     t.string   "salt"
-    t.string   "first_name",                      null: false
-    t.string   "last_name",                       null: false
+    t.string   "first_name",                                      null: false
+    t.string   "last_name",                                       null: false
     t.string   "street_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -159,6 +160,7 @@ ActiveRecord::Schema.define(version: 20150324233543) do
     t.datetime "activation_token_expires_at"
     t.integer  "street_num"
     t.integer  "ward_id"
+    t.boolean  "admin",                           default: false
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
