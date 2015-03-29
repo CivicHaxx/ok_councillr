@@ -29,14 +29,14 @@ class Api::DocsController < ApplicationController
 				}
 			when :Items
 				{
-					item_type_id: "Search for all items with this type ID"
-					agenda_id: "Search for all items with this agenda ID"
+					item_type_id: "Search for all items with this type ID",
+					agenda_id: "Search for all items with this agenda ID",
 					councillor_id: "Search for all items with this councillor ID"
 				}
 			when :Motions
 				{
-					councillor_id: "Search for all motions by a councillor ID"
-					item_id: "Search for all motions with this item ID"
+					councillor_id: "Search for all motions by a councillor ID",
+					item_id: "Search for all motions with this item ID",
 					motion_type_id: "Search for all motions with this type ID"
 				}
 		end
