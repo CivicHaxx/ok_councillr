@@ -32,7 +32,9 @@ table {
 	@extend .panel;
 }
 
-.button {
-	text-transform: uppercase;
-	font-weight: 700;
+#user_session-new, #users-new {
+	.button {
+		text-transform: uppercase;
+		font-weight: 700;
+	}
 }
