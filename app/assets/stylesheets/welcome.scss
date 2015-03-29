@@ -5,6 +5,26 @@
 #welcome-index {
 	background: $blood-orange;
 
+	.main-header {
+		border: none;
+
+		.top-bar {
+			background: $blood-orange;			
+		}	
+
+		.name {
+			display: none;
+		}
+
+		li {
+		}
+
+		a {
+			color: $white;
+			background: $blood-orange;			
+		}
+	}
+
 	main {
 		background: $blood-orange;
 	}
