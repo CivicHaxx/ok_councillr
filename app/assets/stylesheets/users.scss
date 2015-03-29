@@ -31,3 +31,8 @@ table {
 	margin-top: 3em;
 	@extend .panel;
 }
+
+.button {
+	text-transform: uppercase;
+	font-weight: 700;
+}
