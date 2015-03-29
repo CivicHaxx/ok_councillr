@@ -31,8 +31,6 @@ class MinutesScraper
     sections     = content.split("<br clear=\"all\">")
     items        = sections.map { |item| Nokogiri::HTML(item) }
     @header_info = Nokogiri::HTML(items[1].to_s.split('<hr')[0])
-
-    binding.pry
     def date
       @header_info.at('tr[2]/td[2]')
                   .at('br')
