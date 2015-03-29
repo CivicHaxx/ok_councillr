@@ -54,19 +54,19 @@
 	    Agendas
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
-			<div class="columns medium-4">
-				<h2>Councillors</h2>
-				<p>URL: api/councillors</p>
+			<h2>Councillors</h2>
 
-				<h3>Optional Search Arguments</h3>
-				<dl>
-					<dt>ward_id</dt>
-					<dd>Display the councillor who is representing this ward</dd>
-					<dt>counciillor_name</dt>
-					<dd>Search for councillor using their name</dd>
-					<dt>date</dt>
-					<dd></dd>
-				</dl>
+			<h3>URL Query Parameters</h3>
+
+			<dl>
+				<% get_url_query_parameters_for(:Councillors).each do |argument, description| %>
+					<dt><%= argument %></dt>
+					<dd><%= description.html_safe %></dd>
+				<% end %>
+			</dl>
+
+			<div class="columns medium-4">
+				<p>URL: api/councillors</p>
 			</div>	    
 
 			<div class="columns medium-8">
@@ -78,7 +78,7 @@
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
 	    <div class="columns medium-4">
-				<h2>Item</h2>
+				<h2>Items</h2>
 				<p>URL: api/item/75</p>
 			</div>
 			<div class="columns medium-8">
