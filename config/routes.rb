@@ -1,7 +1,6 @@
 Rails.application.routes.draw do  
-  get 'welcome/index'
+  root 'welcome#index'
 
-  root 'items#index'
 
   namespace :api do
     resources :agendas, only: [:index, :show]
@@ -26,12 +25,13 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :dirty_agenda, only: [:index, :show]
 
-  get 'api/docs'    => 'api#index', :as => :docs
-  get 'signup'      => 'users#new', :as => :signup
-  get 'myprofile'   => 'users#show', :as => :myprofile
-  get 'myvotes'     => 'user_votes#index', :as => :myvotes
-  get 'login'       => 'user_sessions#new', :as => :login
-  post 'logout'     => 'user_sessions#destroy', :as => :logout
+  get 'welcome/index' => 'welcome#index', :as => :welcome
+  get 'api/docs'      => 'api#index', :as => :docs
+  get 'signup'        => 'users#new', :as => :signup
+  get 'myprofile'     => 'users#show', :as => :myprofile
+  get 'myvotes'       => 'user_votes#index', :as => :myvotes
+  get 'login'         => 'user_sessions#new', :as => :login
+  post 'logout'       => 'user_sessions#destroy', :as => :logout
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
