@@ -24,6 +24,9 @@ class Api::DocsController < ApplicationController
 					date: "Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date."
 				}
 			when :Committees
+				{
+					councillor_id: "Search for the committees of a councillor by their id"
+				}
 			when :Items
 			when :Motions
 			when :Wards
