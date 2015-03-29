@@ -15,6 +15,11 @@ class Api::DocsController < ApplicationController
 		case section
 			when :Agendas
 			when :Councillors
+				{
+					ward_id: "Display the councillor who is representing this ward",
+					counciillor_name: "Search for councillor using their name",
+					date: "Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date."
+				}
 			when :Committees
 			when :Items
 			when :Motions
