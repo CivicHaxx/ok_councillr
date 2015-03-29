@@ -1,42 +1,95 @@
 <h1>OKCouncillr API</h1>
 
-<h2>URLs</h2>
+<section>
+	<h2>URLs</h2>
 
-<div class="columns medium-6">
-	<ul class="square">
-		<li><%= link_to "/api/agendas", "/api/agendas" %></li>
-		<li><%= link_to "/api/agendas/:id", "/api/agendas/4" %>*</li>
-		<li><%= link_to "/api/items", "/api/items" %></li>
-		<li><%= link_to "/api/items/:id", "/api/items/4" %>*</li>
-		<li><%= link_to "/api/wards", "/api/wards" %></li>
-		<li><%= link_to "/api/wards/:id", "/api/wards/4" %>*</li>
-		<li><%= link_to "/api/councillors", "/api/councillors" %></li>
+	<div class="columns medium-6">
+		<ul class="square">
+			<li><%= link_to "/api/agendas", "/api/agendas" %></li>
+			<li><%= link_to "/api/agendas/:id", "/api/agendas/4" %>*</li>
+			<li><%= link_to "/api/items", "/api/items" %></li>
+			<li><%= link_to "/api/items/:id", "/api/items/4" %>*</li>
+			<li><%= link_to "/api/wards", "/api/wards" %></li>
+			<li><%= link_to "/api/wards/:id", "/api/wards/4" %>*</li>
+		</ul>
+	</div>
+
+	<div class="columns medium-6">
+		<ul class="square">
+			<li><%= link_to "/api/councillors", "/api/councillors" %></li>
+			<li><%= link_to "/api/councillors/:id", "/api/councillors/4" %>*</li>
+			<li><%= link_to "/api/committees", "/api/committees" %></li>
+			<li><%= link_to "/api/committees/:id", "/api/committees/4" %>*</li>
+			<li><%= link_to "/api/motions", "/api/motions" %></li>
+			<li><%= link_to "/api/motions/:id", "/api/motions/4" %>*</li>
+		</ul>
+	</div>
+
+	<em>* uses id 4 for the sake of example</em>
+	<br><br>
+</section>
+
+	<ul class="tabs" data-tab role="tablist">
+	  <li class="tab-title active" role="presentational">
+	  	<a href="#agenda-panel" role="tab" tabindex="0" aria-selected="true" controls="agenda-panel">Agendas</a>
+	  </li>
+	  <li class="tab-title" role="presentational">
+	  	<a href="#councillor-panel" role="tab" tabindex="1" aria-selected="false" controls="councillor-panel">Councillors</a>
+	  </li>
+	  <li class="tab-title" role="presentational">
+	  	<a href="#committee-panel" role="tab" tabindex="2" aria-selected="false" controls="committee-panel">Committees</a>
+	  </li>
+	  <li class="tab-title" role="presentational">
+	  	<a href="#item-panel" role="tab" tabindex="3" aria-selected="false" controls="item-panel">Items</a>
+	  </li>
+	  <li class="tab-title" role="presentational">
+	  	<a href="#motion-panel" role="tab" tabindex="4" aria-selected="false" controls="motion-panel">Motions</a>
+	  </li>
+	  <li class="tab-title" role="presentational">
+	  	<a href="#ward-panel" role="tab" tabindex="5" aria-selected="false" controls="ward-panel">Wards</a>
+	  </li>
 	</ul>
-</div>
+	<div class="tabs-content">
+	  <section role="tabpanel" aria-hidden="false" class="content active" id="agenda-panel">
+	    Agendas
+	  </section>
+	  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
+			<div class="columns medium-4">
+				<h2>Councillors</h2>
+				<p>URL: api/councillors</p>
 
-<div class="columns medium-6">
-	<ul class="square">
-		<li><%= link_to "/api/councillors/:id", "/api/councillors/4" %>*</li>
-		<li><%= link_to "/api/committees", "/api/committees" %></li>
-		<li><%= link_to "/api/committees/:id", "/api/committees/4" %>*</li>
-		<li><%= link_to "/api/motions", "/api/motions" %></li>
-		<li><%= link_to "/api/motions/:id", "/api/motions/4" %>*</li>
-		<li><%= link_to "/api/docs", "/api/docs" %></li>
-		<li>* uses id 4 for the sake of example</li>
-	</ul>
-</div>
+				<h3>Optional Search Arguments</h3>
+				<dl>
+					<dt>ward_id</dt>
+					<dd>Display the councillor who is representing this ward</dd>
+					<dt>counciillor_name</dt>
+					<dd>Search for councillor using their name</dd>
+					<dt>date</dt>
+					<dd></dd>
+				</dl>
+			</div>	    
 
-<div class="columns medium-4">
-	<h2>Councillors</h2>
-	<p>URL: api/councillors</p>
-</div>
-<div class="columns medium-8">
-	<%= coderay(@councillors).html_safe %>
-</div>
-<div class="columns medium-4">
-	<h2>Item</h2>
-	<p>URL: api/item/75</p>
-</div>
-<div class="columns medium-8">
-	<%= coderay(@item).html_safe %>
+			<div class="columns medium-8">
+				<%= coderay(@councillors).html_safe %>
+			</div>
+	  </section>
+	  <section role="tabpanel" aria-hidden="true" class="content" id="committee-panel">
+	    Committees
+	  </section>
+	  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
+	    <div class="columns medium-4">
+				<h2>Item</h2>
+				<p>URL: api/item/75</p>
+			</div>
+			<div class="columns medium-8">
+				<%= coderay(@item).html_safe %>
+			</div>
+	  </section>
+	  <section role="tabpanel" aria-hidden="true" class="content" id="motion-panel">
+			Motions
+	  </section>
+	  <section role="tabpanel" aria-hidden="true" class="content" id="ward-panel">
+	    Wards
+	  </section>
+	</div>
 </div>
