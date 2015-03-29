@@ -114,7 +114,8 @@ $font-weight-bold:   700 !default;
 // $oil         : #333333;
 
 $teal:         #00B7A3;
-$blood-orange: #F26149;
+$tomato-soup:  #F27A61;
+// $tomato-soup: #F26149;
 $sand:         #F2CC81;
 $avocado:      #AED25B;
 $black:        #303030;
@@ -127,14 +128,14 @@ $jet:          #222222;
 // We use these as default colors throughout
 $primary-color:   $teal;
 $secondary-color: $sand;
-$alert-color:     $blood-orange;
+$alert-color:     $tomato-soup;
 $success-color:   $avocado;
 
 // $warning-color: #F08A24;
 // $info-color: #A0D3E8;
 
 // OK Councillr Buttons
-$no_color:   $blood-orange;
+$vote-no-color:   $tomato-soup;
 $skip_color: $sand;
 $yes_color:  $avocado;
 
