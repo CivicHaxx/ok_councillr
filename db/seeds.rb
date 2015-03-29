@@ -43,14 +43,13 @@ puts "Creating Users".blue
 		email: Faker::Internet.safe_email,
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
-		street_name: Faker::Address.street_address,
-		street_num: Faker::Address.building_number,
+		street_name: "King Street W.",
+		street_num: 220,
 		password: "password",
 		password_confirmation: "password"
 	)
 
 	@user.save
-	@user.activate!
 
 	users << @user
 
@@ -144,15 +143,16 @@ Item.all.each do |item|
 			)
 		end
 
-		rand(10).times do
-			UserVote.create!(
-				vote: user_votes.sample,
-				user_id: users.sample.id,
-				item_id: item.id
-			)
-		end
 	end
-	
+
+	if item.id < 5 
+		UserVote.create!(
+			vote: user_votes.sample,
+			user_id: users.first.id,
+			item_id: item.id
+		)
+	end
+
 	ward_number = item[:sections][:ward][0]
 
 	unless ward_number == nil
