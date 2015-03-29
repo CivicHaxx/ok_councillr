@@ -3,10 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
  
 #welcome-index {
-	background: $no-color;
+	background: $blood-orange;
 
 	main {
-		background: $no-color;
+		background: $blood-orange;
 	}
 	 
 	h1, h4, h5 {
@@ -16,12 +16,21 @@
 	}
 }
 
+.logo-img {
+	height: 80%;
+	width: 80%;
+	margin: auto;
+	float: none;
+}
+
 .info-card {
 	background: none;
-	margin: 3%;
+	margin: 1rem;
 	border-radius: 8px;
 	border: 2px solid $white;
-	height: 300px;
+	height: 285px;
+	padding: .7rem;
+	padding-bottom: 1.5rem;
 
 	h5 {
 		height: 60px;
@@ -30,7 +39,7 @@
 	i {
 		text-align: center;
 		width: 100%;
-		color: $white;		
+		color: $ghost;
 		padding-bottom: 20px;
 	}
 
@@ -40,18 +49,10 @@
 	}
 }
 
-.search-form {
-	background: $white;
-	width: 100%;
-	border-radius: 8px;
-	height: 30px;
-	float: left;
-	color: black;
-	margin-top: 5%;
-}
-
-.welcome-sign-up {
-	float: right;
+.welcome-buttons {
 	border-radius: 5px;
-	margin-top: 15%;
+	margin: 1.5rem;
+	width: 90%;
+	border: 1px solid $white;
+	background-color: darken($teal, 5%)
 }
