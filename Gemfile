@@ -46,7 +46,9 @@ gem 'font-awesome-sass'
 gem 'coderay'
 
 gem 'awesome_print'
-  
+
+gem 'faker'
+
 #used to colour output to the terminal. 
 gem 'colored'
 
@@ -74,7 +76,6 @@ group :development, :test do
 
   gem 'favorite_things'
   gem 'best_errors'
-  gem 'faker'
   gem "letter_opener"
 end
 
