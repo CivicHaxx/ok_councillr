@@ -1,0 +1,87 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ 
+#welcome-index {
+	background: $blood-orange;
+
+	.main-header {
+		border: none;
+
+		.top-bar {
+			background: $blood-orange;			
+		}	
+
+		.name {
+			display: none;
+		}
+
+		.dropdown {
+			li:not(.has-form):not(.active):hover {
+				> a:not(.button):not(.submit) {
+					background: darken($blood-orange, 1%);
+				}
+			}
+		}
+
+		.top-bar-section li:not(.has-form) a:not(.button):not(.vote):not(.submit):hover{
+			background: darken($blood-orange, 10%);
+		}
+
+		a {
+			color: $white;
+			background: $blood-orange;			
+		}
+	}
+
+	main {
+		background: $blood-orange;
+	}
+	 
+	h1, h4, h5 {
+		color: $white;
+		font-weight: lighter;
+		text-align: center;
+	}
+}
+
+.logo-img {
+	height: 80%;
+	width: 80%;
+	margin: auto;
+	float: none;
+}
+
+.info-card {
+	background: none;
+	margin: 1rem;
+	border-radius: 8px;
+	border: 2px solid $white;
+	height: 285px;
+	padding: .7rem;
+	padding-bottom: 1.5rem;
+
+	h5 {
+		height: 60px;
+	}
+
+	i {
+		text-align: center;
+		width: 100%;
+		color: $ghost;
+		padding-bottom: 20px;
+	}
+
+	p {
+		color: $white;
+		font-weight: lighter;
+	}
+}
+
+.welcome-buttons {
+	border-radius: 5px;
+	margin: 1.5rem;
+	width: 90%;
+	border: 1px solid $white;
+	background-color: darken($teal, 5%)
+}

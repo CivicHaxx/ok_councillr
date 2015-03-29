@@ -68,11 +68,15 @@
       <%= yield %>
     </main>
 
-    <% if current_user && items_show_page? %>
-      <% if new_item_for_current_user(@item) %>
-        <%= render 'vote_buttons' %>
+    <% if items_show_page? %>
+      <% if current_user %>
+        <% if new_item_for_current_user(@item) %>
+          <%= render 'vote_buttons' %>
+        <% else %>
+          <%= render 'past_vote' %>
+        <% end %>
       <% else %>
-        <%= render 'past_vote' %>
+        <%= render 'login_to_vote' %>
       <% end %>
     <% end %>
 
