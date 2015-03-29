@@ -1,3 +1,57 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ 
+#welcome-index {
+	background: $no-color;
+
+	main {
+		background: $no-color;
+	}
+	 
+	h1, h4, h5 {
+		color: $white;
+		font-weight: lighter;
+		text-align: center;
+	}
+}
+
+.info-card {
+	background: none;
+	margin: 3%;
+	border-radius: 8px;
+	border: 2px solid $white;
+	height: 300px;
+
+	h5 {
+		height: 60px;
+	}
+
+	i {
+		text-align: center;
+		width: 100%;
+		color: $white;		
+		padding-bottom: 20px;
+	}
+
+	p {
+		color: $white;
+		font-weight: lighter;
+	}
+}
+
+.search-form {
+	background: $white;
+	width: 100%;
+	border-radius: 8px;
+	height: 30px;
+	float: left;
+	color: black;
+	margin-top: 5%;
+}
+
+.welcome-sign-up {
+	float: right;
+	border-radius: 5px;
+	margin-top: 15%;
+}
