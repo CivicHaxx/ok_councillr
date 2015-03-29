@@ -268,8 +268,8 @@ $header-font-color: $jet;
 // $code-padding: rem-calc(2) rem-calc(5) rem-calc(1);
 
 // We use these to style anchors
-// $anchor-text-decoration: none;
-// $anchor-text-decoration-hover: none;
+$anchor-text-decoration: none;
+$anchor-text-decoration-hover: none;
 $anchor-font-color: scale-color($primary-color, $lightness: -14%);
 $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
 
@@ -447,7 +447,7 @@ $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
 
 // We use these to control button text styles.
 // $button-font-family: $body-font-family;
-// $button-font-color: $white;
+$button-font-color: $white;
 // $button-font-color-alt: $oil;
 // $button-font-tny: rem-calc(11);
 // $button-font-sml: rem-calc(13);
