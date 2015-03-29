@@ -3,13 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
  
 #welcome-index {
-	background: $blood-orange;
+	background: $tomato-soup;
 
 	.main-header {
 		border: none;
 
 		.top-bar {
-			background: $blood-orange;			
+			background: $tomato-soup;			
 		}	
 
 		.name {
@@ -19,23 +19,23 @@
 		.dropdown {
 			li:not(.has-form):not(.active):hover {
 				> a:not(.button):not(.submit) {
-					background: darken($blood-orange, 1%);
+					background: darken($tomato-soup, 1%);
 				}
 			}
 		}
 
 		.top-bar-section li:not(.has-form) a:not(.button):not(.vote):not(.submit):hover{
-			background: darken($blood-orange, 10%);
+			background: darken($tomato-soup, 10%);
 		}
 
 		a {
 			color: $white;
-			background: $blood-orange;			
+			background: $tomato-soup;			
 		}
 	}
 
 	main {
-		background: $blood-orange;
+		background: $tomato-soup;
 	}
 	 
 	h1, h4, h5 {
@@ -82,6 +82,6 @@
 	border-radius: 5px;
 	margin: 1.5rem;
 	width: 90%;
-	border: 1px solid $white;
+	border: 2px solid $white;
 	background-color: darken($teal, 5%)
 }
