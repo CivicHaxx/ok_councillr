@@ -47,6 +47,24 @@
 	padding-top: 2rem;
 }
 
+.tabs .tab-title > a,
+.tabs .tab-title.active > a {
+	background: $white;
+}
+
+.tabs {
+	border-bottom: 1px solid $oil;
+
+	.tab-title.active {
+		margin-bottom: -1px !important;
+		> a {
+			border: 1px solid $oil;
+			border-bottom: 1px solid $white;
+			border-radius: $global-radius $global-radius 0 0;
+		}
+	}
+}
+
 .committee-info {
 	padding-top: 2.2rem;
 }
