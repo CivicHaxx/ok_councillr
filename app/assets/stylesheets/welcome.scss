@@ -16,7 +16,16 @@
 			display: none;
 		}
 
-		li {
+		.dropdown {
+			li:not(.has-form):not(.active):hover {
+				> a:not(.button):not(.submit) {
+					background: darken($blood-orange, 1%);
+				}
+			}
+		}
+
+		.top-bar-section li:not(.has-form) a:not(.button):not(.vote):not(.submit):hover{
+			background: darken($blood-orange, 10%);
 		}
 
 		a {
