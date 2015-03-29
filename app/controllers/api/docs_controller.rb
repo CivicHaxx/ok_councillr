@@ -39,7 +39,6 @@ class Api::DocsController < ApplicationController
 					item_id: "Search for all motions with this item id"
 					motion_type_id: "Search for all motions with this type id"
 				}
-			when :Wards
 		end
 	end
 end
