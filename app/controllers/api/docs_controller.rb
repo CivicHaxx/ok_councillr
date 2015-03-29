@@ -14,6 +14,9 @@ class Api::DocsController < ApplicationController
 	def get_url_query_parameters_for(section)
 		case section
 			when :Agendas
+				{
+					committee_id: "Search for an Agenda by their Committee ID"
+				}
 			when :Councillors
 				{
 					ward_id: "Display the councillor who is representing this ward",
