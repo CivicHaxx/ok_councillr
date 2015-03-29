@@ -22,22 +22,22 @@
 
         <section class="top-bar-section main-menu">
           <ul class="right">
-          <li><%= link_to "API Docs", "/api/docs" %></li>
-          <li><%= link_to "Councillors", councillors_path %></li>
+          <li><%= link_to "API", "/api/docs" %></li>
+          <li class="has-dropdown">
+            <a href="#">City Council</a>
+            <ul class="dropdown">
+              <li><%= link_to "Agenda Items", items_path %></li>
+              <li><%= link_to "Councillors", councillors_path %></li>
+            </ul>
+          </li>
+            
             <% if current_user %>
               <li class="has-dropdown">
                 <a href="#">Profile</a>
-                
                 <ul class="dropdown">
-                  <li>
-                    <%= link_to("Edit Profile", edit_user_path(current_user)) %>
-                  </li>
-                  <li>
-                    <%= link_to("My Votes", myvotes_path) %>
-                  </li>
-                  <li>
-                    <%= link_to("Logout", :logout, method: :post) %>
-                  </li>
+                  <li><%= link_to("My Votes", myvotes_path) %></li>
+                  <li><%= link_to("Edit Profile", edit_user_path(current_user)) %></li>
+                  <li><%= link_to("Logout", :logout, method: :post) %></li>
                 </ul>
               </li>
             <% else %>
@@ -45,9 +45,7 @@
               <li><%= link_to("Login", :login) %></li>
             <% end %>
 
-            <li>
-              <%= link_to("Get Voting!", item_path(find_next_item(current_user))) %>
-            </li>
+            <li><%= link_to("Get Voting!", item_path(find_next_item(current_user))) %></li>
           </ul>
         </section>
       </nav>

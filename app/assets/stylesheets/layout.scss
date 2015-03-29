@@ -42,14 +42,14 @@ h4 {
 			// background: $nav_bg;
 			
 			a {
-				color: $no_color;
+				color: $vote-no-color;
 			}
 		}
 		
 		.dropdown {
 			li:not(.has-form):not(.active):hover {
 				> a:not(.button):not(.submit) {
-					background: $no_color;
+					background: $vote-no-color;
 				}
 			}
 		}
