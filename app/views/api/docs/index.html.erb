@@ -104,7 +104,16 @@
 			</div>
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content" id="motion-panel">
-			Motions
+			<h2>Motions</h2>
+
+			<h3>URL Query Parameters</h3>
+
+			<dl>
+				<% get_url_query_parameters_for(:Motions).each do |argument, description| %>
+					<dt><%= argument %></dt>
+					<dd><%= description.html_safe %></dd>
+				<% end %>
+			</dl>
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content" id="ward-panel">
 	    Wards
