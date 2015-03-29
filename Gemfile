@@ -44,6 +44,9 @@ gem 'foundation-rails'
 gem 'font-awesome-sass'
 # Code syntax highlighting
 gem 'coderay'
+
+gem 'awesome_print'
+
 # Jquery UI
 # gem 'jquery-ui-rails'
 

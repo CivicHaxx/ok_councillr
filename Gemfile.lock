@@ -214,6 +214,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   api-pagination
+  awesome_print
   best_errors
   cancancan
   coderay
