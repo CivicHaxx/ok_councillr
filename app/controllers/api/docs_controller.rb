@@ -34,6 +34,11 @@ class Api::DocsController < ApplicationController
 					councillor_id: "Search for all items with this councillor id"
 				}
 			when :Motions
+				{
+					councillor_id: "Search for all motions by a councillor id"
+					item_id: "Search for all motions with this item id"
+					motion_type_id: "Search for all motions with this type id"
+				}
 			when :Wards
 		end
 	end
