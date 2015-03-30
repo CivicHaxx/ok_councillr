@@ -49,6 +49,8 @@ gem 'awesome_print'
 
 gem 'faker'
 
+gem 'figaro'
+
 #used to colour output to the terminal. 
 gem 'colored'
 
