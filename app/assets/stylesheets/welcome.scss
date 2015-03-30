@@ -16,15 +16,22 @@
 			display: none;
 		}
 
-		.dropdown {
-			li:not(.has-form):not(.active):hover {
-				> a:not(.button):not(.submit) {
-					background: darken($tomato-soup, 1%);
+		.main-menu {
+
+			ul.dropdown {
+				box-shadow: 0px;
+				background: darken($tomato-soup, 1%);
+				
+				li:not(.has-form):not(.active):hover {
+					> a:not(.button):not(.submit) {
+						background: darken($tomato-soup, 1%);
+					}
 				}
 			}
 		}
 
-		.top-bar-section li:not(.has-form) a:not(.button):not(.vote):not(.submit):hover{
+		.top-bar-section li:not(.has-form) 
+		a:not(.button):not(.vote):not(.submit):hover{
 			background: darken($tomato-soup, 10%);
 		}
 
