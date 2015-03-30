@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: Ok_Councillr_production
-  username: Ok_Councillr
+  database: ddddk7aup8659v
+  username: ebzhrwwtvnmbcx
   password: <%= ENV['OK_COUNCILLR_DATABASE_PASSWORD'] %>
