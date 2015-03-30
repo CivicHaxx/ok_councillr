@@ -86,63 +86,67 @@
 	  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
 			<h2>Councillors</h2>
 
-			<h3>Councillors Attributes</h3>
+	    <article class="columns medium-6">
+				<h3>Attributes</h3>
 
-			<dl>
-					<dt>address</dt>
-					<dd>Street Address</dd>
-					<dt>email</dt>
-					<dd>Councillor Email</dd>
-					<dt>facebook_handle</dt>
-					<dd>Councillor Facebook Handle</dd>
-					<dt>first_name</dt>
-					<dd>Councillor's First Name</dd>
-					<dt>id</dt>
-					<dd>OKC number</dd>
-					<dt>image</dt>
-					<dd>Councillor's Image</dd>
-					<dt>last_name</dt>
-					<dd>Councillor's Last Name</dd>
-					<dt>phone_number</dt>
-					<dd>Councillor's Phone Number</dd>
-					<dt>start_date_in_office</dt>
-					<dd>Date of when Councillor started in office</dd>
-					<dt>twitter_handle</dt>
-					<dd>Councillor's Twitter Handle</dd>
+				<dl>
+						<dt>address</dt>
+						<dd>Street Address</dd>
+						<dt>email</dt>
+						<dd>Councillor Email</dd>
+						<dt>facebook_handle</dt>
+						<dd>Councillor Facebook Handle</dd>
+						<dt>first_name</dt>
+						<dd>Councillor's First Name</dd>
+						<dt>id</dt>
+						<dd>OKC number</dd>
+						<dt>image</dt>
+						<dd>Councillor's Image</dd>
+						<dt>last_name</dt>
+						<dd>Councillor's Last Name</dd>
+						<dt>phone_number</dt>
+						<dd>Councillor's Phone Number</dd>
+						<dt>start_date_in_office</dt>
+						<dd>Date of when Councillor started in office</dd>
+						<dt>twitter_handle</dt>
+						<dd>Councillor's Twitter Handle</dd>
+						<dt>ward_id</dt>
+						<dd>Councillor's Ward ID</dd>
+						<dt>website</dt>
+						<dd>Councillor's Website</dd>
+				</dl>
+			</article>
+
+	    <article class="columns medium-6">
+				<h3>URL Query Parameters</h3>
+
+				<dl>
 					<dt>ward_id</dt>
-					<dd>Councillor's Ward ID</dd>
-					<dt>website</dt>
-					<dd>Councillor's Website</dd>
-			</dl>
-
-			<h3>URL Query Parameters</h3>
-
-			<dl>
-				<dt>ward_id</dt>
-				<dd>
-					Display the councillor who is representing this ward
-					<br><br>
-	    		<b>Example</b>
-	    		<br>
-	    		<code>/api/councillors?ward_id=4</code>
-				</dd>
-				<dt>counciillor_name</dt>
-				<dd>
-					Search for councillor using their name
-					<br><br>
-	    		<b>Example</b>
-	    		<br>
-	    		<code>/api/councillors?counciillor_name=ford</code>
-				</dd>
-				<dt>date</dt>
-				<dd>
-					Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date.
-					<br><br>
-	    		<b>Example</b>
-	    		<br>
-	    		<code>/api/councillors?date=02-01-2015</code> or <code>/api/councillors?date=02-01-2015,02-28-2015</code>
-				</dd>
-			</dl>
+					<dd>
+						Display the councillor who is representing this ward
+						<br><br>
+		    		<b>Example</b>
+		    		<br>
+		    		<code>/api/councillors?ward_id=4</code>
+					</dd>
+					<dt>counciillor_name</dt>
+					<dd>
+						Search for councillor using their name
+						<br><br>
+		    		<b>Example</b>
+		    		<br>
+		    		<code>/api/councillors?counciillor_name=ford</code>
+					</dd>
+					<dt>date</dt>
+					<dd>
+						Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date.
+						<br><br>
+		    		<b>Example</b>
+		    		<br>
+		    		<code>/api/councillors?date=02-01-2015</code> or <code>/api/councillors?date=02-01-2015,02-28-2015</code>
+					</dd>
+				</dl>
+			</article>
 
 			<div class="columns medium-4">
 				<p>URL: api/councillors</p>
