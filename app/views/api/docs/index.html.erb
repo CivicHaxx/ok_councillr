@@ -69,10 +69,8 @@
 			<h3>URL Query Parameters</h3>
 
 			<dl>
-				<% get_url_query_parameters_for(:Agendas).each do |argument, description| %>
-					<dt><%= argument %></dt>
-					<dd><%= description.html_safe %></dd>
-				<% end %>
+				<dt>committee_id</dt>
+				<dd>Search for an Agenda by their Committee ID</dd>
 			</dl>	    
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
@@ -110,10 +108,12 @@
 			<h3>URL Query Parameters</h3>
 
 			<dl>
-				<% get_url_query_parameters_for(:Councillors).each do |argument, description| %>
-					<dt><%= argument %></dt>
-					<dd><%= description.html_safe %></dd>
-				<% end %>
+				<dt>ward_id</dt>
+				<dd>Display the councillor who is representing this ward</dd>
+				<dt>counciillor_name</dt>
+				<dd>Search for councillor using their name</dd>
+				<dt>date</dt>
+				<dd>Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date.</dd>
 			</dl>
 
 			<div class="columns medium-4">
@@ -139,10 +139,8 @@
 	    <h3>URL Query Parameters</h3>
 
 			<dl>
-				<% get_url_query_parameters_for(:Committees).each do |argument, description| %>
-					<dt><%= argument %></dt>
-					<dd><%= description.html_safe %></dd>
-				<% end %>
+				<dt>councillor_id</dt>
+				<dd>Search for the committees of a councillor by their ID</dd>
 			</dl>
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
@@ -172,10 +170,12 @@
 			<h3>URL Query Parameters</h3>
 
 			<dl>
-				<% get_url_query_parameters_for(:Items).each do |argument, description| %>
-					<dt><%= argument %></dt>
-					<dd><%= description.html_safe %></dd>
-				<% end %>
+				<dt>item_type_id</dt>
+				<dd>Search for all items with this type ID</dd>
+				<dt>agenda_id</dt>
+				<dd>Search for all items with this agenda ID</dd>
+				<dt>councillor_id</dt>
+				<dd>Search for all items with this councillor ID</dd>
 			</dl>
 
 	    <div class="columns medium-4">
@@ -206,10 +206,12 @@
 			<h3>URL Query Parameters</h3>
 
 			<dl>
-				<% get_url_query_parameters_for(:Motions).each do |argument, description| %>
-					<dt><%= argument %></dt>
-					<dd><%= description.html_safe %></dd>
-				<% end %>
+					<dt>councillor_id</dt>
+					<dd>Search for all motions by a councillor ID</dd>
+					<dt>item_id</dt>
+					<dd>Search for all motions with this item ID</dd>
+					<dt>motion_type_id</dt>
+					<dd>Search for all motions with this type ID</dd>
 			</dl>
 	  </section>
 	  <section role="tabpanel" aria-hidden="true" class="content" id="ward-panel">
