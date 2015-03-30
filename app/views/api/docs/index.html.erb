@@ -188,47 +188,51 @@
 	  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
 			<h2>Items</h2>
 
-			<h3>Items Attributes</h3>
+	    <article class="columns medium-6">
+				<h3>Attributes</h3>
 
-	    <dl>
-	    	<dt>id</dt>
-				<dd>OKC number</dd>
-	    	<dt>item_type_id</dt>
-	    	<dd>OKC number of the item type</dd>
- 	    	<dt>number</dt>
-				<dd>Item number</dd>
- 	    	<dt>origin_id</dt>
-				<dd>Origin ID of where the item came from Agenda or Councillor</dd>
- 	    	<dt>origin_type</dt>
-				<dd>Origin type of where the item came from Agenda or Councillor</dd>
- 	    	<dt>sections</dt>
-				<dd>Sections of each part of the item, this sent as a hash</dd>
- 	    	<dt>synopsis</dt>
-				<dd>Synopsis of the item, to be display to the user</dd>
- 	    	<dt>title</dt>
-				<dd>Item Title</dd>
-	    </dl>
+		    <dl>
+		    	<dt>id</dt>
+					<dd>OKC number</dd>
+		    	<dt>item_type_id</dt>
+		    	<dd>OKC number of the item type</dd>
+	 	    	<dt>number</dt>
+					<dd>Item number</dd>
+	 	    	<dt>origin_id</dt>
+					<dd>Origin ID of where the item came from Agenda or Councillor</dd>
+	 	    	<dt>origin_type</dt>
+					<dd>Origin type of where the item came from Agenda or Councillor</dd>
+	 	    	<dt>sections</dt>
+					<dd>Sections of each part of the item, this sent as a hash</dd>
+	 	    	<dt>synopsis</dt>
+					<dd>Synopsis of the item, to be display to the user</dd>
+	 	    	<dt>title</dt>
+					<dd>Item Title</dd>
+		    </dl>
+			</article>
 
-			<h3>URL Query Parameters</h3>
+	    <article class="columns medium-6">
+				<h3>URL Query Parameters</h3>
 
-			<dl>
-				<dt>item_type_id</dt>
-				<dd>
-					Search for all items with this type ID
-					<br><br>
-	    		<b>Example</b>
-	    		<br>
-	    		<code>/api/items?item_type_id=1</code>
-				</dd>
-				<dt>agenda_id</dt>
-				<dd>
-					Search for all items with this agenda ID
-					<br><br>
-	    		<b>Example</b>
-	    		<br>
-	    		<code>/api/items?agenda_id=1</code>
-				</dd>
-			</dl>
+				<dl>
+					<dt>item_type_id</dt>
+					<dd>
+						Search for all items with this type ID
+						<br><br>
+		    		<b>Example</b>
+		    		<br>
+		    		<code>/api/items?item_type_id=1</code>
+					</dd>
+					<dt>agenda_id</dt>
+					<dd>
+						Search for all items with this agenda ID
+						<br><br>
+		    		<b>Example</b>
+		    		<br>
+		    		<code>/api/items?agenda_id=1</code>
+					</dd>
+				</dl>
+			</article>
 
 	    <div class="columns medium-4">
 				<p>URL: api/item/75</p>
