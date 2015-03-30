@@ -115,11 +115,29 @@
 
 			<dl>
 				<dt>ward_id</dt>
-				<dd>Display the councillor who is representing this ward</dd>
+				<dd>
+					Display the councillor who is representing this ward
+					<br><br>
+	    		<b>Example</b>
+	    		<br>
+	    		<code>/api/councillors?ward_id=4</code>
+				</dd>
 				<dt>counciillor_name</dt>
-				<dd>Search for councillor using their name</dd>
+				<dd>
+					Search for councillor using their name
+					<br><br>
+	    		<b>Example</b>
+	    		<br>
+	    		<code>/api/councillors?counciillor_name=ford</code>
+				</dd>
 				<dt>date</dt>
-				<dd>Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date.</dd>
+				<dd>
+					Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date.
+					<br><br>
+	    		<b>Example</b>
+	    		<br>
+	    		<code>/api/councillors?date=02-01-2015</code> or <code>/api/councillors?date=02-01-2015,02-28-2015</code>
+				</dd>
 			</dl>
 
 			<div class="columns medium-4">
