@@ -19,3 +19,5 @@
 
 # Ignore vote record csvs
 /lib/vote_records/*.csv
+# Ignore application configuration
+/config/application.yml
