@@ -53,10 +53,10 @@
 	  <section role="tabpanel" aria-hidden="false" class="content active" id="agenda-panel">
 	    <h2 class="hide">Agendas</h2>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 		    <h3>Attributes</h3>
 
-				<dl>
+				<dl class="api-articles-properties api-articles-attributes">
 		    	<dt>committee_id</dt>
 		    	<dd>Committee ID from OKC of which committee created the agenda</dd>
 		    	<dt>date</dt>
@@ -68,17 +68,18 @@
 				</dl>
 	    </article>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
 
-				<dl>
+				<dl class="api-articles-properties api-articles-url-query-parameters">
 					<dt>committee_id</dt>
 					<dd>
 						Search for an Agenda by their Committee ID
-		    		<br><br>
-		    		<b>Example</b>
-		    		<br>
-		    		<code>/api/agendas?committee_id=1</code>
+		    		<div class="api-articles-url-query-parameters-example">
+			    		<em>Example</em>
+			    		<br>
+			    		<code>/api/agendas?committee_id=1</code>
+		    		</div>
 					</dd>
 				</dl>   
 	    </article>
@@ -86,10 +87,10 @@
 	  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
 			<h2 class="hide">Councillors</h2>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 				<h3>Attributes</h3>
 
-				<dl>
+				<dl class="api-articles-properties api-articles-attributes">
 						<dt>address</dt>
 						<dd>Street Address</dd>
 						<dt>email</dt>
@@ -117,33 +118,37 @@
 				</dl>
 			</article>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
 
-				<dl>
+				<dl class="api-articles-properties api-articles-url-query-parameters">
 					<dt>ward_id</dt>
 					<dd>
 						Display the councillor who is representing this ward
-						<br><br>
-		    		<b>Example</b>
-		    		<br>
-		    		<code>/api/councillors?ward_id=4</code>
+						<div class="api-articles-url-query-parameters-example">
+			    		<em>Example</em>
+			    		<br>
+			    		<code>/api/councillors?ward_id=4</code>
+						</div>
 					</dd>
 					<dt>councillor_name</dt>
 					<dd>
 						Search for councillor using their name
-						<br><br>
-		    		<b>Example</b>
-		    		<br>
-		    		<code>/api/councillors?councillor_name=ford</code>
+						<div class="api-articles-url-query-parameters-example">
+			    		<em>Example</em>
+			    		<br>
+			    		<code>/api/councillors?councillor_name=ford</code>
+						</div>
 					</dd>
 					<dt>date</dt>
 					<dd>
 						Search for councillor base on when they started in office, in format dd/mm/yyyy. Also you can have a range by using '<em>,</em>' between the date.
-						<br><br>
-		    		<b>Example</b>
-		    		<br>
-		    		<code>/api/councillors?date=02-01-2015</code> or <code>/api/councillors?date=02-01-2015,02-28-2015</code>
+
+						<div class="api-articles-url-query-parameters-example">
+			    		<em>Example</em>
+			    		<br>
+			    		<code>/api/councillors?date=02-01-2015</code> or <code>/api/councillors?date=02-01-2015,02-28-2015</code>
+						</div>
 					</dd>
 				</dl>
 			</article>
@@ -159,10 +164,10 @@
 	  <section role="tabpanel" aria-hidden="true" class="content" id="committee-panel">
 	    <h2 class="hide">Committees</h2>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 		    <h3>Attributes</h3>
 
-		    <dl>
+		    <dl class="api-articles-properties api-articles-attributes">
 		    	<dt>id</dt>
 					<dd>OKC number</dd>
 					<dt>name</dt>
@@ -170,17 +175,18 @@
 		    </dl>
 			</article>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 		    <h3>URL Query Parameters</h3>
 
-				<dl>
+				<dl class="api-articles-properties api-articles-url-query-parameters">
 					<dt>councillor_id</dt>
 					<dd>
 						Search for the committees of a councillor by their ID
-						<br><br>
-		    		<b>Example</b>
-		    		<br>
-		    		<code>/api/committees?councillor_id=1</code>
+						<div class="api-articles-url-query-parameters-example">
+			    		<em>Example</em>
+			    		<br>
+			    		<code>/api/committees?councillor_id=1</code>
+						</div>
 					</dd>
 				</dl>
 			</article>
@@ -188,10 +194,10 @@
 	  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
 			<h2 class="hide">Items</h2>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 				<h3>Attributes</h3>
 
-		    <dl>
+		    <dl class="api-articles-properties api-articles-attributes">
 		    	<dt>id</dt>
 					<dd>OKC number</dd>
 		    	<dt>item_type_id</dt>
@@ -211,25 +217,28 @@
 		    </dl>
 			</article>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
 
-				<dl>
+				<dl class="api-articles-properties api-articles-url-query-parameters">
 					<dt>item_type_id</dt>
 					<dd>
 						Search for all items with this type ID
-						<br><br>
-		    		<b>Example</b>
-		    		<br>
-		    		<code>/api/items?item_type_id=1</code>
+
+						<div class="api-articles-url-query-parameters-example">
+			    		<em>Example</em>
+			    		<br>
+			    		<code>/api/items?item_type_id=1</code>
+						</div>
 					</dd>
 					<dt>agenda_id</dt>
 					<dd>
 						Search for all items with this agenda ID
-						<br><br>
-		    		<b>Example</b>
-		    		<br>
-		    		<code>/api/items?agenda_id=1</code>
+						<div class="api-articles-url-query-parameters-example">
+			    		<em>Example</em>
+			    		<br>
+			    		<code>/api/items?agenda_id=1</code>
+						</div>
 					</dd>
 				</dl>
 			</article>
@@ -244,10 +253,10 @@
 	  <section role="tabpanel" aria-hidden="true" class="content" id="motion-panel">
 			<h2 class="hide">Motions</h2>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 				<h3>Attributes</h3>
 
-		    <dl>
+		    <dl class="api-articles-properties api-articles-attributes">
 		    	<dt>amendment_text</dt>
 					<dd>Text of any motion to amend</dd>
 		    	<dt>councillor_id</dt>
@@ -261,33 +270,38 @@
 		    </dl>
 			</article>
 
-	    <article class="columns medium-6">
+	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
 
-				<dl>
+				<dl class="api-articles-properties api-articles-url-query-parameters">
 						<dt>councillor_id</dt>
 						<dd>
 							Search for all motions by a councillor ID
-							<br><br>
-			    		<b>Example</b>
-			    		<br>
-			    		<code>/api/motions?councillor_id=14</code>
+							<div class="api-articles-url-query-parameters-example">
+				    		<em>Example</em>
+				    		<br>
+				    		<code>/api/motions?councillor_id=14</code>
+							</div>
 						</dd>
 						<dt>item_id</dt>
 						<dd>
 							Search for all motions with this item ID
-							<br><br>
-			    		<b>Example</b>
-			    		<br>
-			    		<code>/api/motions?item_id=20</code>
+							
+							<div class="api-articles-url-query-parameters-example">
+				    		<em>Example</em>
+				    		<br>
+				    		<code>/api/motions?item_id=20</code>
+							</div>
 						</dd>
 						<dt>motion_type_id</dt>
 						<dd>
 							Search for all motions with this type ID
-							<br><br>
-			    		<b>Example</b>
-			    		<br>
-			    		<code>/api/motions?motion_type_id=3</code>
+
+							<div class="api-articles-url-query-parameters-example">
+				    		<em>Example</em>
+				    		<br>
+				    		<code>/api/motions?motion_type_id=3</code>
+							</div>
 						</dd>
 				</dl>
 			</article>
@@ -295,10 +309,10 @@
 	  <section role="tabpanel" aria-hidden="true" class="content" id="ward-panel">
 	    <h2 class="hide">Wards</h2>
 
-	    <article>
+	    <article class="api-articles">
 		    <h3>Attributes</h3>
 
-		    <dl>
+		    <dl class="api-articles-properties api-articles-attributes">
 		    	<dt>id</dt>
 					<dd>OKC number</dd>
 					<dt>name</dt>
