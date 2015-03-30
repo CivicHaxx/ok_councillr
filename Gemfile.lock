@@ -76,6 +76,8 @@ GEM
       did_you_mean
       pry-rails
       quiet_assets
+    figaro (1.1.0)
+      thor (~> 0.14)
     font-awesome-sass (4.3.2)
       sass (~> 3.2)
     foundation-rails (5.5.1.0)
@@ -220,6 +222,7 @@ DEPENDENCIES
   colored
   faker
   favorite_things
+  figaro
   font-awesome-sass
   foundation-rails
   http

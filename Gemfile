@@ -32,6 +32,7 @@ gem 'kaminari'
 gem 'api-pagination'
 # for defining abilities 
 gem 'cancancan'
+gem 'figaro'
 
 # the html_stripper uses Ox to parse docs
 # remove this if we decide to only use Loofah
