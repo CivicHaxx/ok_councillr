@@ -52,6 +52,17 @@
 	float: none;
 }
 
+.tagline { 
+	text-align: center;
+	color: white;
+
+	p {
+		font-size: 1.25rem;
+		margin-bottom: 0;
+	}
+
+}
+
 .info-card {
 	background: none;
 	margin: 1rem;
