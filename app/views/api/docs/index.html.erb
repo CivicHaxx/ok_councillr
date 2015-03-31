@@ -51,11 +51,11 @@
 			<h3>Examples</h3>
 
 			<ul>
-				<li><%= link_to "/api/agendas", "/api/agendas" %></li>
-				<li><%= link_to "/api/agendas/4", "/api/agendas/4" %></li>
-				<li><%= link_to "/api/agendas?committee_id=1", "/api/agendas?committee_id=1" %></li>
-				<li><%= link_to "/api/agendas?date=02-10-2014", "/api/agendas?date=02-10-2014" %></li>
-				<li><%= link_to "/api/agendas?meeting_num=3", "/api/agendas?meeting_num=3" %></li>
+				<li><%= link_to "/api/agendas", "/api/agendas", target: :_blank %></li>
+				<li><%= link_to "/api/agendas/4", "/api/agendas/4", target: :_blank %></li>
+				<li><%= link_to "/api/agendas?committee_id=1", "/api/agendas?committee_id=1", target: :_blank %></li>
+				<li><%= link_to "/api/agendas?date=02-10-2014", "/api/agendas?date=02-10-2014", target: :_blank %></li>
+				<li><%= link_to "/api/agendas?meeting_num=3", "/api/agendas?meeting_num=3", target: :_blank %></li>
 			</ul>
 
     </div>
@@ -91,9 +91,9 @@
     <div class="api-example">
 			<h3>Examples</h3>
 			<ul>
-  			<li><%= link_to "/api/items", "/api/items" %></li>
-  			<li><%= link_to "/api/items/4", "/api/items/4" %></li>
-  			<li><%= link_to "/api/items?item_type_id=1", "/api/items?item_type_id=1" %></li>
+  			<li><%= link_to "/api/items", "/api/items", target: :_blank %></li>
+  			<li><%= link_to "/api/items/4", "/api/items/4", target: :_blank %></li>
+  			<li><%= link_to "/api/items?item_type_id=1", "/api/items?item_type_id=1", target: :_blank %></li>
 			</ul>
 
 			<code>URL: api/item/75</code>
@@ -126,10 +126,10 @@
     <div class="api-example">
 			<h3>Examples</h3>
 			<ul>
-				<li><%= link_to "/api/councillors?ward_id=4", "/api/councillors?ward_id=3" %></li>
-				<li><%= link_to "/api/councillors?councillor_name=rob", "/api/councillors?councillor_name=rob" %></li>
-				<li><%= link_to "/api/councillors?date=02-01-2015", "/api/councillors?date=02-01-2015" %></li>
-				<li><%= link_to "/api/councillors?date=02-01-2015,02-28-2015", "/api/councillors?date=02-01-2015,02-28-2015" %></li>
+				<li><%= link_to "/api/councillors?ward_id=4", "/api/councillors?ward_id=3", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?councillor_name=rob", "/api/councillors?councillor_name=rob", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?date=02-01-2015", "/api/councillors?date=02-01-2015", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?date=02-01-2015,02-28-2015", "/api/councillors?date=02-01-2015,02-28-2015", target: :_blank %></li>
 			</ul>
 
 			<div class="">
@@ -161,8 +161,8 @@
     <div class="api-example">
 	    <h3>Examples</h3>
 	    <ul>
-		    <li><%= link_to "committees?name=city council", "committees?name=city council" %></li>
-		    <li><%= link_to "committees?councillor_id=1", "committees?councillor_id=1" %></li>
+		    <li><%= link_to "committees?name=city council", "committees?name=city council", target: :_blank %></li>
+		    <li><%= link_to "committees?councillor_id=1", "committees?councillor_id=1", target: :_blank %></li>
 	    </ul>
 		</div>
   </section>
@@ -190,11 +190,11 @@
 			<h3>URL Query Parameters</h3>
 				
 	    <ul>
-		    <li><%= link_to "/api/motions?councillor_id=14", "/api/motions?councillor_id=14" %></li>
-		    <li><%= link_to "/api/motions?item_id=20", "/api/motions?item_id=20" %></li>
-		    <li><%= link_to "/api/motions?motion_type_id=3", "/api/motions?motion_type_id=3" %></li>
-		    <li><%= link_to "/api/motions", "/api/motions" %></li>
-		    <li><%= link_to "/api/motions/:id", "/api/motions/4" %></li>
+		    <li><%= link_to "/api/motions?councillor_id=14", "/api/motions?councillor_id=14", target: :_blank %></li>
+		    <li><%= link_to "/api/motions?item_id=20", "/api/motions?item_id=20", target: :_blank %></li>
+		    <li><%= link_to "/api/motions?motion_type_id=3", "/api/motions?motion_type_id=3", target: :_blank %></li>
+		    <li><%= link_to "/api/motions", "/api/motions", target: :_blank %></li>
+		    <li><%= link_to "/api/motions/:id", "/api/motions/4", target: :_blank %></li>
 	    </ul>
 
 		</div>
