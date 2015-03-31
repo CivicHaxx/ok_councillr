@@ -38,7 +38,7 @@
 	    	<dd>Returns all agendas and their content from our database.</dd>
 	    	<dt>agendas/id</dt>
 	    	<dd>Returns a specific agenda and its content.</dd>
-	    	<dt>agendas?=committee_id=num</dt>
+	    	<dt>agendas?committee_id=num</dt>
 	    	<dd>Query the database for agendas created by a specific committee.</dd>
 	    	<dt>agendas?date=mm-dd-yyyy</dt>
 	    	<dd>Query the database for an agenda with a specific date. This is the start date of the meeting.</dd>
@@ -53,7 +53,7 @@
 			<ul>
 				<li><%= link_to "/api/agendas", "/api/agendas" %></li>
 				<li><%= link_to "/api/agendas/4", "/api/agendas/4" %></li>
-				<li><%= link_to "/api/agendas?=committee_id=1", "/api/agendas?=committee_id=1" %></li>
+				<li><%= link_to "/api/agendas?committee_id=1", "/api/agendas?committee_id=1" %></li>
 				<li><%= link_to "/api/agendas?date=02-10-2014", "/api/agendas?date=02-10-2014" %></li>
 				<li><%= link_to "/api/agendas?meeting_num=3", "/api/agendas?meeting_num=3" %></li>
 			</ul>
