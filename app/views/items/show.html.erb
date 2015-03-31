@@ -35,7 +35,7 @@
 				<li class="accordion-navigation <%= "active" if index == 0 %>">
 					<a href="#panel-<%= index %>a"><i class="fa fa-caret-right"></i> <%= title %></a>
 					<div id="panel-<%= index %>a" class="content <%= "active" if index == 0 %>">
-						<%= content.html_safe %>
+						<%= htmlize(content).html_safe %>
 					</div>
 				</li>
 			<% end %>

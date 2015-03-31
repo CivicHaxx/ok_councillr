@@ -67,7 +67,8 @@ class ParsedItem
 			if node.css('p').length > 0
 				sections[current_section] << node.css('p')
 																				 .map(&:text)
-																				 .join(" ")
+																				 .reject(&:blank?)
+																				 .join("\n\n")
 			elsif is_header?(node)
 				current_section = node.text
 				sections[current_section] = ""
