@@ -5,7 +5,7 @@ class Api::CommitteesController < ApiController
 		@committees = Committee.all
 
 		@committees = @committees.where("lower(name) LIKE ?", @@query) unless @@query.empty?
-		@committees = @committees.where("lower(name) = ?", name.downcase) if name.present?
+		@committees = @committees.where("lower(name) LIKE ?", "%#{name.downcase}%") if name.present?
 		@committees = @committees.joins(:committees_councillors).where("councillor_id = ?", councillor_id) if councillor_id.present?
 
 		paginate json: @committees.order(change_query_order), per_page: change_per_page
