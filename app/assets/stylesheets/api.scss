@@ -1,4 +1,30 @@
-// Styles for syntax highlighting
+
+
+#docs-index h4 {
+  margin: 2rem;
+}
+
+
+.api-attributes, .api-example {
+  @extend .columns;
+  margin-top: 1em;
+} 
+
+.api-attributes {
+  @extend .medium-4;
+  @extend .panel;
+  @extend .radius;
+}
+
+.api-example {
+  @extend .medium-8;
+}
+
+.api-article h3 {
+  margin-bottom: 1rem;
+}
+
+
 
 code,
 .CodeRay,
@@ -168,5 +194,3 @@ ol.CodeRay li { white-space: pre }
 .CodeRay .delete .delete { color: #800; font-weight:bold }
 .CodeRay .change .change { color: #66f; }
 .CodeRay .head .head { color: #f4f; }
-
-

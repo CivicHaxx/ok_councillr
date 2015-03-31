@@ -1,42 +1,249 @@
 <h1>OKCouncillr API</h1>
 
-<h2>URLs</h2>
+<h4 class="text-center">All API urls follow the format <code>okcouncillr.com/api/ATTRIBUTE</code></h4>
 
-<div class="columns medium-6">
-	<ul class="square">
-		<li><%= link_to "/api/agendas", "/api/agendas" %></li>
-		<li><%= link_to "/api/agendas/:id", "/api/agendas/4" %>*</li>
-		<li><%= link_to "/api/items", "/api/items" %></li>
-		<li><%= link_to "/api/items/:id", "/api/items/4" %>*</li>
-		<li><%= link_to "/api/wards", "/api/wards" %></li>
-		<li><%= link_to "/api/wards/:id", "/api/wards/4" %>*</li>
-		<li><%= link_to "/api/councillors", "/api/councillors" %></li>
-	</ul>
+<p><%= link_to "Database Associations", "/ok_councillr_associations.pdf" %></p>
+
+<ul class="tabs" data-tab role="tablist">
+  <li class="tab-title active" role="presentational">
+  	<a href="#agenda-panel" role="tab" tabindex="0" aria-selected="true" controls="agenda-panel">Agendas</a>
+  </li>
+  <li class="tab-title" role="presentational">
+  	<a href="#item-panel" role="tab" tabindex="3" aria-selected="false" controls="item-panel">Items</a>
+  </li>
+  <li class="tab-title" role="presentational">
+  	<a href="#councillor-panel" role="tab" tabindex="1" aria-selected="false" controls="councillor-panel">Councillors</a>
+  </li>
+  <li class="tab-title" role="presentational">
+  	<a href="#committee-panel" role="tab" tabindex="2" aria-selected="false" controls="committee-panel">Committees</a>
+  </li>
+  <li class="tab-title" role="presentational">
+  	<a href="#motion-panel" role="tab" tabindex="4" aria-selected="false" controls="motion-panel">Motions</a>
+  </li>
+  <li class="tab-title" role="presentational">
+  	<a href="#ward-panel" role="tab" tabindex="5" aria-selected="false" controls="ward-panel">Wards</a>
+  </li>
+</ul>
+
+<div class="tabs-content">
+  
+  <section role="tabpanel" aria-hidden="false" class="content active" id="agenda-panel">
+    <h2 class="hide">Agendas</h2>
+    
+    <div class="api-attributes">
+	    <h3>Attributes</h3>
+
+			<dl>
+	    	<dt>agendas</dt>
+	    	<dd>Returns all agendas and their content from our database.</dd>
+	    	<dt>agendas/id</dt>
+	    	<dd>Returns a specific agenda and its content.</dd>
+	    	<dt>agendas?committee_id=num</dt>
+	    	<dd>Query the database for agendas created by a specific committee.</dd>
+	    	<dt>agendas?date=mm-dd-yyyy</dt>
+	    	<dd>Query the database for an agenda with a specific date. This is the start date of the meeting.</dd>
+	    	<dt>agendas?meeting_num=num</dt>
+	    	<dd>The city of Toronto's meeting number. Each term starts with Meeting 1.</dd>
+			</dl>
+    </div>
+
+    <div class="api-example">
+			<h3>Examples</h3>
+
+			<ul>
+				<li><%= link_to "/api/agendas", "/api/agendas", target: :_blank %></li>
+				<li><%= link_to "/api/agendas/4", "/api/agendas/4", target: :_blank %></li>
+				<li><%= link_to "/api/agendas?committee_id=1", "/api/agendas?committee_id=1", target: :_blank %></li>
+				<li><%= link_to "/api/agendas?date=02-10-2015", "/api/agendas?date=02-10-2015", target: :_blank %></li>
+				<li><%= link_to "/api/agendas?meeting_num=3", "/api/agendas?meeting_num=3", target: :_blank %></li>
+			</ul>
+
+    </div>
+  </section>
+
+  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
+		<h2 class="hide">Items</h2>
+
+    <div class="api-attributes">
+			<h3>Attributes</h3>
+
+	    <dl>
+  	    <dt>items</dt>
+  	    <dd>The root path for all agenda items.</dd>
+	    	<dt>items/id</dt>
+				<dd>Returns an agenda item by our item id.</dd>
+	    	<dt>itmes?item_type_id=num</dt>
+	    	<dd>Returns items with a specific item type.</dd>
+ 	    	<dt>items?number=alpha_num</dt>
+				<dd>Returns an item with the specified number. Item numbers are alphanumeric. e.g., MM3.1</dd>
+ 	    	<dt>items?agenda_id=string</dt>
+				<dd>Returns all items from that agenda.</dd>
+ 	    	<dt>items?sections=string</dt>
+				<dd>Returns a hash of the items individual sections.</dd>
+ 	    	<dt>items?synopsis=string</dt>
+				<dd>Returns the item synopsis.</dd>
+ 	    	<dt>items?title=string</dt>
+				<dd>Returns an item with the specified title.</dd>
+	    </dl>
+		</div>
+    <div class="api-example">
+			<h3>Examples</h3>
+			<ul>
+  			<li><%= link_to "/api/items", "/api/items", target: :_blank %></li>
+  			<li><%= link_to "/api/items/4", "/api/items/4", target: :_blank %></li>
+  			<li><%= link_to "/api/items?item_type_id=1", "/api/items?item_type_id=1", target: :_blank %></li>
+  			<li><%= link_to "/api/items?number=mm3.1", "/api/items?number=mm3.1", target: :_blank %></li>
+  			<li><%= link_to "/api/items?sections=origin", "/api/items?sections=origin", target: :_blank %></li>
+				<li><%= link_to "/api/items?synopsis=committee", "/api/items?synopsis=committee", target: :_blank %></li>
+  			<li><%= link_to "/api/items?title=health", "/api/items?title=health", target: :_blank %></li>
+			</ul>
+
+			<code>URL: api/item/75</code>
+			<div class="">
+				<%= coderay(@item).html_safe %>
+			</div>
+		</div>
+  </section>
+
+  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
+		<h2 class="hide">Councillors</h2>
+
+    <div class="api-attributes">
+			<h3>Attributes</h3>
+			<p>The following queries will return the City Councillors with the matching data.</p>
+			<dl>
+				<dt>councillors</dt>
+  	    <dd>The root path for all councillors.</dd>
+	    	<dt>councillors/id</dt>
+				<dd>ID in the OK Councillr database.</dd>
+				<dt>councillors?email=string</dt>
+				<dd>councillor_lastname@toronto.ca</dd>
+				<dt>councillors?councillor_name=string</dt>
+				<dd>Councillor's first or last name</dd>
+				<dt>councillors?start_date_in_office=<br>mm-dd-yyyy</dt>
+				<dd>Returns all Councillors with the specified start date. You can also separate a date range with a comma.</dd>
+				<dt>councillors?ward_id=num</dt>
+				<dd>Returns a Councillor with the specified ward number.</dd>
+			</dl>
+		</div>
+
+    <div class="api-example">
+			<h3>Examples</h3>
+			<ul>
+				<li><%= link_to "/api/councillors", "/api/councillors", target: :_blank %></li>
+  			<li><%= link_to "/api/councillors/4", "/api/councillors/4", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?email=councillor_campbell@toronto.ca", "/api/councillors?email=councillor_campbell@toronto.ca", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?councillor_name=rob", "/api/councillors?councillor_name=rob", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?date=02-01-2015", "/api/councillors?date=02-01-2015", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?date=02-01-2015,02-28-2015", "/api/councillors?date=02-01-2015,02-28-2015", target: :_blank %></li>
+				<li><%= link_to "/api/councillors?ward_id=4", "/api/councillors?ward_id=3", target: :_blank %></li>
+			</ul>
+
+			<div class="">
+				<code>URL: api/councillors</code>
+			</div>	    
+
+			<div class="">
+				<%= coderay(@councillors).html_safe %>
+			</div>
+
+		</div>
+  </section>
+
+  <section role="tabpanel" aria-hidden="true" class="content" id="committee-panel">
+    <h2 class="hide">Committees</h2>
+
+    <div class="api-attributes">
+	    <h3>Attributes</h3>
+
+	    <dl>
+	    	<dt>committees</dt>
+  	    <dd>The root path for all committees.</dd>
+	    	<dt>committees/id</dt>
+				<dd>The id of the committee.</dd>
+				<dt>committees?name=string</dt>
+				<dd>Name of committee</dd>
+				<dt>committees?councillor_id=num</dt>
+				<dd>Returns all the committees for the specified Coucillor.</dd>
+	    </dl>
+		</div>
+    <div class="api-example">
+	    <h3>Examples</h3>
+	    <ul>
+				<li><%= link_to "/api/committees", "/api/committees", target: :_blank %></li>
+  			<li><%= link_to "/api/committees/1", "/api/committees/1", target: :_blank %></li>
+		    <li><%= link_to "/api/committees?name=city council", "/api/committees?name=city council", target: :_blank %></li>
+		    <li><%= link_to "/api/committees?councillor_id=1", "/api/committees?councillor_id=1", target: :_blank %></li>
+	    </ul>
+		</div>
+  </section>
+
+  <section role="tabpanel" aria-hidden="true" class="content" id="motion-panel">
+		<h2 class="hide">Motions</h2>
+
+    <div class="api-attributes">
+			<h3>Attributes</h3>
+
+	    <dl>
+	    	<dt>motions</dt>
+  	    <dd>The root path for all motions.</dd>
+	    	<dt>motions/id</dt>
+				<dd>Returns the motion with the specified ID.</dd>
+	    	<dt>motions/amendment_text</dt>
+				<dd>Returns all motions containing the query text.</dd>
+	    	<dt>motions/councillor_id</dt>
+				<dd>Returns the Councillor who moved this motion.</dd>
+	    	<dt>motions/item_id</dt>
+				<dd>Returns all motions for the specified item.</dd>
+	    	<dt>motions/motion_type_id</dt>
+				<dd>Returns all motions for this motion type.</dd>
+	    </dl>
+		</div>
+    <div class="api-example">
+			<h3>URL Query Parameters</h3>
+				
+	    <ul>
+	    	<li><%= link_to "/api/motions", "/api/motions", target: :_blank %></li>
+  			<li><%= link_to "/api/motions/4", "/api/motions/4", target: :_blank %></li>
+  			<!-- TODO: CHange Amendment Text To Realy Data -->
+  			<li><%= link_to "/api/motions?amendment_text=creo vallum", "/api/motions?amendment_text=creo%20vallum", target: :_blank %></li>
+		    <li><%= link_to "/api/motions?councillor_id=14", "/api/motions?councillor_id=14", target: :_blank %></li>
+		    <li><%= link_to "/api/motions?item_id=20", "/api/motions?item_id=20", target: :_blank %></li>
+		    <li><%= link_to "/api/motions?motion_type_id=3", "/api/motions?motion_type_id=3", target: :_blank %></li>
+	    </ul>
+
+		</div>
+  </section>
+
+  <section role="tabpanel" aria-hidden="true" class="content" id="ward-panel">
+    <h2 class="hide">Wards</h2>
+
+    <div class="api-attributes">
+	    <h3>Attributes</h3>
+
+	    <dl>
+	    	<dt>wards</dt>
+  	    <dd>The root path for all wards.</dd>
+	    	<dt>wards/id</dt>
+				<dd>Returns the ward with the specified ID.</dd>
+				<dt>wards?name=string</dt>
+				<dd>Returns the ward with the specified name</dd>
+				<dt>wards?ward_number=num</dt>
+				<dd>Returns the ward with the specified number.</dd>
+	    </dl>
+		</div>
+
+		<div class="api-example">
+			<h3>Examples</h3>
+			<ul>
+				<li><%= link_to "/api/wards", "/api/wards", target: :_blank %></li>
+				<li><%= link_to "/api/wards/4", "/api/wards/4", target: :_blank %></li>
+				<li><%= link_to "/api/wards?name=eglinton", "/api/wards?name=eglinton", target: :_blank %></li>
+				<li><%= link_to "/api/wards?ward_number=14", "/api/wards?ward_number=14", target: :_blank %></li>
+			</ul>
+		</div>
+  </section>
+
 </div>
 
-<div class="columns medium-6">
-	<ul class="square">
-		<li><%= link_to "/api/councillors/:id", "/api/councillors/4" %>*</li>
-		<li><%= link_to "/api/committees", "/api/committees" %></li>
-		<li><%= link_to "/api/committees/:id", "/api/committees/4" %>*</li>
-		<li><%= link_to "/api/motions", "/api/motions" %></li>
-		<li><%= link_to "/api/motions/:id", "/api/motions/4" %>*</li>
-		<li><%= link_to "/api/docs", "/api/docs" %></li>
-		<li>* uses id 4 for the sake of example</li>
-	</ul>
-</div>
 
-<div class="columns medium-4">
-	<h2>Councillors</h2>
-	<p>URL: api/councillors</p>
-</div>
-<div class="columns medium-8">
-	<%= coderay(@councillors).html_safe %>
-</div>
-<div class="columns medium-4">
-	<h2>Item</h2>
-	<p>URL: api/item/75</p>
-</div>
-<div class="columns medium-8">
-	<%= coderay(@item).html_safe %>
-</div>
