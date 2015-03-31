@@ -38,19 +38,22 @@ h4 {
 	}
 
 	.main-menu {
-		ul li {
-			// background: $nav_bg;
-			
-			a {
-				color: $vote-no-color;
+		ul {
+			li a {
+				color: $black;
+			}
+			li.has-dropdown.hover {
+				box-shadow: 1px 0px 1px solid;
+				z-index: 9999;
 			}
 		}
 		
-		.dropdown {
-			li:not(.has-form):not(.active):hover {
-				> a:not(.button):not(.submit) {
-					background: $vote-no-color;
-				}
+		ul.dropdown {
+			box-shadow: 1px 1px 1px $sand;
+
+			li:not(.has-form):hover a:not(.button):not(.vote):not(.submit) {
+				background: $vote-no-color;
+				color: $white;
 			}
 		}
 
