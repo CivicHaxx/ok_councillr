@@ -1,15 +1,21 @@
-// Styles for syntax highlighting
+
+.api-attributes {
+  @extend .columns;
+  @extend .medium-4;
+} 
 
 .api-articles {
   @extend .columns;
-  @extend .medium-6;
-
+  @extend .medium-8;
   margin-top: 1em;
+}
+
+.api-articles:nth-child(1) {
+  // @extend .medium-8;
 }
 
 .api-articles-properties {
   margin-top: 2em;
-
   dd {
     margin-left: 0.5em;
   }

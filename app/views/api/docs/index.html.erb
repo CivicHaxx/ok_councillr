@@ -49,11 +49,13 @@
 	  	<a href="#ward-panel" role="tab" tabindex="5" aria-selected="false" controls="ward-panel">Wards</a>
 	  </li>
 	</ul>
+
 	<div class="tabs-content">
+	  
 	  <section role="tabpanel" aria-hidden="false" class="content active" id="agenda-panel">
 	    <h2 class="hide">Agendas</h2>
 
-	    <article class="api-articles">
+	    <aside class="api-attributes">
 		    <h3>Attributes</h3>
 
 				<dl class="api-articles-properties api-articles-attributes">
@@ -66,7 +68,7 @@
 		    	<dt>meeting_num</dt>
 		    	<dd>Meeting number from City of Toronto of which meeting taken up the agenda</dd>
 				</dl>
-	    </article>
+	    </aside>
 
 	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
@@ -84,10 +86,11 @@
 				</dl>   
 	    </article>
 	  </section>
+
 	  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
 			<h2 class="hide">Councillors</h2>
 
-	    <article class="api-articles">
+	    <aside class="api-attributes">
 				<h3>Attributes</h3>
 
 				<dl class="api-articles-properties api-articles-attributes">
@@ -116,7 +119,7 @@
 						<dt>website</dt>
 						<dd>Councillor's Website</dd>
 				</dl>
-			</article>
+			</aside>
 
 	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
@@ -151,20 +154,22 @@
 						</div>
 					</dd>
 				</dl>
+
+				<div class="columns medium-4">
+					<p>URL: api/councillors</p>
+				</div>	    
+
+				<div class="columns medium-8">
+					<%= coderay(@councillors).html_safe %>
+				</div>
+
 			</article>
-
-			<div class="columns medium-4">
-				<p>URL: api/councillors</p>
-			</div>	    
-
-			<div class="columns medium-8">
-				<%= coderay(@councillors).html_safe %>
-			</div>
 	  </section>
+
 	  <section role="tabpanel" aria-hidden="true" class="content" id="committee-panel">
 	    <h2 class="hide">Committees</h2>
 
-	    <article class="api-articles">
+	    <aside class="api-attributes">
 		    <h3>Attributes</h3>
 
 		    <dl class="api-articles-properties api-articles-attributes">
@@ -173,8 +178,7 @@
 					<dt>name</dt>
 					<dd>Name of committee</dd>
 		    </dl>
-			</article>
-
+			</aside>
 	    <article class="api-articles">
 		    <h3>URL Query Parameters</h3>
 
@@ -191,10 +195,11 @@
 				</dl>
 			</article>
 	  </section>
+
 	  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
 			<h2 class="hide">Items</h2>
 
-	    <article class="api-articles">
+	    <aside class="api-attributes">
 				<h3>Attributes</h3>
 
 		    <dl class="api-articles-properties api-articles-attributes">
@@ -215,8 +220,7 @@
 	 	    	<dt>title</dt>
 					<dd>Item Title</dd>
 		    </dl>
-			</article>
-
+			</aside>
 	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
 
@@ -241,19 +245,20 @@
 						</div>
 					</dd>
 				</dl>
-			</article>
 
-	    <div class="columns medium-4">
-				<p>URL: api/item/75</p>
-			</div>
-			<div class="columns medium-8">
-				<%= coderay(@item).html_safe %>
-			</div>
+		    <div class="">
+					<p>URL: api/item/75</p>
+				</div>
+				<div class="">
+					<%= coderay(@item).html_safe %>
+				</div>
+			</article>
 	  </section>
+
 	  <section role="tabpanel" aria-hidden="true" class="content" id="motion-panel">
 			<h2 class="hide">Motions</h2>
 
-	    <article class="api-articles">
+	    <aside class="api-attributes">
 				<h3>Attributes</h3>
 
 		    <dl class="api-articles-properties api-articles-attributes">
@@ -268,8 +273,7 @@
 		    	<dt>motion_type_id</dt>
 					<dd>OKC number of the motion type</dd>
 		    </dl>
-			</article>
-
+			</aside>
 	    <article class="api-articles">
 				<h3>URL Query Parameters</h3>
 
@@ -306,10 +310,11 @@
 				</dl>
 			</article>
 	  </section>
+
 	  <section role="tabpanel" aria-hidden="true" class="content" id="ward-panel">
 	    <h2 class="hide">Wards</h2>
 
-	    <article class="api-articles">
+	    <aside class="api-attributes">
 		    <h3>Attributes</h3>
 
 		    <dl class="api-articles-properties api-articles-attributes">
@@ -320,7 +325,7 @@
 					<dt>ward_number</dt>
 					<dd>Ward number City of Toronto provided</dd>
 		    </dl>
-			</article>
+			</aside>
 	  </section>
 	</div>
 </div>
