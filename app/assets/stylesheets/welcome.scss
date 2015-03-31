@@ -18,18 +18,6 @@
 
 		.main-menu {
 
-			ul.dropdown {
-				box-shadow: 0px;
-				background: darken($tomato-soup, 1%);
-				
-				li:not(.has-form):not(.active):hover {
-					> a:not(.button):not(.submit) {
-						background: darken($tomato-soup, 1%);
-					}
-				}
-			}
-		}
-
 		.top-bar-section li:not(.has-form) 
 		a:not(.button):not(.vote):not(.submit):hover{
 			background: darken($tomato-soup, 10%);
@@ -38,6 +26,20 @@
 		a {
 			color: $white;
 			background: $tomato-soup;			
+		}
+			ul.dropdown {
+				box-shadow: none;
+				
+				li:not(.has-form):not(.active) > a {
+					background: darken($tomato-soup, 5%);
+				}
+				
+				li:not(.has-form):not(.active):hover {
+					> a:not(.button):not(.submit) {
+						background: darken($tomato-soup, 8%);
+					}
+				}
+			}
 		}
 	}
 
