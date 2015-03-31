@@ -1,8 +1,7 @@
 <h1>OKCouncillr API</h1>
 
 <section>
-	<h2>URLs</h2>
-
+	<h4 class="text-center">All API urls follow the format okcouncillr.com/api/ATTRIBUTE</h4>
 	<div class="columns medium-6">
 		<ul class="square">
 			<li><%= link_to "/api/agendas", "/api/agendas" %></li>
@@ -24,9 +23,6 @@
 			<li><%= link_to "/api/motions/:id", "/api/motions/4" %>*</li>
 		</ul>
 	</div>
-
-	<em>* uses id 4 for the sake of example</em>
-	<br><br>
 </section>
 
 	<ul class="tabs" data-tab role="tablist">
@@ -34,13 +30,13 @@
 	  	<a href="#agenda-panel" role="tab" tabindex="0" aria-selected="true" controls="agenda-panel">Agendas</a>
 	  </li>
 	  <li class="tab-title" role="presentational">
+	  	<a href="#item-panel" role="tab" tabindex="3" aria-selected="false" controls="item-panel">Items</a>
+	  </li>
+	  <li class="tab-title" role="presentational">
 	  	<a href="#councillor-panel" role="tab" tabindex="1" aria-selected="false" controls="councillor-panel">Councillors</a>
 	  </li>
 	  <li class="tab-title" role="presentational">
 	  	<a href="#committee-panel" role="tab" tabindex="2" aria-selected="false" controls="committee-panel">Committees</a>
-	  </li>
-	  <li class="tab-title" role="presentational">
-	  	<a href="#item-panel" role="tab" tabindex="3" aria-selected="false" controls="item-panel">Items</a>
 	  </li>
 	  <li class="tab-title" role="presentational">
 	  	<a href="#motion-panel" role="tab" tabindex="4" aria-selected="false" controls="motion-panel">Motions</a>
@@ -53,39 +49,101 @@
 	<div class="tabs-content">
 	  
 	  <section role="tabpanel" aria-hidden="false" class="content active" id="agenda-panel">
-	    <h2 class="hide">Agendas</h2>
+			<article class="api-article">
+		    <h2 class="hide">Agendas</h2>
+		    
+		    <div class="api-attributes">
+			    <h3>Attributes</h3>
 
-	    <aside class="api-attributes">
-		    <h3>Attributes</h3>
+					<dl>
+			    	<dt>agendas</dt>
+			    	<dd>Returns all agendas and their content from our database.</dd>
+			    	<dt>agendas/id</dt>
+			    	<dd>Returns a specific agenda and its content.</dd>
+			    	<dt>agendas?=committee_id=num</dt>
+			    	<dd>Query the database for agendas created by a specific committee.</dd>
+			    	<dt>agendas?date=mm-dd-yyyy</dt>
+			    	<dd>Query the database for an agenda with a specific date. This is the start date of the meeting.</dd>
+			    	<dt>agendas?meeting_num=num</dt>
+			    	<dd>The city of Toronto's meeting number. Each term starts with Meeting 1.</dd>
+					</dl>
+		    </div>
 
-				<dl class="api-articles-properties api-articles-attributes">
-		    	<dt>committee_id</dt>
-		    	<dd>Committee ID from OKC of which committee created the agenda</dd>
-		    	<dt>date</dt>
-		    	<dd>Date of when the agenda was taken up in the meeting</dd>
-		    	<dt>id</dt>
-		    	<dd>OKC number</dd>
-		    	<dt>meeting_num</dt>
-		    	<dd>Meeting number from City of Toronto of which meeting taken up the agenda</dd>
-				</dl>
-	    </aside>
+		    <div class="api-example">
+					<h3>Examples</h3>
 
-	    <article class="api-articles">
-				<h3>URL Query Parameters</h3>
-
-				<dl class="api-articles-properties api-articles-url-query-parameters">
-					<dt>committee_id</dt>
-					<dd>
-						Search for an Agenda by their Committee ID
-		    		<div class="api-articles-url-query-parameters-example">
-			    		<em>Example</em>
-			    		<br>
-			    		<code>/api/agendas?committee_id=1</code>
-		    		</div>
-					</dd>
-				</dl>   
+					<ul>
+						<li><%= link_to "/api/agendas", "/api/agendas" %></li>
+						<li><%= link_to "/api/agendas/4", "/api/agendas/4" %></li>
+						<li><%= link_to "/api/agendas?=committee_id=1", "/api/agendas?=committee_id=1" %></li>
+						<li><%= link_to "/api/agendas?date=02-10-2014", "/api/agendas?date=02-10-2014" %></li>
+						<li><%= link_to "/api/agendas?meeting_num=3", "/api/agendas?meeting_num=3" %></li>
+					</ul>
+   
+		    </div>
 	    </article>
 	  </section>
+
+	    <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
+	  		<h2 class="hide">Items</h2>
+
+	      <div class="api-attributes">
+	  			<h3>Attributes</h3>
+
+	  	    <dl>
+	  	    	<dt>id</dt>
+	  				<dd>OKC number</dd>
+	  	    	<dt>item_type_id</dt>
+	  	    	<dd>OKC number of the item type</dd>
+	   	    	<dt>number</dt>
+	  				<dd>Item number</dd>
+	   	    	<dt>origin_id</dt>
+	  				<dd>Origin ID of where the item came from Agenda or Councillor</dd>
+	   	    	<dt>origin_type</dt>
+	  				<dd>Origin type of where the item came from Agenda or Councillor</dd>
+	   	    	<dt>sections</dt>
+	  				<dd>Sections of each part of the item, this sent as a hash</dd>
+	   	    	<dt>synopsis</dt>
+	  				<dd>Synopsis of the item, to be display to the user</dd>
+	   	    	<dt>title</dt>
+	  				<dd>Item Title</dd>
+	  	    </dl>
+	  		</div>
+	      <div class="api-example">
+	  			<h3>URL Query Parameters</h3>
+
+	  			<dl class="api-articles-properties api-articles-url-query-parameters">
+	  				<dt>item_type_id</dt>
+	  				<dd>
+	  					Search for all items with this type ID
+
+	  					<div class="api-articles-url-query-parameters-example">
+	  		    		<em>Example</em>
+	  		    		<br>
+	  		    		<code>/api/items?item_type_id=1</code>
+	  					</div>
+	  				</dd>
+	  				<dt>agenda_id</dt>
+	  				<dd>
+	  					Search for all items with this agenda ID
+	  					<div class="api-articles-url-query-parameters-example">
+	  		    		<em>Example</em>
+	  		    		<br>
+	  		    		<code>/api/items?agenda_id=1</code>
+	  					</div>
+	  				</dd>
+	  			</dl>
+
+	  	    <div class="">
+	  				<p>URL: api/item/75</p>
+	  			</div>
+	  			<div class="">
+	  				<%= coderay(@item).html_safe %>
+	  			</div>
+	  		</div>
+	    </section>
+
+
 
 	  <section role="tabpanel" aria-hidden="true" class="content" id="councillor-panel">
 			<h2 class="hide">Councillors</h2>
@@ -93,7 +151,7 @@
 	    <aside class="api-attributes">
 				<h3>Attributes</h3>
 
-				<dl class="api-articles-properties api-articles-attributes">
+				<dl>
 						<dt>address</dt>
 						<dd>Street Address</dd>
 						<dt>email</dt>
@@ -172,7 +230,7 @@
 	    <aside class="api-attributes">
 		    <h3>Attributes</h3>
 
-		    <dl class="api-articles-properties api-articles-attributes">
+		    <dl>
 		    	<dt>id</dt>
 					<dd>OKC number</dd>
 					<dt>name</dt>
@@ -196,72 +254,13 @@
 			</article>
 	  </section>
 
-	  <section role="tabpanel" aria-hidden="true" class="content" id="item-panel">
-			<h2 class="hide">Items</h2>
-
-	    <aside class="api-attributes">
-				<h3>Attributes</h3>
-
-		    <dl class="api-articles-properties api-articles-attributes">
-		    	<dt>id</dt>
-					<dd>OKC number</dd>
-		    	<dt>item_type_id</dt>
-		    	<dd>OKC number of the item type</dd>
-	 	    	<dt>number</dt>
-					<dd>Item number</dd>
-	 	    	<dt>origin_id</dt>
-					<dd>Origin ID of where the item came from Agenda or Councillor</dd>
-	 	    	<dt>origin_type</dt>
-					<dd>Origin type of where the item came from Agenda or Councillor</dd>
-	 	    	<dt>sections</dt>
-					<dd>Sections of each part of the item, this sent as a hash</dd>
-	 	    	<dt>synopsis</dt>
-					<dd>Synopsis of the item, to be display to the user</dd>
-	 	    	<dt>title</dt>
-					<dd>Item Title</dd>
-		    </dl>
-			</aside>
-	    <article class="api-articles">
-				<h3>URL Query Parameters</h3>
-
-				<dl class="api-articles-properties api-articles-url-query-parameters">
-					<dt>item_type_id</dt>
-					<dd>
-						Search for all items with this type ID
-
-						<div class="api-articles-url-query-parameters-example">
-			    		<em>Example</em>
-			    		<br>
-			    		<code>/api/items?item_type_id=1</code>
-						</div>
-					</dd>
-					<dt>agenda_id</dt>
-					<dd>
-						Search for all items with this agenda ID
-						<div class="api-articles-url-query-parameters-example">
-			    		<em>Example</em>
-			    		<br>
-			    		<code>/api/items?agenda_id=1</code>
-						</div>
-					</dd>
-				</dl>
-
-		    <div class="">
-					<p>URL: api/item/75</p>
-				</div>
-				<div class="">
-					<%= coderay(@item).html_safe %>
-				</div>
-			</article>
-	  </section>
-
 	  <section role="tabpanel" aria-hidden="true" class="content" id="motion-panel">
 			<h2 class="hide">Motions</h2>
 
 	    <aside class="api-attributes">
 				<h3>Attributes</h3>
 
-		    <dl class="api-articles-properties api-articles-attributes">
+		    <dl>
 		    	<dt>amendment_text</dt>
 					<dd>Text of any motion to amend</dd>
 		    	<dt>councillor_id</dt>
@@ -317,7 +316,7 @@
 	    <aside class="api-attributes">
 		    <h3>Attributes</h3>
 
-		    <dl class="api-articles-properties api-articles-attributes">
+		    <dl>
 		    	<dt>id</dt>
 					<dd>OKC number</dd>
 					<dt>name</dt>

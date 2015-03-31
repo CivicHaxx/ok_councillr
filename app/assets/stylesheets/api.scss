@@ -1,29 +1,24 @@
 
-.api-attributes {
+.api-attributes, .api-example {
   @extend .columns;
-  @extend .medium-4;
+  margin-top: 1em;
 } 
 
-.api-articles {
-  @extend .columns;
+.api-attributes {
+  @extend .medium-4;
+  @extend .panel;
+  @extend .radius;
+}
+
+.api-example {
   @extend .medium-8;
-  margin-top: 1em;
 }
 
-.api-articles:nth-child(1) {
-  // @extend .medium-8;
+.api-article h3 {
+  margin-bottom: 1rem;
 }
 
-.api-articles-properties {
-  margin-top: 2em;
-  dd {
-    margin-left: 0.5em;
-  }
-}
 
-.api-articles-url-query-parameters-example {
-  margin-top: 1em;  
-}
 
 code,
 .CodeRay,
