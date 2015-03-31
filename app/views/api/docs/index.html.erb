@@ -217,21 +217,23 @@
 	    <h3>Attributes</h3>
 
 	    <dl>
+	    	<dt>wards</dt>
+  	    <dd>The root path for all wards.</dd>
+	    	<dt>wards/id</dt>
+				<dd>Returns the ward with the specified ID.</dd>
 				<dt>wards?name=string</dt>
 				<dd>Returns the ward with the specified name</dd>
 				<dt>wards?ward_number=num</dt>
 				<dd>Returns the ward with the specified number.</dd>
-	    	<dt>wards/id</dt>
-				<dd>Returns the ward with the specified ID.</dd>
 	    </dl>
 		</div>
 
 		<div class="api-example">
 			<h3>Examples</h3>
 			<ul>
-				<li><%= link_to "/api/wards?ward_number=14", "/api/wards?ward_number=14" %></li>
 				<li><%= link_to "/api/wards", "/api/wards" %></li>
 				<li><%= link_to "/api/wards/4", "/api/wards/4" %></li>
+				<li><%= link_to "/api/wards?ward_number=14", "/api/wards?ward_number=14" %></li>
 			</ul>
 		</div>
   </section>
