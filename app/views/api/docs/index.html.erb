@@ -110,6 +110,10 @@
 			<h3>Attributes</h3>
 			<p>The following queries will return the City Councillors with the matching data.</p>
 			<dl>
+				<dt>councillors</dt>
+  	    <dd>The root path for all councillors.</dd>
+	    	<dt>councillors/id</dt>
+				<dd>Returns a councillor by our councillor id.</dd>
 				<dt>councillors?email=string</dt>
 				<dd>councillor_lastname@toronto.ca</dd>
 				<dt>councillors?councillor_name=string</dt>
@@ -126,6 +130,8 @@
     <div class="api-example">
 			<h3>Examples</h3>
 			<ul>
+				<li><%= link_to "/api/councillors", "/api/councillors", target: :_blank %></li>
+  			<li><%= link_to "/api/councillors/4", "/api/councillors/4", target: :_blank %></li>
 				<li><%= link_to "/api/councillors?ward_id=4", "/api/councillors?ward_id=3", target: :_blank %></li>
 				<li><%= link_to "/api/councillors?councillor_name=rob", "/api/councillors?councillor_name=rob", target: :_blank %></li>
 				<li><%= link_to "/api/councillors?date=02-01-2015", "/api/councillors?date=02-01-2015", target: :_blank %></li>
