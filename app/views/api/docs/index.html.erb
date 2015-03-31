@@ -182,12 +182,14 @@
 			<h3>Attributes</h3>
 
 	    <dl>
+	    	<dt>motions</dt>
+  	    <dd>The root path for all motions.</dd>
+	    	<dt>motions/id</dt>
+				<dd>Returns the motion with the specified ID.</dd>
 	    	<dt>motions/amendment_text</dt>
 				<dd>Returns all motions containing the query text.</dd>
 	    	<dt>motions/councillor_id</dt>
 				<dd>Returns the Councillor who moved this motion.</dd>
-	    	<dt>motions/id</dt>
-				<dd>Returns the motion with the specified ID.</dd>
 	    	<dt>motions/item_id</dt>
 				<dd>Returns all motions for the specified item.</dd>
 	    	<dt>motions/motion_type_id</dt>
@@ -198,11 +200,11 @@
 			<h3>URL Query Parameters</h3>
 				
 	    <ul>
+	    	<li><%= link_to "/api/motions", "/api/motions", target: :_blank %></li>
+  			<li><%= link_to "/api/motions/4", "/api/motions/4", target: :_blank %></li>
 		    <li><%= link_to "/api/motions?councillor_id=14", "/api/motions?councillor_id=14", target: :_blank %></li>
 		    <li><%= link_to "/api/motions?item_id=20", "/api/motions?item_id=20", target: :_blank %></li>
 		    <li><%= link_to "/api/motions?motion_type_id=3", "/api/motions?motion_type_id=3", target: :_blank %></li>
-		    <li><%= link_to "/api/motions", "/api/motions", target: :_blank %></li>
-		    <li><%= link_to "/api/motions/:id", "/api/motions/4", target: :_blank %></li>
 	    </ul>
 
 		</div>
