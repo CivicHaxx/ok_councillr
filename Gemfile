@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -45,6 +46,14 @@ gem 'foundation-rails'
 gem 'font-awesome-sass'
 # Code syntax highlighting
 gem 'coderay'
+
+gem 'awesome_print'
+
+gem 'faker'
+
+#used to colour output to the terminal. 
+gem 'colored'
+
 # Jquery UI
 # gem 'jquery-ui-rails'
 
@@ -69,10 +78,6 @@ group :development, :test do
 
   gem 'favorite_things'
   gem 'best_errors'
-  gem 'faker'
   gem "letter_opener"
-  
-  #used to colour output to the terminal. 
-  gem 'colored'
 end
 

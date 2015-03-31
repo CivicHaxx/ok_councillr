@@ -6,7 +6,6 @@ require 'csv'
 require 'http'
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
 
 require 'scraper'
 require 'vote_scraper'
@@ -23,7 +22,7 @@ namespace :okc do
   ##################################################################
 
   desc "Gimme a fresh start. Drops the db and parses the data again."
-  task fresh: ['db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed', :votes] do
+  task fresh: [:environment, 'db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed', :votes] do
     puts "You look great today.".magenta_on_white
   end
 
