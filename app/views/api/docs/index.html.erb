@@ -156,6 +156,10 @@
 	    <h3>Attributes</h3>
 
 	    <dl>
+	    	<dt>committees</dt>
+  	    <dd>The root path for all committees.</dd>
+	    	<dt>committees/id</dt>
+				<dd>Returns a committee by our committee id.</dd>
 				<dt>committees?name=string</dt>
 				<dd>Name of committee</dd>
 	    	<dt>committees/id</dt>
@@ -167,6 +171,8 @@
     <div class="api-example">
 	    <h3>Examples</h3>
 	    <ul>
+				<li><%= link_to "/api/committees", "/api/committees", target: :_blank %></li>
+  			<li><%= link_to "/api/committees/1", "/api/committees/1", target: :_blank %></li>
 		    <li><%= link_to "committees?name=city council", "committees?name=city council", target: :_blank %></li>
 		    <li><%= link_to "committees?councillor_id=1", "committees?councillor_id=1", target: :_blank %></li>
 	    </ul>
