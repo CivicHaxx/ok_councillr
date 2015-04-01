@@ -54,6 +54,7 @@ gem 'faker'
 #used to colour output to the terminal. 
 gem 'colored'
 
+gem 'redcarpet'
 # Jquery UI
 # gem 'jquery-ui-rails'
 
