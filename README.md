@@ -18,6 +18,9 @@ Clone the project
 
 Run `rake okc:fresh` to download the City Council Agenda and votes from February 2015 and seed the database. The project currently contains a mix of real and fake data, as the scraper is continually a work in progress. 
 
+## Contributing
+We'd love to see what others can do with this project. If you'd like to contribute to this project, please fork the repo and create a pull request of your changes.
+
 ## Wish List
 - Crowd-sourced synopses on each agenda item to make them more legible to the every-day person.
 - Facebook OAuth so that we can do more interesting analyses of users' responses and get normalized data back from our application.
