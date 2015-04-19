@@ -41,7 +41,7 @@ gem 'ox'
 # for api serilization
 gem 'active_model_serializers'
 # Foundation Scss framework
-gem 'foundation-rails'
+gem 'foundation-rails', '5.5.1.0'
 # for awesome icons
 gem 'font-awesome-sass'
 # Code syntax highlighting
