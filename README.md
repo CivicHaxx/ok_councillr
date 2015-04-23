@@ -6,7 +6,7 @@ OKCouncillor is a data scraper, API, and civic engagement app for the City of To
 
 ## Dependencies
 - [PostgreSQL](http://www.postgresql.org/)
-- Ruby 2.2.0
+- Ruby 2.2.2
 - Rails 4.2.0
 
 ## Usage
