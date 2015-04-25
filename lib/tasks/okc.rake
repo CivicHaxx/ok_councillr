@@ -61,6 +61,9 @@ namespace :okc do
 
   desc "Scrapes, parses & persists raw vote records"
   task :votes do
+    # Rake.application.rake_require File.expand_path('../../../app/models/raw_vote_record.rb', __FILE__)
+    puts "Destroying the vote record".red
+    RawVoteRecord.destroy_all
     VoteScraper.new(6, "2015-02-01", "2015-02-15").run
     # to change the date range and the term for the votes, you need
     # to changne the above info and change the params for getting 
