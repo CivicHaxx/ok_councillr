@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
   
     if @user.save
-      UserMailer.welcome_email(@user).deliver_later
+      #UserMailer.welcome_email(@user).deliver_later
       
       auto_login(@user)
 
