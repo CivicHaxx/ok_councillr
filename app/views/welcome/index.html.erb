@@ -10,7 +10,7 @@
 	<div class="medium-4 columns"> 
 		<div class="info-card">
 			<h5>HAVE YOUR SAY</h5>
-			<i class="fa fa-heart fa-4x"></i>
+			<%= link_to('<i class="fa fa-heart fa-4x"></i>'.html_safe, item_path(find_next_item(current_user))) %>
 			<p>Vote 'Yes' or 'No' on City Council agenda items, or skip items to abstain.</p>
 			
 		</div>
@@ -19,7 +19,7 @@
 	<div class="medium-4 columns">
 		<div class="info-card">
 			<h5>GET TO KNOW YOUR COUNCILLOR</h5>
-			<i class="fa fa-users fa-4x"></i>
+			<%= link_to '<i class="fa fa-users fa-4x"></i>'.html_safe, councillors_path %>
 			<p>View your city councillor's voting history and contact details.</p>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 	<div class="medium-4 columns">
 		<div class="info-card">
 			<h5>ACCESS THE DATA</h5> 
-			<i class="fa fa-database fa-4x"></i>
+			<%= link_to '<i class="fa fa-database fa-4x"></i>'.html_safe, "/api/docs" %>
 			<p>Connect to our API to access City Council agendas, minutes and more.</p>			
 		</div>
 	</div>		
