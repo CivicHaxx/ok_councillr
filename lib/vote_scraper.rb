@@ -12,8 +12,6 @@ class VoteScraper
   end
 
   def run
-    puts "Destroying RawVoteRecord".red
-    RawVoteRecord.destroy_all
 
     puts "Getting member vote reports"
     

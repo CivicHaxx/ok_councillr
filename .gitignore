@@ -21,3 +21,7 @@
 /lib/vote_records/*.csv
 # Ignore application configuration
 /config/application.yml
+
+
+# Ignore Public Assests
+/public/assets/*
