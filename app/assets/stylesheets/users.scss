@@ -13,6 +13,27 @@ table {
 	@extend .large-offset-3;
 }
 
+.user-form-container {
+	@extend .row;
+	
+	.form-field {
+		@extend .small-12;
+
+		&.small-field {
+			@extend .small-4;
+		}
+
+		&.medium-field {
+			@extend .small-6;
+		}
+
+		&.large-field {
+			@extend .small-8;
+		}
+	}
+
+}
+
 .submit {
 	@extend .button;
 	@extend .success;
