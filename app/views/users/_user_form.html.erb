@@ -3,22 +3,22 @@
 		<%= render partial: 'shared/error_message', locals: { errors: @user.errors }%>
 	<% end %>
 
-	<div class="form-field">
+	<div class="form-field medium-field">
 		<%= f.label :first_name, "First Name" %>
 		<%= f.text_field :first_name %>
 	</div>
 
-	<div class="form-field">
+	<div class="form-field medium-field">
 		<%= f.label :last_name, "Last Name" %>
 		<%= f.text_field :last_name %>
 	</div>
 
-	<div class="form-field">
+	<div class="form-field small-field">
 		<%= f.label :street_num, "Street Number" %>
 		<%= f.text_field :street_num, placeholder: "100" %>
 	</div>
 
-	<div class="form-field">
+	<div class="form-field large-field">
 		<%= f.label :street_name, "Street Name" %>
 		<%= f.text_field :street_name, placeholder: "Queen Street W." %>
 	</div>
