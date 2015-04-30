@@ -23,7 +23,11 @@ namespace :okc do
 
   desc "Gimme a fresh start. Drops the db and parses the data again."
   task fresh: [:environment, 'db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed', :votes] do
-    puts "You look great today.".magenta_on_white
+    puts "############################".magenta_on_white
+    puts "                            ".magenta_on_white
+    puts "💖 You look great today! 💖".magenta_on_white
+    puts "                            ".magenta_on_white
+    puts "############################".magenta_on_white
   end
 
   desc"Clears out items table"
