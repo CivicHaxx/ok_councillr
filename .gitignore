@@ -26,5 +26,5 @@
 # Ignore Public Assests
 /public/assets/*
 
-#ignore scott's notes on launching okc
-launching-okc.md
+#ignore scott's notes dir
+/notes/*
