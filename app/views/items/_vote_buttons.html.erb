@@ -5,7 +5,7 @@
 				<%= form_for [@item, @user_vote] do |f| %>
 					<%= f.hidden_field :user_id, value: current_user.id %>
 					<%= f.hidden_field(:vote, value: "No") %>					
-					<%= button_tag(type: 'submit', class: "vote no") do %>
+					<%= button_tag(type: 'submit', class: "vote no", title: 'Dislike this item', rel: 'tooltip') do %>
 							<i class="fa fa-thumbs-o-down fa-2x"></i>
 					<% end %>	
 				<% end %>	
@@ -16,7 +16,7 @@
 				<%= form_for [@item, @user_vote] do |f| %>
 					<%= f.hidden_field :user_id, value: current_user.id %>
 					<%= f.hidden_field(:vote, value: "Skip") %>	
-					<%= button_tag(type: 'submit', class: "vote skip") do %>
+					<%= button_tag(type: 'submit', class: "vote skip", title: 'Pass on this item', rel: 'tooltip') do %>
 							Pass</i>
 					<% end %>	
 				<% end %>
@@ -26,7 +26,7 @@
 				<%= form_for [@item, @user_vote] do |f| %>
 					<%= f.hidden_field :user_id, value: current_user.id %>
 					<%= f.hidden_field(:vote, value: "Yes") %>	
-					<%= button_tag(type: 'submit', class: "vote yes") do %>
+					<%= button_tag(type: 'submit', class: "vote yes", title: 'Like this item', rel: 'tooltip') do %>
 							<i class="fa fa-thumbs-o-up fa-2x"></i>
 					<% end %>
 				<% end %>
