@@ -4,13 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   rescue_from CanCan::AccessDenied do |exception|
+    @item = Item.where(item_type_id: 1).first if @item == nil
+
     redirect_to item_path(@item), :notice => exception.message
   end
 
   def find_next_item(user)
     if user.nil? || user.has_no_votes?
   		Item.where(item_type_id: 1).first
-
   	else
 	  	get_items_to_vote_on(user).order(:id).first.id
 	  end
