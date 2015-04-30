@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :access_only_your_account, except: [:new, :create, :show]
   load_and_authorize_resource except: [:new, :create]
   
   def show
@@ -76,6 +77,10 @@ class UsersController < ApplicationController
     )
   end
 
+  def access_only_your_account
+    redirect_to(root_url) unless current_user == User.find(params[:id])
+  end
+
   def post(street_name, street_num)
     HTTP.post("http://www1.toronto.ca/cot-templating/ward?streetName=#{street_name}&streetNumber=#{street_num}")
     .body
@@ -86,5 +91,4 @@ class UsersController < ApplicationController
     xml = Nokogiri::XML(post(street_name, street_num))
     xml.xpath('//wardID').text.to_i
   end
-
 end
