@@ -6,7 +6,7 @@
 					<%= f.hidden_field :user_id, value: current_user.id %>
 					<%= f.hidden_field(:vote, value: "No") %>					
 					<%= button_tag(type: 'submit', class: "vote no") do %>
-							<i class="fa fa-times fa-2x"></i>
+							<i class="fa fa-thumbs-o-down fa-2x"></i>
 					<% end %>	
 				<% end %>	
 
@@ -17,7 +17,7 @@
 					<%= f.hidden_field :user_id, value: current_user.id %>
 					<%= f.hidden_field(:vote, value: "Skip") %>	
 					<%= button_tag(type: 'submit', class: "vote skip") do %>
-							<i class="fa fa-step-forward fa-2x"></i>
+							Pass</i>
 					<% end %>	
 				<% end %>
 			</div>
@@ -27,7 +27,7 @@
 					<%= f.hidden_field :user_id, value: current_user.id %>
 					<%= f.hidden_field(:vote, value: "Yes") %>	
 					<%= button_tag(type: 'submit', class: "vote yes") do %>
-							<i class="fa fa-heart fa-2x"></i>
+							<i class="fa fa-thumbs-o-up fa-2x"></i>
 					<% end %>
 				<% end %>
 			</div> <!-- yes vote -->
