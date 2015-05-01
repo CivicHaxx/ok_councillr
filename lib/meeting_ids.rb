@@ -3,9 +3,12 @@ class MeetingIDs
 
 	attr_reader :ids
 
+	# TO DO: Pass scrape decision body IDs and pass them into this class to get
+	# 			 meeting IDs for different committees.
 	def initialize(date)
-		@now = date
-		@ids = meeting_ids
+		@now           = date
+		@decision_body = "961"
+		@ids           = meeting_ids
 	end
 
 	private
@@ -19,7 +22,7 @@ class MeetingIDs
 	end
 
 	def meeting_page
-  	url  = "decisionBodyProfile.do?function=doPrepare&decisionBodyId=961"
+  	url  = "decisionBodyProfile.do?function=doPrepare&decisionBodyId=#{@decision_body}"
 		page = get url
 		Nokogiri::HTML(page)
 	end
