@@ -25,7 +25,7 @@ namespace :okc do
   task fresh: [:environment, 'db:drop', 'db:create', 'db:migrate', :agendas, 'db:seed', :votes] do
     puts "############################".magenta_on_white
     puts "                            ".magenta_on_white
-    puts "💖 You look great today! 💖".magenta_on_white
+    puts "💖  You look great today!  💖 ".magenta_on_white
     puts "                            ".magenta_on_white
     puts "############################".magenta_on_white
   end
@@ -96,7 +96,7 @@ namespace :okc do
     @council = Committee.create!({
       name: "City Council",
     })
-    AgendaScraper.new(Time.now).run
+    AgendaScraper.new(DateTime.now).run
   end
 
   ##################################################################

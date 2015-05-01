@@ -1,14 +1,11 @@
 module Scraper
 
 	def post url, params = {}
-    HTTP.post("http://app.toronto.ca/tmmis/#{url}", form: params)
-        .body
-        .to_s
+    HTTP.post("http://app.toronto.ca/tmmis/#{url}", form: params).body.to_s
   end
   
   def get url
-    HTTP.get "http://app.toronto.ca/tmmis/#{url}"
-        .to_s
+    HTTP.get("http://app.toronto.ca/tmmis/#{url}").to_s
   end
   
   def save(file_name, content)
