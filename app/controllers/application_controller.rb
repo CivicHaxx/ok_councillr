@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_items_to_vote_on(user) 
-    Item.where('id NOT IN (?)', get_item_id_from_vote(user)).where(item_type_id: 1)
+    find_action_item_type_in_item().where('items.id NOT IN (?)', get_item_id_from_vote(user))
   end
 
   private
