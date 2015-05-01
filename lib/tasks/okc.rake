@@ -96,6 +96,8 @@ namespace :okc do
     @council = Committee.create!({
       name: "City Council",
     })
+    # TO DO: Pass in a setup boolean. If true then scrape all the data. If false, 
+    #        check when it was run last and grab the new information.
     AgendaScraper.new(DateTime.now).run
   end
 

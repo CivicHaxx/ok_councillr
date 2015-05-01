@@ -2,13 +2,14 @@ class VoteScraper
   include Scraper
 
   def initialize(term_id, from_date, to_date)
-    @term_id      = term_id
-    @raw_file_dir = "#{raw_file_dir(:votes)}/"
-    @url          = "getAdminReport.do"
-    @from_date    = from_date
-    @to_date      = to_date
-    @member_emoji = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈)
-    @members      = get_members(@term_id)
+    @term_id       = term_id
+    @decision_body = 961
+    @raw_file_dir  = "#{raw_file_dir(:votes)}/"
+    @url           = "getAdminReport.do"
+    @from_date     = from_date
+    @to_date       = to_date
+    @member_emoji  = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈)
+    @members       = get_members(@term_id)
   end
 
   def run
@@ -111,7 +112,7 @@ class VoteScraper
         # TO DO: scrape decision body ids with councillor ids
         # city council for last term is 261, for all committees, 0
         # for current term 961. why?
-        decisionBodyId: 961, 
+        decisionBodyId: @decision_body, 
         fromDate: "",#@from_date,
         toDate: "" #@to_date
       }
