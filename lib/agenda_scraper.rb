@@ -24,7 +24,7 @@ class AgendaScraper
   def parse_agendas
         
     @ids.each do |id|
-      print "\nParsing #{id} "
+      print "Parsing #{id} "
 
       content      = open("#{@raw_file_dir}/#{id}.html").read
       sections     = content.split("<br clear=\"all\">")
@@ -62,12 +62,13 @@ class AgendaScraper
           print "⚡"
       	end
       end
+      print "\n"
     end
   end
 
   def run
     get_agendas
     parse_agendas
-    puts "\n★ ★ ★  DONE PARSING ★ ★ ★".green
+    puts "\n★ ★ ★  DONE PARSING ★ ★ ★\n".green
   end
 end

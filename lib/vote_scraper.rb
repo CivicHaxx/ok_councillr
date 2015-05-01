@@ -8,19 +8,19 @@ class VoteScraper
     @url           = "getAdminReport.do"
     @from_date     = from_date
     @to_date       = to_date
-    @member_emoji  = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈)
+    @member_emoji  = %w(😀 😁 😂 😃 😄 😅 😆 😇)
     @members       = get_members(@term_id)
   end
 
   def run
 
-    puts "Getting member vote reports"
+    puts "Getting the vote record for 2014-12-01 to #{@to_date}".blue
     
     @members[1..-1].each do |member|
       unless File.exist? "#{file_name(member[:name])}.csv"
         get_vote_record(member)
       end
-      puts "Parsing vote record for #{member[:name]} 💚 "
+      puts "Parsing vote record for #{member[:name]} 👍 "
       parse_vote_record(member)
     end
   end
