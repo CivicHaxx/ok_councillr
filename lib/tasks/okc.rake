@@ -68,7 +68,7 @@ namespace :okc do
     # Rake.application.rake_require File.expand_path('../../../app/models/raw_vote_record.rb', __FILE__)
     puts "Destroying the vote record".red
     RawVoteRecord.destroy_all
-    VoteScraper.new(6, "2015-02-01", "2015-02-15").run
+    VoteScraper.new(6, "2015-01-01", "2015-04-30").run
     # to change the date range and the term for the votes, you need
     # to changne the above info and change the params for getting 
     # the csvs. e.g., The decision body ID for 2014 is 961 but it is
@@ -96,7 +96,7 @@ namespace :okc do
     @council = Committee.create!({
       name: "City Council",
     })
-    AgendaScraper.new.run
+    AgendaScraper.new(Time.now).run
   end
 
   ##################################################################

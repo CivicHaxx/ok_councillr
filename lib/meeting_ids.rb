@@ -3,41 +3,38 @@ class MeetingIDs
 
 	attr_reader :ids
 
-	def initialize(month, year)
-		@month    = month
-		@year     = year
-		@ids      = meeting_ids
+	def initialize(date)
+		@month = date.month
+		@year  = date.year
+		@ids   = meeting_ids
 	end
 
 	private
 
-	def meeting_ids 
-		page    = calendar_page
-		anchors = page.css("#calendarList .list-item a").to_ary
+	def meeting_ids
+		page        = meeting_page
+		headers     = page.css("h3").to_ary
 		
-		anchors.map do |a|
-	  	a.attr("href").split("=").last if a.text.include? "City Council"
-		end.reject(&:nil?)
-			 .uniq
-			 .flatten
+		ids = headers.map do |header|
+		  header.attr("id").remove("header") if !future? header
+		end.flatten.reject(&:nil?)
+			 binding.pry; 1
 	end
 
-	def calendar_page
-  	url  = URI("meetingCalendarView.do")
-		page = post(url, calendar_params(@month, @year))
+	def meeting_page
+  	url  = URI "http://app.toronto.ca/tmmis/decisionBodyProfile.do?function=doPrepare&decisionBodyId=961"
+		page = HTTP.get(url).to_s
 		Nokogiri::HTML(page)
 	end
-	
-	def calendar_params(month, year)
-	  {
-	    function:      "meetingCalendarView",
-	    isToday:       "false",
-	    expand:        "N",
-	    view:          "List",
-	    selectedMonth: month,
-	    selectedYear:  year,
-	    includeAll:    "on"
-	  }
+
+	def future?(header)
+		month_names = %w(January February March April May June July August September October November December)
+		binding.pry
+		month_names[0..@month-1].map do |month|
+			unless header.text.include?(month) || !header.text.include?(@year.to_s)
+				false
+			end
+		end
 	end
 
 end
