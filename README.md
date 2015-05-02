@@ -16,7 +16,7 @@ Clone the project
 
 `cd` into the project directory and run `bundle install`.
 
-Run `rake db:setup` to download the City Council Agenda and votes from December 2015 to today's date and seed the database. The project currently contains a mix of real and fake data, as the scraper is continually a work in progress. 
+Run `rake db:setup` to download the City Council Agenda and votes from December 2014 to today's date and seed the database. The project currently contains a mix of real and fake data, as the scraper is continually a work in progress. 
 
 ## Contributing
 We'd love to see what others can do with this project. If you'd like to contribute to this project, please fork the repo and create a pull request of your changes.
