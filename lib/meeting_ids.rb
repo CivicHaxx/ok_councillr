@@ -3,41 +3,33 @@ class MeetingIDs
 
 	attr_reader :ids
 
-	def initialize(month, year)
-		@month    = month
-		@year     = year
-		@ids      = meeting_ids
+	# TO DO: Pass scrape decision body IDs and pass them into this class to get
+	# 			 meeting IDs for different committees.
+	def initialize(date)
+		@now           = date
+		@decision_body = "961"
+		@ids           = meeting_ids
 	end
 
 	private
 
-	def meeting_ids 
-		page    = calendar_page
-		anchors = page.css("#calendarList .list-item a").to_ary
-		
-		anchors.map do |a|
-	  	a.attr("href").split("=").last if a.text.include? "City Council"
-		end.reject(&:nil?)
-			 .uniq
-			 .flatten
+	def meeting_ids
+		page        = meeting_page
+		headers     = page.css("h3").to_ary
+		headers.map do |header|
+		  header.attr("id").remove("header") if past_meeting? header
+		end.flatten.reject(&:nil?)
 	end
 
-	def calendar_page
-  	url  = URI("meetingCalendarView.do")
-		page = post(url, calendar_params(@month, @year))
+	def meeting_page
+  	url  = "decisionBodyProfile.do?function=doPrepare&decisionBodyId=#{@decision_body}"
+		page = get url
 		Nokogiri::HTML(page)
 	end
-	
-	def calendar_params(month, year)
-	  {
-	    function:      "meetingCalendarView",
-	    isToday:       "false",
-	    expand:        "N",
-	    view:          "List",
-	    selectedMonth: month,
-	    selectedYear:  year,
-	    includeAll:    "on"
-	  }
+
+	def past_meeting?(header)
+		meeting_date = DateTime.parse(header.text.split("-")[0].strip)
+		@now - meeting_date > 0 ? true : false
 	end
 
 end

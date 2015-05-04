@@ -1,62 +1,53 @@
+require 'active_record'
+require 'active_support/all'
+require 'awesome_print'
+require 'colored'
+require 'csv'
+require 'http'
+require 'nokogiri'
+require 'open-uri'
+
+require 'scraper'
+require 'vote_scraper'
+require 'agenda_scraper'
+require 'parsed_item'
+require 'minutes_scraper'
 require "councillors_wards"
 
-puts "Destroying Councillors".red
-Councillor.destroy_all
-# puts "Destroying Committees".red
-# Committee.destroy_all
-puts "Destroying Users".red
-User.destroy_all
-#Agenda.destroy_all 
-#Item.destroy_all
-puts "Destroying Motions".red
-Motion.destroy_all
-puts "Destroying CouncillorVotes".red
-CouncillorVote.destroy_all
-puts "Destroying UserVotes".red
-UserVote.destroy_all
-puts "Destroying ItemTypes".red
-#ItemType.destroy_all
-puts "Destroying MotionTypes".red
-MotionType.destroy_all
-puts "Destroying Wards".red
-Ward.destroy_all
 
-prefix           = %w(EX CD GM PG)
+##################################################################
+#                                                                #
+# USERS                                                          #
+#                                                                #
+##################################################################
+
 user_votes       = %w(Yes No Skip)
-councillor_votes = %w(Yes No Skip)
-user_pc          = ["M1P 0B6", "M6H 2P2", "M5H 1K4", "M5H 2N2", "M2K 1E1", "M9V 1R8"]
-users            = []
-councillors      = []
-wards            = []
-people           = %w(👦 👧 👨 👩)
+puts "Creating a fake user 🙋".yellow
+@user = User.create!(
+	email: Faker::Internet.safe_email,
+	first_name: Faker::Name.first_name,
+	last_name: Faker::Name.last_name,
+	street_name: "King Street W.",
+	street_num: 220,
+	password: "password",
+	password_confirmation: "password"
+)
 
-puts "Creating Motion Types".blue
-motion_types = MotionType.create!([
-	{ name: 'Adopted' }, 
-	{ name: 'Received' },
-	{ name: 'Amended' }
-])
+##################################################################
+#                                                                #
+# WARDS & COUNCILLORS                                            #
+#                                                                #
+##################################################################
 
-puts "Creating Users".blue
-1.times do
-	@user = User.create(
-		email: Faker::Internet.safe_email,
-		first_name: Faker::Name.first_name,
-		last_name: Faker::Name.last_name,
-		street_name: "King Street W.",
-		street_num: 220,
-		password: "password",
-		password_confirmation: "password"
-	)
+puts "Destroying Councillors & Wards".red
+Councillor.destroy_all
+Ward.destroy_all
+puts "Creating Wards & Councillors".blue
+puts "NOTE: Councillors have fake contact info".yellow
 
-	@user.save
-
-	users << @user
-
-	print " #{people.sample} "; print " "
-end
-
-puts "\nCreating Wards & Councillors".blue
+# why do we need these in an arrays? do we use it later?
+wards = []
+councillors = []
 WARD_INFO.each do |ward_info|
 	wards << Ward.create!({ ward_number: ward_info[2], name: ward_info[3] })
 
@@ -79,23 +70,34 @@ WARD_INFO.each do |ward_info|
 	print "👏"; print "  "
 end
 
-# This is now in the agenda_scraper this needs 
-# shoulsd go into the counillers scrape when we are doing that scraper
-# print "\nCreating City Council".blue
-# council = Committee.create!({
-#   name: "City Council",
-# })
+##################################################################
+#                                                                #
+# CITY COUNCIL                                                   #
+#                                                                #
+##################################################################
 
-print "\nCreating City Council".blue
+puts "\nDestroying all committees".red
+Committee.destroy_all
 
-council = Committee.where("name = 'City Council'").first
+print "Creating City Council".blue
+@council = Committee.create!({
+  name: "City Council",
+})
+
+council = Committee.find_by_name("City Council")
 
 councillors.each do |councillor|
 	council.councillors << councillor
 end
-print " 👍"
+print " 👍\n"
 
-puts "\nCreating Random Committees".yellow
+##################################################################
+#                                                                #
+# OTHER COMMITTEES                                               #
+#                                                                #
+##################################################################
+
+puts "Creating fake committees".yellow
 rand(9).times do
 	committee = Committee.create!(name: Faker::Company.name)
 
@@ -105,67 +107,71 @@ rand(9).times do
 	print "❤️"; print " "
 end
 
-# puts "\nCreating Agendas and Items".blue
-# Rake::Task['okc:agendas'].execute
+##################################################################
+#                                                                #
+# AGENDAS                                                        #
+#                                                                #
+##################################################################
 
-# TODO: Create fake motions and on each item and fake user votes on each
-#       motion. 
-# NOTE: We are currently building the app so users can vote on items and not 
-#       motions. Perhaps we should change this temporarily.
+puts "Destroying all agendas, items and itme types".red
+Agenda.destroy_all 
+Item.destroy_all
+ItemType.destroy_all
 
-puts "\nCreating Fake Councillor Items".yellow
-
-item_types = ItemType.create([
-	{ name: 'Action' }, 
-	{ name: 'Information' }, 
-	{ name: 'Presentation' }
+puts "Creating item types".blue
+item_types = ItemType.create!([
+  { name: 'Action' }, 
+  { name: 'Information' }, 
+  { name: 'Presentation' }
 ])
 
-puts "\nCreating fake motions and votes".yellow
-# Change this to the following when parsing ALL items
-# Agenda.third.items.all.each do
-Item.all.each do |item|
-	rand(5).times do 
-		motion_type    = motion_types.sample
-		amendment_text = (motion_type.name == "Amended") ? Faker::Lorem.paragraph(4, true, 6) : ""
-		
-		motion = Motion.create!(
-				amendment_text: amendment_text,
-				councillor_id: councillors.sample.id,
-				item_id: item.id,
-				motion_type_id: motion_type.id
-			)
-		rand(10).times do
-			CouncillorVote.create!(
-				vote: councillor_votes.sample,
-				councillor_id: councillors.sample.id,
-				motion_id: motion.id
-			)
-		end
+# TO DO: Pass in a setup boolean. If true then scrape all the data. If false, 
+#        check when it was run last and grab the new information.
+puts "Parsing Agendas from this year".blue
+AgendaScraper.new(DateTime.now).run
 
-	end
 
-	if item.id < 5 
-		UserVote.create!(
-			vote: user_votes.sample,
-			user_id: users.first.id,
-			item_id: item.id
-		)
-	end
+##################################################################
+#                                                                #
+# MOTIONS                                                        #
+#                                                                #
+##################################################################
 
-	ward_number = item[:sections][:ward][0]
+puts "Destroying all motions and motion types".red
+Motion.destroy_all
+MotionType.destroy_all
 
-	unless ward_number == nil
-	  item.wards << if ward_number == "All"
-	  	Ward.find_by name: "City of Toronto"
-	  else
-	  	Ward.find_by(ward_number: ward_number.to_i)
-	  end
+puts "Creating motion types".blue
+motion_types = MotionType.create!([
+	{ name: 'Adopted' }, 
+	{ name: 'Received' },
+	{ name: 'Amended' }
+])
 
-	  item.save
-	 end
+##################################################################
+#                                                                #
+# VOTES RECORD                                                   #
+#                                                                #
+##################################################################
 
-	print "❤️"; print " "
-end
+puts "Destroying the vote record".red
+RawVoteRecord.destroy_all
+today = Date.today.to_s
+VoteScraper.new(6, "2014-12-01", today).run
+# to change the date range and the term for the votes, you need
+# to changne the above info and change the params for getting 
+# the csvs. e.g., The decision body ID for 2014 is 961 but it is
+# 261 for last term.
 
-print "\n💘 💘 💘\n";
+##################################################################
+#                                                                #
+# DONE! 			                                                   #
+#                                                                #
+##################################################################
+puts ""
+puts "############################".magenta_on_white
+puts "                            ".magenta_on_white
+puts "💖  You look great today!  💖 ".magenta_on_white
+puts "                            ".magenta_on_white
+puts "############################".magenta_on_white
+puts ""

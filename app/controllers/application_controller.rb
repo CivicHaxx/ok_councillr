@@ -4,14 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   rescue_from CanCan::AccessDenied do |exception|
-    @item = Item.where(item_type_id: 1).first if @item == nil
+    @item = find_action_item_type_in_item.first if @item == nil
 
     redirect_to item_path(@item), :notice => exception.message
   end
 
   def find_next_item(user)
     if user.nil? || user.has_no_votes?
-  		Item.where(item_type_id: 1).first
+  		find_action_item_type_in_item.first
   	else
 	  	get_items_to_vote_on(user).order(:id).first.id
 	  end
@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
   end
 
   def get_items_to_vote_on(user) 
-    Item.where('id NOT IN (?)', get_item_id_from_vote(user)).where(item_type_id: 1)
+    find_action_item_type_in_item.where('items.id NOT IN (?)', get_item_id_from_vote(user))
+  end
+
+  private
+  def find_action_item_type_in_item
+    Item.includes(:item_type).where(item_types: { name: "Action" })
   end
 end
