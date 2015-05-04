@@ -25,3 +25,6 @@
 
 # Ignore Public Assests
 /public/assets/*
+
+#ignore scott's notes dir
+/notes/*
