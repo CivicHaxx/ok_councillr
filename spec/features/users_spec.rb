@@ -6,7 +6,7 @@ RSpec.feature "Users", type: :feature do
 		subject(:vist_sign_up) do
 			visit(root_url)
 	    click_link("Sign Up")
-		end 
+		end
 
 		subject(:fill_in_require_fields) do
 	  	user_new_password = "Pass3word:"
@@ -26,6 +26,20 @@ RSpec.feature "Users", type: :feature do
 					fill_in_require_fields
 					fill_in "Street Name", with: "King Street W."
 					fill_in "Street Number", with: 220
+	  		end
+
+	  		click_on "Sign Up"
+
+	  		expect(page.status_code).to be(200)
+  		end
+  	end
+
+  	context "with only require fields" do
+  		it "responds with 200" do
+  			vist_sign_up
+
+	  		within "#new_user" do					
+					fill_in_require_fields
 	  		end
 
 	  		click_on "Sign Up"
