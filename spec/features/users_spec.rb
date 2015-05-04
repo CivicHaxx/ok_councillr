@@ -8,20 +8,24 @@ RSpec.feature "Users", type: :feature do
 	    click_link("Sign Up")
 		end 
 
+		subject(:fill_in_require_fields) do
+	  	user_new_password = "Pass3word:"
+
+			fill_in "Email", with: Faker::Internet.free_email
+			fill_in "First Name", with: Faker::Name.first_name
+			fill_in "Last Name", with: Faker::Name.last_name
+			fill_in "Password", with: user_new_password
+	  	fill_in "Password Confirmation", with: user_new_password
+		end
+
   	context "with all fields fill post" do
   		it "responds with 200" do
   			vist_sign_up
 
-	  		within "#new_user" do
-	  			user_new_password = "Pass3word:"
-					
-					fill_in "Email", with: Faker::Internet.free_email
-					fill_in "First Name", with: Faker::Name.first_name
-	  			fill_in "Last Name", with: Faker::Name.last_name
+	  		within "#new_user" do					
+					fill_in_require_fields
 					fill_in "Street Name", with: "King Street W."
 					fill_in "Street Number", with: 220
-					fill_in "Password", with: user_new_password
-	  			fill_in "Password Confirmation", with: user_new_password
 	  		end
 
 	  		click_on "Sign Up"
