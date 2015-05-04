@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: Ok_Councillr_production
-  username: Ok_Councillr
+  username: deploy
   password: <%= ENV['OK_COUNCILLR_DATABASE_PASSWORD'] %>
