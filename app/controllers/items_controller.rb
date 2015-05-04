@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
 	helper_method :display_user_votes_for, :new_item_for_current_user
 
 	def index
-		@items = Item.where(item_type_id: 1).includes(:user_votes)
+		action_id = ItemType.find_by_name("Action").id
+		@items = Item.where(item_type_id: action_id).includes(:user_votes)
 
 		@items = if params[:search] == nil
 			@items.page params[:page]

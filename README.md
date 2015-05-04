@@ -4,6 +4,8 @@
 
 OKCouncillor is a data scraper, API, and civic engagement app for the City of Toronto. The scraper pulls data from the City of Toronto council meetings and parses it into a database, the API serves the data up as JSON, and the app allows people to discover how their Councillor matches with their political leanings.
 
+**Live Site: [OK Councillr](http://okcouncillr.cloudapp.net)**
+
 ## Dependencies
 - [PostgreSQL](http://www.postgresql.org/)
 - Ruby 2.2.2
@@ -16,7 +18,7 @@ Clone the project
 
 `cd` into the project directory and run `bundle install`.
 
-Run `rake okc:fresh` to download the City Council Agenda and votes from February 2015 and seed the database. The project currently contains a mix of real and fake data, as the scraper is continually a work in progress. 
+Run `rake db:setup` to download the City Council Agenda and votes from December 2014 to today's date and seed the database. The project currently contains a mix of real and fake data, as the scraper is continually a work in progress. 
 
 ## Contributing
 We'd love to see what others can do with this project. If you'd like to contribute to this project, please fork the repo and create a pull request of your changes.

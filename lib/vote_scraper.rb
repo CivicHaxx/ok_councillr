@@ -2,24 +2,25 @@ class VoteScraper
   include Scraper
 
   def initialize(term_id, from_date, to_date)
-    @term_id      = term_id
-    @raw_file_dir = "#{raw_file_dir(:votes)}/"
-    @url          = "getAdminReport.do"
-    @from_date    = from_date
-    @to_date      = to_date
-    @member_emoji = %w(😀 😁 😂 😃 😄 😅 😆 😇 😈)
-    @members      = get_members(@term_id)
+    @term_id       = term_id
+    @decision_body = 961
+    @raw_file_dir  = "#{raw_file_dir(:votes)}/"
+    @url           = "getAdminReport.do"
+    @from_date     = from_date
+    @to_date       = to_date
+    @member_emoji  = %w(😀 😁 😂 😃 😄 😅 😆 😇)
+    @members       = get_members(@term_id)
   end
 
   def run
 
-    puts "Getting member vote reports"
+    puts "Getting the vote record for 2014-12-01 to #{@to_date}".blue
     
     @members[1..-1].each do |member|
       unless File.exist? "#{file_name(member[:name])}.csv"
         get_vote_record(member)
       end
-      puts "Parsing vote record for #{member[:name]} 💚 "
+      puts "Parsing vote record for #{member[:name]} 👍 "
       parse_vote_record(member)
     end
   end
@@ -58,10 +59,10 @@ class VoteScraper
 
   def open_vote_record(member)
     csv = File.open(file_name(member[:name]), 'r')
-    CSV.parse(csv, headers: true, header_converters: sake_case_headers)
+    CSV.parse(csv, headers: true, header_converters: snake_case_headers)
   end
 
-  def sake_case_headers
+  def snake_case_headers
     lambda { |h| h.try(:parameterize).try(:underscore) }
   end
 
@@ -111,7 +112,7 @@ class VoteScraper
         # TO DO: scrape decision body ids with councillor ids
         # city council for last term is 261, for all committees, 0
         # for current term 961. why?
-        decisionBodyId: 961, 
+        decisionBodyId: @decision_body, 
         fromDate: "",#@from_date,
         toDate: "" #@to_date
       }

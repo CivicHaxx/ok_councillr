@@ -14,7 +14,7 @@ class CouncillorsController < ApplicationController
 
 	private
 	def calculated_percent_for(vote, councillor)
-		total_number_motion = Motion.count
+		total_number_motion = RawVoteRecord.where(councillor_id: councillor.id).count
 
 		(councillor.raw_vote_records.where(vote: vote).count.to_f / total_number_motion) * 100
 	end
