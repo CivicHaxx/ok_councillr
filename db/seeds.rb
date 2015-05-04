@@ -39,9 +39,10 @@ puts "Creating a fake user 🙋".yellow
 #                                                                #
 ##################################################################
 
-puts "Destroying Councillors & Wards".red
+
+
+puts "Destroying Councillors".red
 Councillor.destroy_all
-Ward.destroy_all
 puts "Creating Wards & Councillors".blue
 puts "NOTE: Councillors have fake contact info".yellow
 
@@ -49,7 +50,7 @@ puts "NOTE: Councillors have fake contact info".yellow
 wards = []
 councillors = []
 WARD_INFO.each do |ward_info|
-	wards << Ward.create!({ ward_number: ward_info[2], name: ward_info[3] })
+	wards << Ward.find_by_ward_number(ward_info[2]) || Ward.create!({ ward_number: ward_info[2], name: ward_info[3] })
 
 	unless ward_info[1].empty?
 		councillors << Councillor.create!({
