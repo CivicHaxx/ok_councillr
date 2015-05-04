@@ -48,4 +48,23 @@ RSpec.feature "Users", type: :feature do
   		end
   	end
   end
+
+  describe "#login" do
+  	let(:user) { create(:user) }
+
+		context "with email & password" do
+  		it "responds with 200" do
+	  		visit(root_url)
+	      click_link "Login"
+
+	  		within "form" do
+	  			fill_in "Email", with: user.email
+	  			fill_in "Password", with: "Pass3word:"
+	  		end
+
+	  		click_button "Login"
+	  		expect(page.status_code).to be(200)
+	  	end
+	  end
+  end
 end
