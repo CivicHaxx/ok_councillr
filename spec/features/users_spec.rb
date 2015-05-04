@@ -67,4 +67,19 @@ RSpec.feature "Users", type: :feature do
 	  	end
 	  end
   end
+
+  describe "#logout" do
+  	let(:user) { create(:user) }
+
+  	context "when user is login" do
+  		it "responds with 200" do
+				login_user_post(user.email, "Pass3word:")
+
+				visit(root_url)
+				click_link "Logout"
+
+				expect(page.status_code).to be(200)
+			end
+		end
+	end
 end
