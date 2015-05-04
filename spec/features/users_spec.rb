@@ -82,4 +82,27 @@ RSpec.feature "Users", type: :feature do
 			end
 		end
 	end
+
+  describe "#edit" do
+  	let(:user) { create(:user) }		
+		
+		context "when changing" do
+			it "#email" do 
+				login_user_post(user.email, "Pass3word:")
+				new_email = Faker::Internet.free_email
+
+				visit(root_url)
+		    click_link("Edit Profile")
+
+	  		within "form" do
+	  			fill_in "Email", with: new_email
+	  		end
+
+	  		click_button "Submit"
+				expect(page.status_code).to be(200)
+
+				expect(User.find(user.id).email).to eq new_email
+			end
+		end
+	end
 end
