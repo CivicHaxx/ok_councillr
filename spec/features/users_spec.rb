@@ -3,10 +3,14 @@ require 'capybara/rspec'
 
 RSpec.feature "Users", type: :feature do
 	describe "#sign_up" do
+		subject(:vist_sign_up) do
+			visit(root_url)
+	    click_link("Sign Up")
+		end 
+
   	context "with all fields fill post" do
   		it "responds with 200" do
-  			visit(root_url)
-	      click_link("Sign Up")
+  			vist_sign_up
 
 	  		within "#new_user" do
 	  			user_new_password = "Pass3word:"
@@ -25,7 +29,5 @@ RSpec.feature "Users", type: :feature do
 	  		expect(page.status_code).to be(200)
   		end
   	end
-
-  	
   end
 end
