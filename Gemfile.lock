@@ -56,14 +56,27 @@ GEM
     byebug (4.0.4)
       columnize (= 0.9.0)
     cancancan (1.10.1)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     coderay (1.1.0)
     colored (1.2)
     columnize (0.9.0)
+    database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     did_you_mean (0.9.6)
       interception
+    diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.4.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
     faraday (0.9.1)
@@ -171,6 +184,23 @@ GEM
     rdoc (4.2.0)
     redcarpet (3.2.2)
     ref (1.0.5)
+    rspec-core (3.2.3)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-rails (3.2.1)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
     sass (3.4.13)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -212,6 +242,8 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -222,8 +254,11 @@ DEPENDENCIES
   awesome_print
   best_errors
   cancancan
+  capybara
   coderay
   colored
+  database_cleaner (~> 1.4.1)
+  factory_girl_rails
   faker
   favorite_things
   figaro
@@ -239,6 +274,7 @@ DEPENDENCIES
   pry-byebug
   rails (= 4.2.0)
   redcarpet
+  rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sorcery

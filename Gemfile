@@ -82,5 +82,17 @@ group :development, :test do
   gem 'favorite_things'
   gem 'best_errors'
   gem "letter_opener"
+
+	# testing framework to do unit testing
+	gem 'rspec-rails'
+
+	# for feature testing with Rspece
+	gem 'capybara'
+
+	# create fake objects to test
+	gem 'factory_girl_rails'
+
+	# cleans the database after each test
+	gem 'database_cleaner', '~> 1.4.1'
 end
 
