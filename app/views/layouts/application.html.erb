@@ -22,9 +22,9 @@
 
         <section class="top-bar-section main-menu">
           <ul class="right">
-          <li><%= link_to "API", "/api/docs" %></li>
+          <li id="fifthStop"><%= link_to "API", "/api/docs" %></li>
           <li class="has-dropdown">
-            <a href="#">City Council</a>
+            <a href="#" id="fourthStop">City Council</a>
             <ul class="dropdown">
               <li><%= link_to "Agenda Items", items_path %></li>
               <li><%= link_to "Councillors", councillors_path %></li>
@@ -33,7 +33,7 @@
             
             <% if current_user %>
               <li class="has-dropdown">
-                <a href="#">Profile</a>
+                <a href="#" id="thirdStop">Profile</a>
                 <ul class="dropdown">
                   <li><%= link_to("My Votes", myvotes_path) %></li>
                   <li><%= link_to("Edit Profile", edit_user_path(current_user)) %></li>
@@ -84,9 +84,21 @@
       <li data-id="firstStop" data-text="Next" data-options="tip_location: bottom; prev_button: false">
         <p>Welcome to OKCouncillr! To get started, read through the item Synopsis and Recommendations, and see if you like or dislike what is being proposed.</p>
       </li>
-      <li data-id="secondStop" data-text="Next" data-options="tip_location: bottom; prev_button: false">
+      <li data-id="secondStop" data-text="Next" data-options="tip_location: top; prev_button: false">
         <p> Click the thumbs up button if you like what is recommended and click the thumbs down button if you dislike what is recommended. If you're unsure how you feel, click the pass button.</p>
       </li>
+      <li data-id="thirdStop" data-text="Next" data-options="tip_location: left; prev_button: false">
+        <p> Checkout your 'Like' history, find out who your councillor is, and update your profile.</p>
+      </li>
+      <li data-id="fourthStop" data-text="Next" data-options="tip_location: bottom; prev_button: false">
+        <p> See the results of all agenda items and learn more about your cty councillors </p>
+      </li>
+      <li data-id="fifthStop" data-text="Next" data-options="tip_location: bottom; prev_button: false">
+        <p> Checkout our API and use our data! </p>
+      </li>     
+      <li data-id="sixthStop" data-text="Next" data-options="tip_location: bottom; prev_button: false">
+        <p> Click the 'Get Voting' anytime to checkout new agenda items and have your say!</p>
+      </li>             
     </ol>
 
   </body>
