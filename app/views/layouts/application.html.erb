@@ -22,7 +22,7 @@
 
         <section class="top-bar-section main-menu">
           <ul class="right">
-          <li><%= link_to "API", "/api/docs" %></li>
+          <li id="firstStop"><%= link_to "API", "/api/docs" %></li>
           <li class="has-dropdown">
             <a href="#">City Council</a>
             <ul class="dropdown">
@@ -79,5 +79,12 @@
     <% end %>
 
     <%= javascript_include_tag "application" %>
+
+    <ol class="joyride-list" data-joyride>
+      <li data-id="firstStop" data-text="Next" data-options="tip_location: bottom; prev_button: false">
+        <p>Hello and welcome to the Joyride <br>documentation page.</p>
+      </li>
+    </ol>
+
   </body>
 </html>
