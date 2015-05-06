@@ -19,4 +19,8 @@ $(document).on("ready page:load", function(){
 	$(document).foundation(
 
 	);
+
+	if ($('body').attr('id') === "items-show") {
+		$(document).foundation('joyride', 'start');		
+	}
 });
