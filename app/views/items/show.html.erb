@@ -6,7 +6,7 @@
 		<li>Ward: <%= @item.sections[:ward].compact.join ", " %></li>
 	</ul>
 
-	<h3>Synopsis</h3>
+	<h3 id="firstStop" >Synopsis</h3>
 	<div class="synopsis panel callout radius">
 		
 		<% if can? :update, @item %>

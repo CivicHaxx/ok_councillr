@@ -1,12 +1,12 @@
-<div class="vote-buttons">
+<div class="vote-buttons" id="secondStop">
 	<div class="row">
-		<div class="vote-inner">
+		<div class="vote-inner" >
 			<div class="vote-form no-vote">
 				<%= form_for [@item, @user_vote] do |f| %>
 					<%= f.hidden_field :user_id, value: current_user.id %>
 					<%= f.hidden_field(:vote, value: "No") %>					
 					<%= button_tag(type: 'submit', class: "vote no", title: 'Dislike this item', rel: 'tooltip') do %>
-							<i class="fa fa-thumbs-o-down fa-2x"></i>
+							<i class="fa fa-thumbs-o-down fa-2x" ></i>
 					<% end %>	
 				<% end %>	
 
