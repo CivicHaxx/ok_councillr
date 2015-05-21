@@ -1,10 +1,13 @@
 language: ruby
 rvm:
-  - 2.2.2
+- 2.2.2
 before_install:
-  - gem update --system
-  - gem --version
+- gem update --system
+- gem --version
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
 before_script:
-  - psql -c 'create database ok_councillr_test;' -U postgres
+- psql -c 'create database ok_councillr_test;' -U postgres
+notifications:
+  slack:
+    secure: BBMfrttXmQa4+Tfke2stIR0jT5RSB5cwx7RaZkCUxcQZ7phHLFPK+LbZPuJ8zPoiW26uRGlxaKxpZiYEQXC/JRj5TWBIx9sXiozDMaR2vqz37YNV6iik33MkSzJUNiJ8GyLXkoWsA0CL8rQDNliPa4dmOl4PLYeBsALtkpffFNE=
