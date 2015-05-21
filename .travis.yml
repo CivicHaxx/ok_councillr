@@ -7,4 +7,4 @@ before_install:
 addons:
   postgresql: "9.4"
 before_script:
-  - psql -c 'create database Ok_Councillr_test;' -U postgres
+  - psql -c 'create database ok_councillr_test;' -U postgres
